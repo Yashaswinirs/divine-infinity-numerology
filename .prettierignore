@@ -4,3 +4,6 @@ out
 build
 pnpm-lock.yaml
 
+
+docs
+scripts

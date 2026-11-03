@@ -1,18 +1,19 @@
-import { Lato, Inter } from "next/font/google";
+import { Cormorant_Garamond, Lato } from "next/font/google";
 
-// Lato is defined in the Figma brand guidelines
+// TODO(figma): Figma uses Lato 500 (Medium), which Google Fonts does not host.
+// Using 400 + 700 until Lato Medium files are added via next/font/local.
 export const fontLato = Lato({
   subsets: ["latin"],
   weight: ["400", "700"],
-  variable: "--font-lato",
+  variable: "--font-lato-loaded",
   display: "swap",
 });
 
-// TODO(figma): Inter is a guessed UI sans fallback font family. Verify against Figma typography.
-// TODO(figma): Only weights 400 and 600 loaded; verify if additional or different weights are required by Figma.
-export const fontSans = Inter({
+// TODO(figma): stand-in for Lovelace Text (licensed). Replace with next/font/local
+// once the client supplies the font files.
+export const fontHeading = Cormorant_Garamond({
   subsets: ["latin"],
-  weight: ["400", "600"],
-  variable: "--font-sans",
+  weight: ["500", "600"],
+  variable: "--font-heading-loaded",
   display: "swap",
 });

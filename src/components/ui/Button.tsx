@@ -14,8 +14,8 @@ const buttonVariants = cva(
           "bg-[#675275] text-white hover:bg-[#574463] active:bg-[#4a3a54] shadow-xs hover:shadow-md",
         // TODO(figma): Verify secondary hover/active states (#f3dfb8, #ebd09d) against Figma
         secondary: "bg-[#faeed4] text-[#1e1633] hover:bg-[#f3dfb8] active:bg-[#ebd09d] shadow-xs",
-        // TODO(figma): Verify accent hover/active states (#fcc875, #f6bb57) against Figma
-        accent: "bg-[#ffd795] text-[#1e1633] hover:bg-[#fcc875] active:bg-[#f6bb57] shadow-xs",
+        // TODO(figma): hover/active states not designed; Accent opacity steps assumed
+        accent: "bg-accent text-primary hover:bg-accent/90 active:bg-accent/80 shadow-xs",
         // TODO(figma): Verify outline border color #e5dff0 against Figma
         outline:
           "border border-[#e5dff0] bg-transparent text-inherit hover:bg-[#675275]/10 hover:border-[#675275]/30 active:bg-[#675275]/20",
@@ -31,6 +31,7 @@ const buttonVariants = cva(
         md: "h-11 px-6 text-[15px] gap-2",
         // TODO(figma): Verify button size lg (h-13, 16px, px-8) against Figma specs
         lg: "h-13 px-8 text-[16px] gap-2.5",
+        nav: "h-10 min-w-22 gap-2.5 px-6 type-body-small font-bold md:min-w-28.25 xl:h-12 xl:min-w-34.25",
       },
       fullWidth: {
         true: "w-full",

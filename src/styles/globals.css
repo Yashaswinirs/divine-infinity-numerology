@@ -1,59 +1,76 @@
 @import "tailwindcss";
 
 :root {
-  /* Brand Color Tokens (From Figma Dev File) */
-  --color-primary: #675275;
-  --color-secondary: #faeed4;
-  --color-accent: #ffd795;
-  --color-territory: #8061a5;
-  --color-dark: #1e1633;
-  --color-light: #ffffff;
-  /* TODO(figma): Verify #171717 text body color against Figma */
-  --color-text-body: #171717;
-  /* TODO(figma): Verify #8c8c8c text muted color against Figma */
-  --color-text-muted: #8c8c8c;
-  --color-card-solid: #3c2657;
+  /* TODO(figma): verify card gradient stops */
   --color-card-gradient-start: #2b1f51;
   --color-card-gradient-end: #482857;
-  --color-bg-light: #f8f6fb;
 
-  /* Typography Fluid Tokens (Figma Master Desktop & Mobile Clamp) */
+  /* Typography fluid tokens (Figma master desktop and mobile clamp) */
   --font-size-h1: clamp(2.294rem, 2.157rem + 0.582vw, 2.681rem);
   --line-height-h1: clamp(2.875rem, 2.805rem + 0.188vw, 3rem);
-
   --font-size-h2: clamp(1.9rem, 1.799rem + 0.432vw, 2.188rem);
   --line-height-h2: clamp(2.188rem, 2.012rem + 0.469vw, 2.5rem);
-
   --font-size-h3: clamp(1.575rem, 1.5rem + 0.319vw, 1.788rem);
-
   --font-size-h4: clamp(1.306rem, 1.251rem + 0.235vw, 1.463rem);
   --line-height-h4: clamp(1.819rem, 1.661rem + 0.423vw, 2.1rem);
-
   --font-size-h5: clamp(1.081rem, 1.042rem + 0.169vw, 1.194rem);
   --line-height-h5: clamp(1.456rem, 1.597rem - 0.16vw, 1.563rem);
 
-  /* Container & Layout */
   --container-max-width: 1440px;
 }
 
 @theme {
-  --color-primary: var(--color-primary);
-  --color-secondary: var(--color-secondary);
-  --color-accent: var(--color-accent);
-  --color-territory: var(--color-territory);
-  --color-dark: var(--color-dark);
-  --color-light: var(--color-light);
-  --color-text-muted: var(--color-text-muted);
-  --color-card-solid: var(--color-card-solid);
-  --color-bg-light: var(--color-bg-light);
+  /* Verified from Figma Dev Mode */
+  --breakpoint-2xl: 90rem;
+  --color-primary: #655373;
+  --color-secondary: #fff0db;
+  --color-accent: #ffd8a2;
+  --color-light: #ececec;
 
-  --font-lato: var(--font-lato), sans-serif;
-  /* TODO(figma): --font-heading serif token was not specified in Figma; confirm font family */
-  --font-heading: var(--font-heading), serif;
-  --font-sans: var(--font-sans), sans-serif;
+  /* Figma "Gradient" style stops */
+  --color-gradient-stop-1: #090d22;
+  --color-gradient-stop-2: #2a1845;
+  --color-gradient-stop-3: #1a1440;
+  --color-gradient-stop-4: #0b1333;
+  --color-gradient-stop-5: #040817;
+
+  /* TODO(figma): not verified yet (Territory, Dark, Text, Card color, Cards, Light Bg) */
+  --color-territory: #8061a5;
+  --color-dark: #1e1633;
+  --color-text-muted: #8c8c8c;
+  --color-card-solid: #3c2657;
+  --color-bg-light: #f8f6fb;
+
+  /* Navbar offsets from Figma */
+  --spacing-nav-y-sm: 23px;
+  --spacing-nav-y-md: 20px;
+  --spacing-nav-y-xl: 30px;
+  --spacing-nav-logo-x: 25px;
+  --spacing-nav-logo-y: 28px;
 }
 
-/* Typography Utilities */
+@theme inline {
+  --font-sans: var(--font-lato-loaded), sans-serif;
+  --font-lato: var(--font-lato-loaded), sans-serif;
+  /* TODO(figma): Lovelace Text is not loaded yet. Add font files, then load with next/font/local. */
+  --font-heading: "Lovelace Text", var(--font-heading-loaded), Georgia, serif;
+}
+
+/* Figma text styles */
+@utility type-body-small {
+  font-size: 1rem;
+  line-height: 1.3875rem;
+  letter-spacing: 0.01em;
+}
+
+@utility type-h5-t {
+  font-family: var(--font-heading);
+  font-size: 1.1925rem;
+  line-height: 1.45625rem;
+  font-weight: 400;
+}
+
+/* Typography utilities (existing) */
 @utility text-h1 {
   font-size: var(--font-size-h1);
   line-height: var(--line-height-h1);
@@ -87,12 +104,24 @@
   );
 }
 
-/* TODO(figma): Verify hero gradient stops (#18113a, #2b1f51, #161233) against Figma */
+/* TODO(figma): angle and stop positions of the Gradient style are not confirmed */
+@utility bg-page-gradient {
+  background-image: linear-gradient(
+    180deg,
+    var(--color-gradient-stop-1),
+    var(--color-gradient-stop-2),
+    var(--color-gradient-stop-3),
+    var(--color-gradient-stop-4),
+    var(--color-gradient-stop-5)
+  );
+}
+
+/* TODO(figma): old placeholder, used by Section bg="hero". Replace with bg-page-gradient later. */
 @utility bg-hero-gradient {
   background: linear-gradient(180deg, #18113a 0%, #2b1f51 50%, #161233 100%);
 }
 
 body {
-  background-color: var(--color-light);
-  color: var(--color-text-body);
+  background-color: var(--color-gradient-stop-5);
+  color: var(--color-light);
 }
