@@ -5,6 +5,7 @@ import { Container, type ContainerProps } from "./Container";
 
 const sectionVariants = cva("relative w-full", {
   variants: {
+    // TODO(figma): Verify section vertical spacing scale (sm, md, lg, xl) against Figma section designs
     spacing: {
       none: "py-0",
       sm: "py-8 md:py-12",
@@ -18,6 +19,7 @@ const sectionVariants = cva("relative w-full", {
       hero: "bg-hero-gradient text-white",
       card: "bg-card-gradient text-white",
       light: "bg-[#f8f6fb] text-[#1e1633]",
+      // TODO(figma): Verify muted section background (neutral-100) against Figma theme
       muted: "bg-neutral-100 text-[#1e1633]",
     },
   },

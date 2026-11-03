@@ -8,7 +8,9 @@
   --color-territory: #8061a5;
   --color-dark: #1e1633;
   --color-light: #ffffff;
+  /* TODO(figma): Verify #171717 text body color against Figma */
   --color-text-body: #171717;
+  /* TODO(figma): Verify #8c8c8c text muted color against Figma */
   --color-text-muted: #8c8c8c;
   --color-card-solid: #3c2657;
   --color-card-gradient-start: #2b1f51;
@@ -46,6 +48,7 @@
   --color-bg-light: var(--color-bg-light);
 
   --font-lato: var(--font-lato), sans-serif;
+  /* TODO(figma): --font-heading serif token was not specified in Figma; confirm font family */
   --font-heading: var(--font-heading), serif;
   --font-sans: var(--font-sans), sans-serif;
 }
@@ -84,6 +87,7 @@
   );
 }
 
+/* TODO(figma): Verify hero gradient stops (#18113a, #2b1f51, #161233) against Figma */
 @utility bg-hero-gradient {
   background: linear-gradient(180deg, #18113a 0%, #2b1f51 50%, #161233 100%);
 }

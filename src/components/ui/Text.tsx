@@ -8,6 +8,7 @@ const textVariants = cva("transition-colors", {
       "body-lg": "text-[18px] leading-[22.6px]",
       "body-base": "text-[16px] leading-[22.2px]",
       "body-sm": "text-[14px] leading-[18.8px]",
+      // TODO(figma): Verify 12px body-xs and 11px caption variants against Figma type scale
       "body-xs": "text-[12px] leading-normal",
       caption: "text-[11px] leading-normal uppercase tracking-wider",
     },
@@ -26,6 +27,7 @@ const textVariants = cva("transition-colors", {
       accent: "text-[#ffd795]",
       light: "text-white",
     },
+    // TODO(figma): Verify body text font binding default (font-sans vs font-lato) against Figma
     font: {
       sans: "font-sans",
       lato: "font-lato",

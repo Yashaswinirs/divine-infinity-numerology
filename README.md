@@ -23,8 +23,20 @@ pnpm dev
 # Build for production
 pnpm build
 
+# Start production server
+pnpm start
+
 # Run ESLint validation
 pnpm lint
+
+# Run TypeScript type checking
+pnpm typecheck
+
+# Format files with Prettier
+pnpm format
+
+# Check formatting without writing
+pnpm format:check
 ```
 
 Open [http://localhost:3000](http://localhost:3000) to view the application.
@@ -43,11 +55,12 @@ divine-infinity-numerology/
 │   ├── app/                # App router routes and route groups
 │   │   ├── (public)/       # Public website route group
 │   │   │   └── page.tsx    # Home page
-│   │   ├── layout.tsx      # Root HTML layout & metadata
-│   │   └── not-found.tsx   # Custom 404 page
+│   │   ├── design-system/  # Dev-only isolated design system showcase (404 in prod)
+│   │   │   └── page.tsx
+│   │   └── layout.tsx      # Root HTML layout & metadata
 │   ├── components/         # Reusable presentation layer
 │   │   ├── ui/             # Core primitives (Button, Heading, Card, etc.)
-│   │   ├── layout/         # Structural components (Container, Section, Navbar, Footer)
+│   │   ├── layout/         # Structural components (Container, Section)
 │   │   ├── sections/       # Page-specific assembled sections (home/, about/, etc.)
 │   │   └── shared/         # Composed reusable multi-primitive widgets
 │   ├── data/               # Typed content and static configuration files
@@ -58,9 +71,10 @@ divine-infinity-numerology/
 ├── .env.example            # Template for environment variables
 ├── .nvmrc                  # Node version definition
 ├── eslint.config.mjs       # ESLint 9 flat configuration
-├── next.config.ts          # Next.js compiler and build configuration
+├── next.config.ts          # Next.js compiler configuration
 ├── package.json            # Pinned dependencies, engines, and scripts
 ├── pnpm-lock.yaml          # Deterministic dependency lockfile
+├── postcss.config.mjs      # Tailwind CSS v4 PostCSS plugin configuration
 └── tsconfig.json           # Strict TypeScript configuration
 ```
 

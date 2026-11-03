@@ -20,6 +20,7 @@ const headingVariants = cva("tracking-tight transition-colors", {
       muted: "text-[#8c8c8c]",
       dark: "text-[#1e1633]",
     },
+    // TODO(figma): Verify heading font family bindings (sans vs lato vs serif) against Figma
     font: {
       sans: "font-sans",
       lato: "font-lato",

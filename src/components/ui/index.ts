@@ -13,4 +13,3 @@ export { Heading, type HeadingProps, type HeadingLevel } from "./Heading";
 export { Icon, type IconProps } from "./Icon";
 export { Input, type InputProps } from "./Input";
 export { Text, type TextProps, type TextElement } from "./Text";
-

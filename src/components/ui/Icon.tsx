@@ -4,6 +4,7 @@ import { cn } from "@/lib";
 
 const iconVariants = cva("inline-flex shrink-0 items-center justify-center transition-colors", {
   variants: {
+    // TODO(figma): Verify Icon size scale (12px, 16px, 20px, 24px, 32px) against Figma icon components
     size: {
       xs: "w-3 h-3 [&>svg]:w-3 [&>svg]:h-3",
       sm: "w-4 h-4 [&>svg]:w-4 [&>svg]:h-4",

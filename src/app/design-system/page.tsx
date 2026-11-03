@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { notFound } from "next/navigation";
 import {
   Badge,
   Button,
@@ -143,6 +144,10 @@ const CalendarIcon = (
 );
 
 export default function DesignSystemPage() {
+  if (process.env.NODE_ENV === "production") {
+    notFound();
+  }
+
   return (
     <main className="min-h-screen bg-[#faf8fc] pb-24 text-[#1e1633]">
       {/* Sticky Viewport Header */}

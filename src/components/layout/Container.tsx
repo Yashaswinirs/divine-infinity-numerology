@@ -6,10 +6,12 @@ const containerVariants = cva("w-full mx-auto", {
   variants: {
     size: {
       default: "max-w-[1440px]",
+      // TODO(figma): Verify narrow (max-w-4xl / 896px) and wide (max-w-[1600px]) container widths against Figma layouts
       narrow: "max-w-4xl",
       wide: "max-w-[1600px]",
       full: "max-w-full",
     },
+    // TODO(figma): Verify horizontal responsive padding steps against Figma layout grid
     padding: {
       normal: "px-4 sm:px-6 md:px-8 lg:px-12",
       spacious: "px-6 sm:px-10 md:px-16",

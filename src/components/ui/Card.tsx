@@ -2,21 +2,25 @@ import * as React from "react";
 import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@/lib";
 
+// TODO(figma): Verify card corner radius (rounded-2xl / 16px) against Figma components
 const cardVariants = cva("rounded-2xl transition-all duration-200 overflow-hidden", {
   variants: {
     variant: {
+      // TODO(figma): Verify card border color #e5dff0 against Figma tokens
       default: "bg-white text-[#1e1633] border border-[#e5dff0] shadow-xs",
       solid: "bg-[#3c2657] text-white border border-[#482857] shadow-sm",
       gradient: "bg-card-gradient text-white border border-white/10 shadow-md",
       outline: "bg-transparent text-inherit border border-[#e5dff0]",
       glass: "bg-white/80 backdrop-blur-md text-[#1e1633] border border-white/20 shadow-lg",
     },
+    // TODO(figma): Verify card padding scale (none, sm, md, lg) against Figma specifications
     padding: {
       none: "p-0",
       sm: "p-4 sm:p-5",
       md: "p-6 sm:p-8",
       lg: "p-8 sm:p-10 lg:p-12",
     },
+    // TODO(figma): Verify card hover animation behavior against Figma prototypes
     hover: {
       true: "hover:-translate-y-1 hover:shadow-xl hover:border-[#8061a5]/50",
       false: "",

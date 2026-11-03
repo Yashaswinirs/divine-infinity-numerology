@@ -59,14 +59,17 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
             aria-invalid={!!error}
             aria-describedby={error ? errorId : helperText ? helperId : undefined}
             className={cn(
+              // TODO(figma): Verify input height (h-11 / 44px), padding (px-3.5), and radius (rounded-xl) against Figma
               "flex h-11 w-full rounded-xl border bg-white px-3.5 text-sm text-[#1e1633] shadow-2xs transition-colors",
               "placeholder:text-neutral-400",
               "focus-visible:ring-2 focus-visible:ring-offset-1 focus-visible:outline-hidden",
               iconLeft && "pl-10",
               iconRight && "pr-10",
               error
-                ? "border-red-500 focus-visible:ring-red-500"
-                : "border-[#e5dff0] focus-visible:border-[#8061a5] focus-visible:ring-[#8061a5]",
+                ? // TODO(figma): Verify error border and ring color against Figma
+                  "border-red-500 focus-visible:ring-red-500"
+                : // TODO(figma): Verify input border color #e5dff0 against Figma tokens
+                  "border-[#e5dff0] focus-visible:border-[#8061a5] focus-visible:ring-[#8061a5]",
               disabled && "cursor-not-allowed bg-neutral-100 opacity-50",
               className
             )}
