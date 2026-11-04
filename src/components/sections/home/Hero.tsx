@@ -27,7 +27,7 @@ export function Hero() {
       container={false}
       spacing="none"
       aria-labelledby="hero-heading"
-      className="h-137.25 md:h-146.25 xl:h-187.5"
+      className="min-h-137.25 md:min-h-146.25 xl:min-h-187.5"
     >
       <HeroVideo src={video.src} poster={video.poster} />
 
@@ -39,7 +39,7 @@ export function Hero() {
       />
 
       {/* Top offset: desktop 129 (measured), tablet ~114 and mobile ~117 (estimated). */}
-      <Container padding="page" className="relative pt-29 md:pt-28.5 xl:pt-32.25">
+      <Container padding="page" className="relative pt-29 pb-6 md:pt-28.5 md:pb-0 xl:pt-32.25">
         <div className="flex flex-col gap-6.75 md:max-w-94 md:gap-7 xl:max-w-190 xl:gap-5.25">
           <HeroEyebrow text={eyebrow.text} icon={eyebrow.icon} />
 

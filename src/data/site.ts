@@ -12,5 +12,6 @@ export const siteConfig = {
   decor: {
     sky: { src: "/images/shared/menu-bg.png" },
     ornament: { src: "/icons/ornament.svg", width: 120, height: 11.41 },
+    sectionOrnament: { src: "/icons/section-ornament.svg", width: 362, height: 32.76 },
   },
 } as const;

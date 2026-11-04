@@ -15,9 +15,9 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${fontLato.variable} ${fontHeading.variable} ${fontEyebrow.variable} h-full antialiased`}
+      className={`${fontLato.variable} ${fontHeading.variable} ${fontEyebrow.variable} antialiased`}
     >
-      <body className="bg-page-gradient text-light flex min-h-full flex-col font-sans">
+      <body className="bg-page-gradient text-light flex min-h-screen flex-col font-sans">
         {children}
       </body>
     </html>

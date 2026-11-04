@@ -149,6 +149,42 @@
   line-height: 1;
 }
 
+/* Figma H2 section title: Lovelace Text 400. Mobile 30.43/35, tablet 35/40, desktop 43.95/48.
+   Tablet and mobile use Figma "Vertical trim: Cap height", desktop does not.
+   text-box-trim needs Chrome 133+ / Safari 18.2+; elsewhere the title box is just taller. */
+@utility type-section-title {
+  font-size: 1.9019rem;
+  line-height: 2.1875rem;
+  text-box-trim: trim-both;
+  text-box-edge: cap alphabetic;
+
+  @media (width >=theme(--breakpoint-md)) {
+    font-size: 2.1875rem;
+    line-height: 2.5rem;
+  }
+
+  @media (width >=theme(--breakpoint-xl)) {
+    font-size: 2.7469rem;
+    line-height: 3rem;
+    text-box-trim: none;
+  }
+}
+
+/* Logo marquee: moves one set width to the left, then loops. Duration is set per breakpoint on the element. */
+@utility animate-marquee {
+  animation: marquee var(--marquee-duration, 30s) linear infinite;
+}
+
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-50%);
+  }
+}
+
 /* Typography utilities (existing) */
 @utility text-h1 {
   font-size: var(--font-size-h1);

@@ -13,6 +13,8 @@ const headingVariants = cva("tracking-tight transition-colors", {
       // Hero H1: Lovelace Text 400, 54.93/70.4 desktop, 35/40 tablet, 30.43/35 mobile.
       // -0.01em tracking keeps the stand-in font at Lovelace's measured line widths.
       hero: "type-hero-h1 font-normal tracking-[-0.01em]",
+      // Section title (Figma H2 / H2 T / H2 M): Lovelace Text 400, letter spacing 0.
+      section: "type-section-title font-normal tracking-normal",
     },
     color: {
       default: "text-inherit",
