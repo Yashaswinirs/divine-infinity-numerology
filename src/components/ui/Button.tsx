@@ -19,6 +19,9 @@ const buttonVariants = cva(
         // TODO(figma): Verify outline border color #e5dff0 against Figma
         outline:
           "border border-[#e5dff0] bg-transparent text-inherit hover:bg-[#675275]/10 hover:border-[#675275]/30 active:bg-[#675275]/20",
+        // Hero secondary CTA: Accent outline, transparent fill (Figma "Book a Consultation").
+        "outline-accent":
+          "border border-accent bg-transparent text-accent hover:bg-accent/10 active:bg-accent/20",
         ghost:
           "bg-transparent text-inherit hover:bg-neutral-100 dark:hover:bg-white/10 active:bg-neutral-200",
         // TODO(figma): Verify dark variant hover/active states (#2b1f47, #161026) against Figma
@@ -31,6 +34,9 @@ const buttonVariants = cva(
         md: "h-11 px-6 text-[15px] gap-2",
         // TODO(figma): Verify button size lg (h-13, 16px, px-8) against Figma specs
         lg: "h-13 px-8 text-[16px] gap-2.5",
+        // Hero CTAs: 48 tall on desktop (measured), 40 on tablet/mobile (estimated).
+        // TODO(figma): tablet/mobile button height is estimated.
+        hero: "h-10 gap-2.5 px-2.5 type-btn-large font-bold whitespace-nowrap xl:h-12",
         nav: "h-10 min-w-22 gap-2.5 px-6 type-body-small font-bold md:min-w-28.25 xl:h-12 xl:min-w-34.25",
       },
       fullWidth: {

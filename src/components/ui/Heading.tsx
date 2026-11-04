@@ -10,12 +10,16 @@ const headingVariants = cva("tracking-tight transition-colors", {
       h3: "text-h3 font-semibold",
       h4: "text-h4 font-medium",
       h5: "text-h5 font-medium",
+      // Hero H1: Lovelace Text 400, 54.93/70.4 desktop, 35/40 tablet, 30.43/35 mobile.
+      // -0.01em tracking keeps the stand-in font at Lovelace's measured line widths.
+      hero: "type-hero-h1 font-normal tracking-[-0.01em]",
     },
     color: {
       default: "text-inherit",
       primary: "text-[#675275]",
       secondary: "text-[#faeed4]",
       accent: "text-[#ffd795]",
+      gold: "text-gold",
       light: "text-white",
       muted: "text-[#8c8c8c]",
       dark: "text-[#1e1633]",
@@ -24,7 +28,7 @@ const headingVariants = cva("tracking-tight transition-colors", {
     font: {
       sans: "font-sans",
       lato: "font-lato",
-      heading: "font-sans",
+      heading: "font-heading",
     },
     align: {
       left: "text-left",

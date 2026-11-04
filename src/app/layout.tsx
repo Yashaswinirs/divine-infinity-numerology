@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { fontHeading, fontLato } from "@/styles/fonts";
+import { fontEyebrow, fontHeading, fontLato } from "@/styles/fonts";
 import "@/styles/globals.css";
 
 export const metadata: Metadata = {
@@ -13,7 +13,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${fontLato.variable} ${fontHeading.variable} h-full antialiased`}>
+    <html
+      lang="en"
+      className={`${fontLato.variable} ${fontHeading.variable} ${fontEyebrow.variable} h-full antialiased`}
+    >
       <body className="bg-page-gradient text-light flex min-h-full flex-col font-sans">
         {children}
       </body>

@@ -74,6 +74,7 @@ export function MobileMenu({ id, open, items, isActive, onClose }: MobileMenuPro
     >
       <Container padding="none" className="relative min-h-full px-5 py-5 md:px-15 md:py-10">
         {/* TODO(figma): Frame 108 opacity not read yet; 25% matches the faint look */}
+        {/* Figma Frame 108 export: opacity is baked into the image */}
         <div
           aria-hidden="true"
           className="pointer-events-none absolute inset-y-0 left-1/2 w-full max-w-187 -translate-x-1/2 overflow-hidden"
@@ -83,12 +84,12 @@ export function MobileMenu({ id, open, items, isActive, onClose }: MobileMenuPro
             alt=""
             fill
             sizes="(min-width: 768px) 748px, 100vw"
-            className="object-cover object-left opacity-25"
+            className="object-cover object-left-bottom"
           />
         </div>
         <div className="relative mx-auto flex w-full max-w-162 flex-col gap-10">
           <div className="flex h-12.5 items-center justify-between md:h-15">
-            <Logo variant="menu" onClick={onClose} />
+            <Logo onClick={onClose} />
             <MenuToggleButton
               ref={closeRef}
               icon="close"

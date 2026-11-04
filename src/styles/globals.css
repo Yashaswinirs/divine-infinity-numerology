@@ -34,6 +34,47 @@
   --color-gradient-stop-4: #0b1333;
   --color-gradient-stop-5: #040817;
 
+  /* Hero (Figma Dev Mode; names are ours, Figma shows no style name) */
+  --color-gold: #fdbb5d;
+  --color-primary-dark: #3e2066;
+  --blur-hero-fade: 20px;
+  /* Figma layer blur 40 */
+  /* Tablet/mobile: the Om changes real width, so the tagline moves with it (as in the Figma prototype). */
+  --animate-om-pulse-shift: om-pulse-shift 3s ease-in-out infinite;
+
+  @keyframes om-pulse-shift {
+    0%,
+    100% {
+      opacity: 1;
+      width: 1.76rem;
+      filter: drop-shadow(0 0 6px var(--color-gold));
+    }
+
+    50% {
+      opacity: 0.55;
+      width: 1.32rem;
+      filter: none;
+    }
+  }
+
+  --animate-om-pulse: om-pulse 3s ease-in-out infinite;
+
+  /* TODO(figma): timing assumed */
+  @keyframes om-pulse {
+    0%,
+    100% {
+      opacity: 1;
+      transform: scale(1);
+      filter: drop-shadow(0 0 6px var(--color-gold));
+    }
+
+    50% {
+      opacity: 0.55;
+      transform: scale(0.75);
+      filter: none;
+    }
+  }
+
   /* TODO(figma): not verified yet (Territory, Dark, Text, Card color, Cards, Light Bg) */
   --color-territory: #8061a5;
   --color-dark: #1e1633;
@@ -45,13 +86,12 @@
   --spacing-nav-y-sm: 23px;
   --spacing-nav-y-md: 20px;
   --spacing-nav-y-xl: 30px;
-  --spacing-nav-logo-x: 25px;
-  --spacing-nav-logo-y: 28px;
 }
 
 @theme inline {
   --font-sans: var(--font-lato-loaded), sans-serif;
   --font-lato: var(--font-lato-loaded), sans-serif;
+  --font-eyebrow: var(--font-eyebrow-loaded), sans-serif;
   /* TODO(figma): Lovelace Text is not loaded yet. Add font files, then load with next/font/local. */
   --font-heading: "Lovelace Text", var(--font-heading-loaded), Georgia, serif;
 }
@@ -68,6 +108,45 @@
   font-size: 1.1925rem;
   line-height: 1.45625rem;
   font-weight: 400;
+}
+
+/* Hero H1: Lovelace Text 400. Mobile 30.43/35, tablet 35/40, desktop 54.93/70.4 (Figma). */
+@utility type-hero-h1 {
+  font-size: 1.9019rem;
+  line-height: 2.1875rem;
+
+  @media (width >=theme(--breakpoint-md)) {
+    font-size: 2.1875rem;
+    line-height: 2.5rem;
+  }
+
+  @media (width >=theme(--breakpoint-xl)) {
+    font-size: 3.4331rem;
+    line-height: 4.4rem;
+  }
+}
+
+/* Hero eyebrow: Mirza 700 uppercase. Desktop 26 (measured), tablet 19 and mobile 15 (estimated). */
+@utility type-hero-eyebrow {
+  font-family: var(--font-eyebrow);
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 1rem;
+  line-height: 1;
+
+  @media (width >=theme(--breakpoint-md)) {
+    font-size: 1.25rem;
+  }
+
+  @media (width >=theme(--breakpoint-xl)) {
+    font-size: 1.625rem;
+  }
+}
+
+/* Figma "Body Large BTN": Lato 700 16px, line-height 100%. */
+@utility type-btn-large {
+  font-size: 1rem;
+  line-height: 1;
 }
 
 /* Typography utilities (existing) */

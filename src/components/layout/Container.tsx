@@ -16,6 +16,8 @@ const containerVariants = cva("w-full mx-auto", {
       normal: "px-4 sm:px-6 md:px-8 lg:px-12",
       spacious: "px-6 sm:px-10 md:px-16",
       none: "px-0",
+      // Matches the Navbar side padding (Figma: 20 mobile / 60 tablet / 80 desktop).
+      page: "px-5 md:px-15 xl:px-20",
     },
   },
   defaultVariants: {

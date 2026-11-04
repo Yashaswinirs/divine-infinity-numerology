@@ -10,7 +10,7 @@ export const siteConfig = {
     href: process.env.NEXT_PUBLIC_LMS_URL ?? "/",
   },
   decor: {
-    sky: { src: "/images/shared/sky-decor.png" },
+    sky: { src: "/images/shared/menu-bg.png" },
     ornament: { src: "/icons/ornament.svg", width: 120, height: 11.41 },
   },
 } as const;
