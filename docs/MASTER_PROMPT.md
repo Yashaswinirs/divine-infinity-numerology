@@ -43,16 +43,37 @@ src/
   hooks/                        useScrolled.ts, index.ts
   lib/                          cn.ts, index.ts
   styles/                       globals.css (tokens), fonts.ts (next/font)
-public/icons/ornament.svg, public/images/layout/logo.png, public/images/shared/sky-decor.png
+public/icons/ornament.svg, public/images/layout/logo.png, public/images/shared/smenu-bg.png
 public/images/<page>/<section>/ (section images), public/videos/ (hero video)
 Each component folder exports through its index.ts (barrel). Import via @/components/...
 
 # WHAT IS ALREADY BUILT (verify in Part 3)
-- Global dark page-gradient surface via the bg-page-gradient token.
-- Navbar (desktop + tablet + mobile) with NavLinks, Logo (prop variant), MenuToggleButton (props icon, ref, aria-label, onClick), MobileMenu (props id, open, items, onClose, active-link logic). Mobile menu: fixed full-screen overlay (z-60), hidden at xl and above, slides in from left, inert while closed, Escape closes, focus moves to close button, respects reduced motion, faint sky-decor image (opacity is a TODO(figma)).
-- useScrolled hook drives navbar scroll styling. Nav items come from src/data/navigation.ts; brand/site config from src/data/site.ts.
-- Container has a padding prop. Section has bg and spacing props.
-- Not built yet: Hero and all other Home sections, Footer, other pages.
+- Global: dark page gradient via the bg-page-gradient token on <body>. Fonts: Lato (sans/lato), Mirza (eyebrow), Libre Baskerville as stand-in for Lovelace Text (heading).
+- ui/ (exported from ui/index.ts):
+  - Badge: variant (primary|secondary|accent|dark|outline), size (sm|md), icon.
+  - Button: variant (primary|secondary|accent|outline|outline-accent|ghost|dark), size (sm|md|lg|hero|nav), fullWidth, href, target, rel, loading, iconLeft, iconRight, button attributes; forwardRef. In link mode only href/target/rel/className are passed on.
+  - Card (+ CardHeader, CardTitle, CardDescription, CardContent, CardFooter): variant (default|solid|gradient|outline|glass), padding (none|sm|md|lg), hover.
+  - Heading: as (h1-h6|p|span|div), size (h1-h5|hero), color (default|primary|secondary|accent|gold|light|muted|dark), font (sans|lato|heading), align.
+  - Icon: size (xs|sm|md|lg|xl), color, ariaLabel.
+  - Input: label, helperText, error, iconLeft, iconRight, input attributes; forwardRef.
+  - Text: as (p|span|div|label), variant (body-lg|body-base|body-sm|body-xs|caption), weight, color, font (sans|lato), align (left|center|right|justify).
+- layout/ (index.ts exports only Container, Section, Logo, Navbar):
+  - Container: as, size (default|narrow|wide|full), padding (normal|spacious|none|page). "page" = px-5 md:px-15 xl:px-20.
+  - Section: as, spacing (none|sm|md|lg|xl), bg (default|dark|hero|card|light|muted), container (default true), containerSize, containerPadding, containerClassName.
+  - Logo: className, onClick.
+  - Navbar: no props. Client component; fixed header (z-50), Logo, NavLinks (xl and above), Login button (Button accent/nav), MenuToggleButton (below xl), MobileMenu.
+  - NavLinks: items, isActive, className.
+  - MenuToggleButton: icon ("menu"|"close"), button attributes incl. ref.
+  - MobileMenu: id, open, items, isActive, onClose. Fixed full-screen overlay (z-60), hidden at xl and above, slides in from the left, inert while closed, Escape closes, Tab focus is trapped, focus goes to the close button and is restored on close, body scroll locked while open, respects reduced motion. Background image: /images/shared/menu-bg.png (opacity baked into the image; the old TODO is stale or unconfirmed).
+- shared/ (all via shared/index.ts): ArrowCircle (className; 30px circle with caret, used in accent buttons), Ornament (className; swirl divider 120 x 11.41), StarIcon (className; four-point star, currentColor).
+- sections/home/ (index.ts exports only Hero):
+  - Hero: no props; content from heroContent in src/data/home.ts.
+  - HeroEyebrow: text, icon ({src, width, height}), className.
+  - HeroVideo: src, poster (client component; poster-only under reduced motion; 60% black overlay below md).
+- hooks/: usePrefersReducedMotion() returns boolean; useScrolled(threshold = 10) returns boolean (currently unused).
+- data/: navigation.ts (mainNav, NavItem), site.ts (siteConfig: name, logo, login, decor), home.ts (heroContent; types HeroCta, TitleBreak, HeroTitlePart).
+- Page wiring: app/(public)/layout.tsx renders Navbar; app/(public)/page.tsx renders Hero inside <main>.
+- Not built yet: Home sections 2 to 12, Footer, other pages.
 
 # CONVENTIONS ALREADY USED (keep them)
 - Spacing: Tailwind v4 numeric scale = Figma px / 4 (20px = 5, 50px = 12.5, 60px = 15, 648px = max-w-162, 748px = max-w-187). Use arbitrary values [..] only when no scale equivalent exists, and say why.
@@ -124,7 +145,7 @@ For every section I send "Section N of 12: <name>" with screenshots, properties 
 Route: /   Frames: "Homepage" (desktop 1440 x 9630), "Homepage Tablet" (768 x 8245), "Homepage Mobile" (425 wide x 11739). Menu overlay frames are already implemented in the Navbar.
 Sections in order (draft; I confirm or correct):
   Navbar: DONE (fixes may come up while testing)
-  1. Hero (looping background video; layer name starts "Planet_rotation_and_stars_movement")
+  1. Hero (looping background video): DONE (tablet/mobile values partly estimated)
   2. Proudly Featured (logo strip)
   3. About Teejaswini
   4. Milestones
