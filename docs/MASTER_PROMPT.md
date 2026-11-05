@@ -47,34 +47,40 @@ public/icons/ornament.svg, public/images/layout/logo.png, public/images/shared/s
 public/images/<page>/<section>/ (section images), public/videos/ (hero video)
 Each component folder exports through its index.ts (barrel). Import via @/components/...
 
-# WHAT IS ALREADY BUILT (verify in Part 3)
-- Global: dark page gradient via the bg-page-gradient token on <body>. Fonts: Lato (sans/lato), Mirza (eyebrow), Libre Baskerville as stand-in for Lovelace Text (heading).
+# WHAT IS ALREADY BUILT (verify in Part 3; Part 3 wins if they differ)
+- Global: dark page gradient via the bg-page-gradient token on <body> (body is `flex min-h-screen flex-col`; the gradient seam fix lives in src/app/layout.tsx and affects every page). Fonts: Lato (sans/lato), Mirza (eyebrow), Libre Baskerville as stand-in for Lovelace Text (heading).
 - ui/ (exported from ui/index.ts):
   - Badge: variant (primary|secondary|accent|dark|outline), size (sm|md), icon.
   - Button: variant (primary|secondary|accent|outline|outline-accent|ghost|dark), size (sm|md|lg|hero|nav), fullWidth, href, target, rel, loading, iconLeft, iconRight, button attributes; forwardRef. In link mode only href/target/rel/className are passed on.
   - Card (+ CardHeader, CardTitle, CardDescription, CardContent, CardFooter): variant (default|solid|gradient|outline|glass), padding (none|sm|md|lg), hover.
-  - Heading: as (h1-h6|p|span|div), size (h1-h5|hero), color (default|primary|secondary|accent|gold|light|muted|dark), font (sans|lato|heading), align.
+  - Heading: as (h1-h6|p|span|div), size (h1-h5|hero|section), color (default|primary|secondary|accent|gold|light|muted|dark), font (sans|lato|heading), align (left|center|right). Exports type HeadingLevel.
   - Icon: size (xs|sm|md|lg|xl), color, ariaLabel.
   - Input: label, helperText, error, iconLeft, iconRight, input attributes; forwardRef.
-  - Text: as (p|span|div|label), variant (body-lg|body-base|body-sm|body-xs|caption), weight, color, font (sans|lato), align (left|center|right|justify).
+  - Text: as (p|span|div|label), variant (body-lg|body-base|body-sm|body-xs|caption), weight (normal|medium|semibold|bold), color (default|dark|muted|primary|secondary|accent|light), font (sans|lato), align (left|center|right|justify). Exports type TextElement.
 - layout/ (index.ts exports only Container, Section, Logo, Navbar):
   - Container: as, size (default|narrow|wide|full), padding (normal|spacious|none|page). "page" = px-5 md:px-15 xl:px-20.
-  - Section: as, spacing (none|sm|md|lg|xl), bg (default|dark|hero|card|light|muted), container (default true), containerSize, containerPadding, containerClassName.
+  - Section: as (section|div|article|aside), spacing (none|sm|md|lg|xl), bg (default|dark|hero|card|light|muted), container (default true), containerSize, containerPadding (default "normal"), containerClassName.
   - Logo: className, onClick.
   - Navbar: no props. Client component; fixed header (z-50), Logo, NavLinks (xl and above), Login button (Button accent/nav), MenuToggleButton (below xl), MobileMenu.
   - NavLinks: items, isActive, className.
   - MenuToggleButton: icon ("menu"|"close"), button attributes incl. ref.
-  - MobileMenu: id, open, items, isActive, onClose. Fixed full-screen overlay (z-60), hidden at xl and above, slides in from the left, inert while closed, Escape closes, Tab focus is trapped, focus goes to the close button and is restored on close, body scroll locked while open, respects reduced motion. Background image: /images/shared/menu-bg.png (opacity baked into the image; the old TODO is stale or unconfirmed).
-- shared/ (all via shared/index.ts): ArrowCircle (className; 30px circle with caret, used in accent buttons), Ornament (className; swirl divider 120 x 11.41), StarIcon (className; four-point star, currentColor).
-- sections/home/ (index.ts exports only Hero):
+  - MobileMenu: id, open, items, isActive, onClose. Fixed full-screen overlay (z-60), hidden at xl and above, slides in from the left, inert while closed, Escape closes, Tab focus is trapped, focus goes to the close button and is restored on close, body scroll locked while open, respects reduced motion. Background image: /images/shared/menu-bg.png (opacity baked into the image).
+- shared/ (all via shared/index.ts):
+  - ArrowCircle: className. 30px circle with caret, used in accent buttons.
+  - LogoMarquee: logos (LogoMarqueeItem[]: src, alt, width, height, invert?), label, className. Endless right-to-left strip of two identical sets (copy is aria-hidden). Cells 200 x 85 desktop, 120 x 64 tablet/mobile; each logo uses its own Figma frame width, shown at 0.6x below xl; invert turns a logo white. Duration set per breakpoint on the track (9s below xl, 15.5s at xl; estimated, TODO(figma)). Reduced motion: no animation, scrolls by hand.
+  - Ornament: variant (divider|section), className. Divider = swirl 120 x 11.41 (mobile menu). Section = lines + swirl above section titles (262 wide, 362 at xl).
+  - SectionHeading: title, subtitle?, titleId?, as? (default h2), className?, subtitleClassName?. Centered Ornament (section) + Heading (size section, Lovelace, Accent) + optional Text subtitle (Body small, Light), gap 15.
+  - StarIcon: className. Four-point star, currentColor.
+- sections/home/ (index.ts exports only Hero and ProudlyFeatured):
   - Hero: no props; content from heroContent in src/data/home.ts.
   - HeroEyebrow: text, icon ({src, width, height}), className.
   - HeroVideo: src, poster (client component; poster-only under reduced motion; 60% black overlay below md).
+  - ProudlyFeatured: no props; content from featuredContent in src/data/home.ts (title, subtitle, logosLabel, logos). Uses Section, SectionHeading and LogoMarquee.
 - hooks/: usePrefersReducedMotion() returns boolean; useScrolled(threshold = 10) returns boolean (currently unused).
-- data/: navigation.ts (mainNav, NavItem), site.ts (siteConfig: name, logo, login, decor), home.ts (heroContent; types HeroCta, TitleBreak, HeroTitlePart).
-- Page wiring: app/(public)/layout.tsx renders Navbar; app/(public)/page.tsx renders Hero inside <main>.
-- Not built yet: Home sections 2 to 12, Footer, other pages.
-
+- data/: navigation.ts (mainNav, NavItem), site.ts (siteConfig: name, logo, login, decor with sky, ornament, sectionOrnament), home.ts (heroContent, featuredContent; types HeroCta, TitleBreak, HeroTitlePart).
+- globals.css utilities used by sections: type-hero-h1, type-hero-eyebrow, type-btn-large, type-body-small, type-h5-t, type-section-title, animate-marquee (+ @keyframes marquee), bg-page-gradient, bg-card-gradient.
+- Page wiring: app/(public)/layout.tsx renders Navbar; app/(public)/page.tsx renders Hero and ProudlyFeatured inside <main>.
+- Not built yet: Home sections 3 to 12, Footer, WhatsApp floating button (visible in every Figma frame), other pages.
 # CONVENTIONS ALREADY USED (keep them)
 - Spacing: Tailwind v4 numeric scale = Figma px / 4 (20px = 5, 50px = 12.5, 60px = 15, 648px = max-w-162, 748px = max-w-187). Use arbitrary values [..] only when no scale equivalent exists, and say why.
 - Breakpoints come from the theme (md and xl are used). Read the exact px values from globals.css in Part 3; never assume Tailwind defaults. Mobile-first. Do not add breakpoints without asking.
@@ -145,8 +151,8 @@ For every section I send "Section N of 12: <name>" with screenshots, properties 
 Route: /   Frames: "Homepage" (desktop 1440 x 9630), "Homepage Tablet" (768 x 8245), "Homepage Mobile" (425 wide x 11739). Menu overlay frames are already implemented in the Navbar.
 Sections in order (draft; I confirm or correct):
   Navbar: DONE (fixes may come up while testing)
-  1. Hero (looping background video): DONE (tablet/mobile values partly estimated)
-  2. Proudly Featured (logo strip)
+  1. Hero (looping background video): DONE (tablet/mobile values partly estimated; fade strip on tablet/mobile not verified against Figma)
+  2. Proudly Featured (logo strip): DONE (about 95% match to Figma by screenshot comparison; marquee speed estimated)
   3. About Teejaswini
   4. Milestones
   5. Awards & Certifications
@@ -157,10 +163,18 @@ Sections in order (draft; I confirm or correct):
   10. Blogs (3 cards)
   11. FAQ (accordion)
   12. CTA ("Ready to Begin?") + Footer
+Global, not a numbered section: WhatsApp floating button (in every Figma frame): NOT built yet.
 Note: the sitemap lists a "Free life path calculator" on Home. Include it only if it is in the Figma Home frame (I will say).
 Known frame facts: one desktop section is 1340 wide (probably an inner container; ask me). Tablet hero is 768 x 585. Mobile content width 385.
 Home flow: Hero buttons -> /courses and /consultation. About preview -> /about. Course cards -> /courses/[slug]. Consultation cards -> /consultation. Blog cards -> /blog/[slug]. FAQ accordion. Nav "Student login" -> LMS login. Footer links -> every page + policies.
 The Home page file src/app/(public)/page.tsx only imports and stacks section components from components/sections/home/; content in src/data/home.ts.
+
+# LESSONS LEARNED
+- Check every exported image with `file` before using it. A 1x1 PNG is a placeholder, not the real export.
+- After replacing an image, stop the dev server, delete `.next` and restart. Otherwise the old image can stay cached.
+- Read the exact width x height and padding from the Figma Properties panel for every element. Never measure by eye.
+- When a section's Figma y position on tablet or mobile is below the end of the previous section, add the difference as top padding on the new section.
+- Prettier uses 2-space indentation. Format code that way.
 
 # START
 Do the "PROVE you read it" reply from the top of this file now, then wait for my Section message.
