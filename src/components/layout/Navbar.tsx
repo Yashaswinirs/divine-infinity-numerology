@@ -1,8 +1,9 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 import { Button } from "@/components/ui";
+import { cn } from "@/lib";
 import { mainNav } from "@/data/navigation";
 import { siteConfig } from "@/data/site";
 import { Container } from "./Container";
@@ -16,13 +17,34 @@ const MENU_ID = "mobile-menu";
 export function Navbar() {
   const pathname = usePathname();
   const [menuOpen, setMenuOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 8);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   const isActive = (href: string) =>
     href === "/" ? pathname === "/" : pathname === href || pathname.startsWith(`${href}/`);
 
   return (
     <>
-      <header className="fixed inset-x-0 top-0 z-50">
+      <header
+        className={cn(
+          "fixed inset-x-0 top-0 z-50 border-b border-transparent transition-[background-color,border-color] duration-300",
+          scrolled && "border-accent/10 bg-gradient-stop-1/95 backdrop-blur-sm"
+        )}
+      >
+        {/* Stars, same image as the page background. Fades in with the dark background. */}
+        <div
+          aria-hidden="true"
+          className={cn(
+            "pointer-events-none absolute inset-0 -z-10 bg-[url('/images/shared/stars-bg.svg')] bg-cover bg-center opacity-0 transition-opacity duration-300",
+            scrolled && "opacity-70"
+          )}
+        />
         <Container
           padding="none"
           className="pt-nav-y-sm md:pt-nav-y-md xl:pt-nav-y-xl px-5 pb-3 md:px-15 xl:px-20"

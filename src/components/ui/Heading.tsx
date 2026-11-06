@@ -13,8 +13,16 @@ const headingVariants = cva("tracking-tight transition-colors", {
       // Hero H1: Lovelace Text 400, 54.93/70.4 desktop, 35/40 tablet, 30.43/35 mobile.
       // -0.01em tracking keeps the stand-in font at Lovelace's measured line widths.
       hero: "type-hero-h1 font-normal tracking-[-0.01em]",
+      // About title: same sizes as hero, but the tablet size starts at 600px.
+      feature: "type-feature-title font-normal tracking-[-0.01em]",
       // Section title (Figma H2 / H2 T / H2 M): Lovelace Text 400, letter spacing 0.
       section: "type-section-title font-normal tracking-normal",
+      // Section title with the tablet size starting at 600px (Milestones).
+      sectionTab: "type-section-title-tab font-normal tracking-normal",
+      // Section title using H2 T (35/40) on mobile as well (Awards).
+      sectionT: "type-section-title-t font-normal tracking-normal",
+      // Award card title (Figma H5 / H5 T).
+      cardTitle: "type-card-title font-normal tracking-normal",
     },
     color: {
       default: "text-inherit",

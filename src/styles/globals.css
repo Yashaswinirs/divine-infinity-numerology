@@ -1,9 +1,9 @@
 @import "tailwindcss";
 
 :root {
-  /* TODO(figma): verify card gradient stops */
-  --color-card-gradient-start: #2b1f51;
-  --color-card-gradient-end: #482857;
+  /* Figma "Card color" gradient stops. TODO(figma): angle and stop positions not confirmed (180deg assumed). */
+  --color-card-gradient-start: #1d1b4d;
+  --color-card-gradient-end: #512b58;
 
   /* Typography fluid tokens (Figma master desktop and mobile clamp) */
   --font-size-h1: clamp(2.294rem, 2.157rem + 0.582vw, 2.681rem);
@@ -17,11 +17,34 @@
   --line-height-h5: clamp(1.456rem, 1.597rem - 0.16vw, 1.563rem);
 
   --container-max-width: 1440px;
+
+  /* Page background bands: pixel distance from the top of the page where each Figma colour sits (desktop).
+     TODO(figma): measured from screenshots. Tablet and phone get their own values later. */
+
+  /* dark navy ends (start of Milestones) */
+  --glow-1: 1700px;
+
+  /* purple peak (bottom of Milestones) */
+  --glow-2: 2350px;
+
+  /* dip (Awards heading) */
+  --glow-3: 2950px;
+
+  /* purple peak (Awards cards) */
+  --glow-4: 3350px;
+
+  /* dark again (before Why Learn) */
+  --glow-5: 3950px;
+
+  /* fully dark */
+  --glow-6: 4350px;
 }
 
 @theme {
   /* Verified from Figma Dev Mode */
   --breakpoint-2xl: 90rem;
+  /* 600px: tablet layout starts here (About and Milestones). Phone is below 600. */
+  --breakpoint-tab: 37.5rem;
   --color-primary: #655373;
   --color-secondary: #fff0db;
   --color-accent: #ffd8a2;
@@ -37,6 +60,11 @@
   /* Hero (Figma Dev Mode; names are ours, Figma shows no style name) */
   --color-gold: #fdbb5d;
   --color-primary-dark: #3e2066;
+  /* About portrait outline and dots (Figma border #806398, no style name; name is ours). Differs from Territory #8061a5. */
+  --color-arch-border: #806398;
+  /* Awards cards (Figma Dev Mode; names are ours, Figma shows no style name for border or shadow) */
+  --color-card-border: #5f1bb7;
+  --shadow-card: 0 4px 24px 0 rgb(85 81 255 / 0.25);
   --blur-hero-fade: 20px;
   /* Figma layer blur 40 */
   /* Tablet/mobile: the Om changes real width, so the tagline moves with it (as in the Figma prototype). */
@@ -110,12 +138,70 @@
   font-weight: 400;
 }
 
+/* Figma H5 (Lovelace Text 400): desktop 22.5/30.7 (measured), tablet "H5 T" 19.1/23.3, mobile "H5 M" 17.3/25.
+   Tablet size starts at 600px (tab) to match the About tablet layout. */
+@utility type-h5 {
+  font-family: var(--font-heading);
+  font-weight: 400;
+  font-size: 1.08125rem;
+  line-height: 1.5625rem;
+
+  @media (width >=theme(--breakpoint-tab)) {
+    font-size: 1.1925rem;
+    line-height: 1.45625rem;
+  }
+
+  @media (width >=theme(--breakpoint-xl)) {
+    font-size: 1.40625rem;
+    line-height: 1.91875rem;
+  }
+}
+
+/* Milestone number. Desktop H2 43.95/48 (measured). Tablet "H3 T" 28.58, line-height 100%, Figma
+   "Vertical trim: Cap height" (measured). Mobile "H3 M" 25.2 (estimated). text-box-trim needs Chrome 133+ / Safari 18.2+.
+   Tablet size starts at 600px (tab) to match the Milestones tablet cards. */
+@utility type-stat-number {
+  font-family: var(--font-heading);
+  font-weight: 400;
+  font-size: 1.575rem;
+  line-height: 1;
+  text-box-trim: trim-both;
+  text-box-edge: cap alphabetic;
+
+  @media (width >=theme(--breakpoint-tab)) {
+    font-size: 1.78625rem;
+  }
+
+  @media (width >=theme(--breakpoint-xl)) {
+    font-size: 2.7469rem;
+    line-height: 3rem;
+    text-box-trim: none;
+  }
+}
+
 /* Hero H1: Lovelace Text 400. Mobile 30.43/35, tablet 35/40, desktop 54.93/70.4 (Figma). */
 @utility type-hero-h1 {
   font-size: 1.9019rem;
   line-height: 2.1875rem;
 
   @media (width >=theme(--breakpoint-md)) {
+    font-size: 2.1875rem;
+    line-height: 2.5rem;
+  }
+
+  @media (width >=theme(--breakpoint-xl)) {
+    font-size: 3.4331rem;
+    line-height: 4.4rem;
+  }
+}
+
+/* About title: same sizes as the Hero H1 (30.43/35, 35/40, 54.93/70.4) but the tablet size starts at 600px (tab).
+   Separate from type-hero-h1 so the Hero section is not affected. */
+@utility type-feature-title {
+  font-size: 1.9019rem;
+  line-height: 2.1875rem;
+
+  @media (width >=theme(--breakpoint-tab)) {
     font-size: 2.1875rem;
     line-height: 2.5rem;
   }
@@ -170,6 +256,53 @@
   }
 }
 
+/* Same as type-section-title but the tablet size starts at 600px (tab). Used by Milestones only. */
+@utility type-section-title-tab {
+  font-size: 1.9019rem;
+  line-height: 2.1875rem;
+  text-box-trim: trim-both;
+  text-box-edge: cap alphabetic;
+
+  @media (width >=theme(--breakpoint-tab)) {
+    font-size: 2.1875rem;
+    line-height: 2.5rem;
+  }
+
+  @media (width >=theme(--breakpoint-xl)) {
+    font-size: 2.7469rem;
+    line-height: 3rem;
+    text-box-trim: none;
+  }
+}
+
+/* Figma H2 T on mobile and tablet (Awards uses it on mobile too), H2 at xl. Cap-height trim below xl. */
+@utility type-section-title-t {
+  font-size: 2.1875rem;
+  line-height: 2.5rem;
+  text-box-trim: trim-both;
+  text-box-edge: cap alphabetic;
+
+  @media (width >=theme(--breakpoint-xl)) {
+    font-size: 2.7469rem;
+    line-height: 3rem;
+    text-box-trim: none;
+  }
+}
+
+/* Figma H5 T (19.08/23.3, cap trim) below xl, H5 (22.5/30.7) at xl. TODO(figma): mobile size assumed = tablet. */
+@utility type-card-title {
+  font-size: 1.1925rem;
+  line-height: 1.45625rem;
+  text-box-trim: trim-both;
+  text-box-edge: cap alphabetic;
+
+  @media (width >=theme(--breakpoint-xl)) {
+    font-size: 1.40625rem;
+    line-height: 1.91875rem;
+    text-box-trim: none;
+  }
+}
+
 /* Logo marquee: moves one set width to the left, then loops. Duration is set per breakpoint on the element. */
 @utility animate-marquee {
   animation: marquee var(--marquee-duration, 30s) linear infinite;
@@ -213,7 +346,7 @@
 
 @utility bg-card-gradient {
   background: linear-gradient(
-    135deg,
+    180deg,
     var(--color-card-gradient-start) 0%,
     var(--color-card-gradient-end) 100%
   );
@@ -222,13 +355,31 @@
 /* TODO(figma): angle and stop positions of the Gradient style are not confirmed */
 @utility bg-page-gradient {
   background-image: linear-gradient(
-    180deg,
+    170deg,
     var(--color-gradient-stop-1),
     var(--color-gradient-stop-2),
     var(--color-gradient-stop-3),
     var(--color-gradient-stop-4),
     var(--color-gradient-stop-5)
   );
+}
+
+/* One continuous page background. Put it on <main> only; sections must not paint their own background,
+   or seams appear. Bands sit at fixed pixel positions (--glow-1..6 in :root), slanting up to the right
+   like Figma. TODO(figma): angle (172deg) and the glow positions are estimated from screenshots. */
+@utility bg-page-flow {
+  background-color: var(--color-gradient-stop-5);
+  background-image: linear-gradient(
+    172deg,
+    var(--color-gradient-stop-1) 0px,
+    var(--color-gradient-stop-1) var(--glow-1),
+    var(--color-gradient-stop-2) var(--glow-2),
+    var(--color-gradient-stop-3) var(--glow-3),
+    var(--color-gradient-stop-2) var(--glow-4),
+    var(--color-gradient-stop-4) var(--glow-5),
+    var(--color-gradient-stop-5) var(--glow-6)
+  );
+  background-repeat: no-repeat;
 }
 
 /* TODO(figma): old placeholder, used by Section bg="hero". Replace with bg-page-gradient later. */

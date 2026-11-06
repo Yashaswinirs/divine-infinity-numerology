@@ -1,4 +1,5 @@
-import type { LogoMarqueeItem } from "@/components/shared";
+import type { AwardCardProps, LogoMarqueeItem, StatCardItem } from "@/components/shared";
+
 import type { ButtonProps } from "@/components/ui";
 
 export interface HeroCta {
@@ -101,4 +102,88 @@ export const featuredContent = {
       invert: true,
     },
   ] satisfies readonly LogoMarqueeItem[],
+} as const;
+
+export const aboutContent = {
+  title: "About Teejaswinni",
+  subtitle: "Helping People Find Direction in Life",
+
+  introParagraph:
+    "For over 5+ years, Teejaswinni K Lokesh has been helping people through Numerology, Astrology, Tarot, Vastu, and Manifestation. What began as a personal curiosity to understand Numerology gradually grew into a passion for learning, teaching, and guiding others.",
+  approachParagraph:
+    "Through structured courses and one-on-one consultations, she has guided hundreds of individuals in making informed life decisions. Her approach focuses on making every subject practical, simple and easy to understand.",
+  cta: { label: "Read My Full Journey", href: "/about" },
+  // TODO(figma): alt text not supplied; replace with the client's wording.
+  portrait: {
+    src: "/images/home/about/about-portrait.webp",
+    alt: "Teejaswinni K Lokesh seated at her consultation desk in front of a zodiac wheel",
+  },
+} as const;
+
+// Figma order: top row 3+ and 500+, bottom row 300+ and Top 30 (also the mobile stack order).
+export const milestonesContent = {
+  title: "Milestones",
+
+  stats: [
+    { value: 3, suffix: "+", label: "Years of Experience" },
+    { value: 500, suffix: "+", label: "Consultations" },
+    { value: 300, suffix: "+", label: "Students Guided" },
+    { value: 30, prefix: "Top ", label: "Recognised Numerologist (2025)" },
+  ] satisfies readonly StatCardItem[],
+  ouroboros: { src: "/images/home/milestones/ouroboros.png" },
+  connectors: { src: "/images/home/milestones/connectors.svg" },
+} as const;
+
+// Desktop copy is the master. Tablet and mobile frames read "Rudraksha Studying" (TODO(client): confirm).
+// Several cards reuse the same photo in Figma, but each card has its own export file.
+export const awardsContent = {
+  title: "Awards & Certifications",
+  subtitle:
+    "Recognised among the Top 30 Numerologists in 2025, with professional training and certifications in:",
+  // TODO(figma): desktop star-dot background only; tablet and mobile versions not exported.
+  background: { src: "/images/home/awards-certifications/stars-bg.svg" },
+  awards: [
+    {
+      title: "Vedic Numerology",
+      image: {
+        src: "/images/home/awards-certifications/award-vedic-numerology.jpg",
+        alt: "Award photo for Vedic Numerology",
+      },
+    },
+    {
+      title: "Astrology",
+      image: {
+        src: "/images/home/awards-certifications/award-astrology.jpg",
+        alt: "Award photo for Astrology",
+      },
+    },
+    {
+      title: "Tarot Reading",
+      image: {
+        src: "/images/home/awards-certifications/award-tarot-reading.jpg",
+        alt: "Award photo for Tarot Reading",
+      },
+    },
+    {
+      title: "Bhrigu Nandi Nadi Astrology",
+      image: {
+        src: "/images/home/awards-certifications/award-vedic-numerology.jpg",
+        alt: "Award photo for Bhrigu Nandi Nadi Astrology",
+      },
+    },
+    {
+      title: "Vaastu",
+      image: {
+        src: "/images/home/awards-certifications/award-astrology.jpg",
+        alt: "Award photo for Vaastu",
+      },
+    },
+    {
+      title: "Rudraksha Studying",
+      image: {
+        src: "/images/home/awards-certifications/award-tarot-reading.jpg",
+        alt: "Award photo for Rudraksha Studying",
+      },
+    },
+  ] satisfies readonly Pick<AwardCardProps, "title" | "image">[],
 } as const;
