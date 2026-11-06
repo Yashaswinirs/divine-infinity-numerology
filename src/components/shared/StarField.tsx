@@ -2,6 +2,8 @@ import Image from "next/image";
 import { cn } from "@/lib";
 
 export interface StarFieldProps {
+  /** Star image. Default is the shared background used by About and Milestones. */
+  src?: string;
   className?: string;
 }
 
@@ -12,8 +14,9 @@ const STAR_WIDTH = 1962;
 const STAR_HEIGHT = 995;
 const FIRST_COPY_TOP = -116; // 42 - 158 in Figma
 const COPIES = 2;
+const DEFAULT_SRC = "/images/shared/stars-bg.svg";
 
-export function StarField({ className }: StarFieldProps) {
+export function StarField({ src = DEFAULT_SRC, className }: StarFieldProps) {
   return (
     <div
       aria-hidden="true"
@@ -22,7 +25,7 @@ export function StarField({ className }: StarFieldProps) {
       {Array.from({ length: COPIES }, (_, index) => (
         <Image
           key={index}
-          src="/images/shared/stars-bg.svg"
+          src={src}
           alt=""
           width={STAR_WIDTH}
           height={STAR_HEIGHT}

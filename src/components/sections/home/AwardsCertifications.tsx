@@ -26,7 +26,6 @@ export function AwardsCertifications() {
             title={title}
             subtitle={subtitle}
             titleSize="sectionT"
-            ornamentGap="wide"
             ornamentClassName="w-40.5 md:w-65.5 xl:w-90.5"
             className="md:py-10 xl:py-15"
             subtitleClassName="sm:max-w-120"
