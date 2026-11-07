@@ -23,6 +23,10 @@ const headingVariants = cva("tracking-tight transition-colors", {
       sectionT: "type-section-title-t font-normal tracking-normal",
       // Award card title (Figma H5 / H5 T).
       cardTitle: "type-card-title font-normal tracking-normal",
+      // Course card title (Figma H4 / H4 T / H4 M): Lovelace Text 400, 28.13/35 desktop.
+      courseTitle: "type-course-title font-normal tracking-normal",
+      // Consultation card title (Figma H4 M / H4 T / H4): phone 20.91, tablet 23.35, desktop 28.13.
+      consultTitle: "type-consult-title font-normal tracking-normal",
     },
     color: {
       default: "text-inherit",

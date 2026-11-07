@@ -2,9 +2,13 @@ import { StarField } from "@/components/shared";
 import {
   AboutTeejaswinni,
   AwardsCertifications,
+  ConsultationServices,
+  Courses,
   Hero,
   Milestones,
   ProudlyFeatured,
+  Testimonials,
+  WhyLearn,
 } from "@/components/sections/home";
 
 export default function HomePage() {
@@ -18,6 +22,13 @@ export default function HomePage() {
         <Milestones />
       </div>
       <AwardsCertifications />
+      <div className="relative isolate overflow-hidden">
+        <StarField />
+        <WhyLearn />
+        <Courses />
+      </div>
+      <ConsultationServices />
+      <Testimonials />
     </main>
   );
 }

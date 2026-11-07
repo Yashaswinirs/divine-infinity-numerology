@@ -15,6 +15,8 @@ export interface SectionHeadingProps {
   variant?: "center" | "feature";
   /** Title size for the "center" variant. "sectionTab" switches to the tablet size at 600px instead of 768px. */
   titleSize?: HeadingProps["size"];
+  /** Subtitle size for the "center" variant. "large" = Figma Body Large 18/22.6 (Consultation Services). */
+  subtitleSize?: "small" | "large";
   className?: string;
   subtitleClassName?: string;
   ornamentClassName?: string;
@@ -28,6 +30,7 @@ export function SectionHeading({
   as = "h2",
   variant = "center",
   titleSize = "section",
+  subtitleSize = "small",
   className,
   subtitleClassName,
   ornamentClassName,
@@ -78,7 +81,11 @@ export function SectionHeading({
         <Text
           weight="medium"
           align="center"
-          className={cn("type-body-small text-light", subtitleClassName)}
+          className={cn(
+            subtitleSize === "large" ? "type-body-large" : "type-body-small",
+            "text-light",
+            subtitleClassName
+          )}
         >
           {subtitle}
         </Text>

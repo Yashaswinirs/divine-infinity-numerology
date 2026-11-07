@@ -1,4 +1,10 @@
-import type { AwardCardProps, LogoMarqueeItem, StatCardItem } from "@/components/shared";
+import type {
+  AwardCardProps,
+  CourseCardProps,
+  LogoMarqueeItem,
+  StatCardItem,
+  TestimonialCardProps,
+} from "@/components/shared";
 
 import type { ButtonProps } from "@/components/ui";
 
@@ -186,4 +192,189 @@ export const awardsContent = {
       },
     },
   ] satisfies readonly Pick<AwardCardProps, "title" | "image">[],
+} as const;
+
+// Copy as in the Figma "Why Learn" frames (desktop is the master). "\n" is a manual line break inside a tile:
+// Figma breaks "Practical and / easy-to-understand / teaching" and "... start their / own practice" by hand.
+export const whyLearnContent = {
+  title: "Why Learn From Teejaswinni",
+  subtitle:
+    "Her approach focuses on practical learning, personal guidance, and helping students apply what they learn with confidence.",
+  tiles: [
+    "Practical and\neasy-to-understand\nteaching",
+    "Real case studies and examples",
+    "Foundation and Advanced courses",
+    "Assessment-based certification",
+    "Downloadable PDF study materials",
+    "Guidance to help students start their\nown practice",
+  ],
+} as const;
+// Copy as in the Figma "Courses" frames (desktop is the master).
+// TODO(client): confirm the course slugs for /courses/[slug]. TODO(figma): alt texts are placeholders.
+export const coursesContent = {
+  title: "Courses",
+  subtitle:
+    "My courses are designed to make learning simple, practical, and easy to follow. If you're taking your first step or looking to build your knowledge, you'll find structured learning that supports you at every stage.",
+  cta: { label: "Explore Courses", href: "/courses" },
+  courses: [
+    {
+      title: "Numerology",
+      description:
+        "Learn Numerology and understand how numbers can offer insights into different areas of life.",
+      href: "/courses/numerology",
+      image: {
+        src: "/images/home/courses/course-numerology.webp",
+        alt: "Zodiac wheel with glowing numbers for the Numerology course",
+      },
+    },
+    {
+      title: "Vedic Astrology",
+      description:
+        "Build an understanding of Vedic Astrology, birth charts, and planetary influences.",
+      href: "/courses/vedic-astrology",
+      image: {
+        src: "/images/home/courses/course-vedic-astrology.webp",
+        alt: "Vedic astrology chart with zodiac signs for the Vedic Astrology course",
+      },
+    },
+    {
+      title: "Manifestation",
+      description: "Learn simple practices to develop clarity, focus, and a positive mindset.",
+      href: "/courses/manifestation",
+      image: {
+        src: "/images/home/courses/course-manifestation.webp",
+        alt: "Person meditating at sunset for the Manifestation course",
+      },
+    },
+  ] satisfies readonly Pick<CourseCardProps, "title" | "description" | "href" | "image">[],
+} as const;
+// Copy as in the Figma "Consultation Services" frames (desktop is the master).
+// TODO(client): confirm where each "Book a Consultation" button goes (all point to /consultation for now; /consultation/book
+// with a service in the URL is another option). TODO(figma): alt texts are placeholders.
+export const consultationContent = {
+  title: "Consultation Services",
+  subtitle: "One Conversation Can Make a Difference",
+  services: [
+    {
+      title: "Love Consultation",
+      description:
+        "Understand your relationship better with guidance on love, compatibility, and emotional well-being.",
+      image: {
+        src: "/images/home/consultation/consultation-love.webp",
+        alt: "Couple silhouetted under a glowing zodiac wheel in a starry sky",
+      },
+      action: { label: "Book a Consultation", href: "/consultation" },
+    },
+    {
+      title: "Marriage Consultation",
+      description:
+        "Receive guidance for marriage, compatibility, family life, and important relationship decisions.",
+      image: {
+        src: "/images/home/consultation/consultation-marriage.webp",
+        alt: "Hands over tarot cards on a red table with a candle",
+      },
+      action: { label: "Book a Consultation", href: "/consultation" },
+    },
+    {
+      title: "Career Consultation",
+      description:
+        "Get support in making career choices, planning your next move, and achieving your professional goals.",
+      image: {
+        src: "/images/home/consultation/consultation-career.webp",
+        alt: "Smiling man and woman in a career consultation",
+      },
+      action: { label: "Book a Consultation", href: "/consultation" },
+    },
+    {
+      title: "Business Consultation",
+      description:
+        "Gain insights for business growth, partnerships, investments, and important business decisions.",
+      image: {
+        src: "/images/home/consultation/consultation-business.webp",
+        alt: "Three people in a business consultation meeting",
+      },
+      action: { label: "Book a Consultation", href: "/consultation" },
+    },
+    {
+      title: "Health Consultation",
+      description:
+        "Receive guidance to better understand your health concerns and overall well-being.",
+      image: {
+        src: "/images/home/consultation/consultation-health.webp",
+        alt: "Hands over tarot cards and stones on a red table with candles",
+      },
+      action: { label: "Book a Consultation", href: "/consultation" },
+    },
+  ] satisfies readonly Pick<CourseCardProps, "title" | "description" | "image" | "action">[],
+} as const;
+
+// Copy as in the Figma "Testimonials" frames (desktop is the master). Slide order as in the Figma variants.
+// TODO(client): confirm the customers allow their name, photo and quote on the site. TODO(figma): alt texts are placeholders.
+// The tablet and phone frames read "Voices Of Transformation" (capital O); the desktop copy is used.
+export const testimonialsContent = {
+  title: "Testimonials",
+  subtitle: "Voices of Transformation",
+  labels: {
+    region: "Customer testimonials",
+    previous: "Previous testimonial",
+    next: "Next testimonial",
+    goTo: "Go to testimonial",
+  },
+  items: [
+    {
+      title: "Really Good Experience",
+      quote:
+        "I had a lot of questions before the consultation and was not really sure what to expect. The session was explained very nicely and I got answers to many things that were on my mind.",
+      name: "Ananya Rao",
+      role: "Homemaker",
+      image: {
+        src: "/images/home/testimonials/testimonial-ananya-rao.webp",
+        alt: "Ananya Rao",
+      },
+    },
+    {
+      title: "Very Helpful Session",
+      quote:
+        "I mainly took the consultation for some questions related to my business. The discussion was good and I understood a few things which I had been confused about for a long time.",
+      name: "Rahul Mehta",
+      role: "Business Owner",
+      image: {
+        src: "/images/home/testimonials/testimonial-rahul-mehta.webp",
+        alt: "Rahul Mehta",
+      },
+    },
+    {
+      title: "It Gave Me Some Clarity",
+      quote:
+        "I was actually going through a confusing phase in my career. After speaking with her, I felt a little more clear about what I should focus on. Overall, it was a good experience.",
+      name: "Priya Nair",
+      role: "IT Professional",
+      image: {
+        src: "/images/home/testimonials/testimonial-priya-nair.webp",
+        alt: "Priya Nair",
+      },
+    },
+    {
+      title: "Enjoyed the Classes",
+      quote:
+        "The classes were easy to follow and I liked the way the topics were explained. Whenever I had doubts, they were explained properly with examples. I really enjoyed learning.",
+      name: "Kavya Sharma",
+      role: "Student",
+      image: {
+        src: "/images/home/testimonials/testimonial-kavya-sharma.webp",
+        alt: "Kavya Sharma",
+      },
+    },
+    {
+      title: "Glad I Took the Consultation",
+      quote:
+        "I was a little unsure before booking the session, but I'm glad I went ahead with it. We discussed the things I wanted to know and the session felt very comfortable and easy to talk through.",
+      name: "Arjun Kumar",
+      role: "Marketing Professional",
+      image: {
+        src: "/images/home/testimonials/testimonial-arjun-kumar.webp",
+        alt: "Arjun Kumar",
+      },
+    },
+  ] satisfies readonly Pick<TestimonialCardProps, "title" | "quote" | "name" | "role" | "image">[],
 } as const;
