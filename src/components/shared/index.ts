@@ -2,6 +2,7 @@ export { ArchPortrait, type ArchPortraitProps } from "./ArchPortrait";
 export { ArrowCircle, type ArrowCircleProps } from "./ArrowCircle";
 
 export { AwardCard, type AwardCardProps } from "./AwardCard";
+export { BlogCard, type BlogCardProps } from "./BlogCard";
 export {
   CarouselControls,
   type CarouselControlsLabels,
@@ -9,6 +10,7 @@ export {
 } from "./CarouselControls";
 export { CountUp, type CountUpProps } from "./CountUp";
 export { CourseCard, type CourseCardAction, type CourseCardProps } from "./CourseCard";
+export { FaqAccordion, type FaqAccordionProps, type FaqItem } from "./FaqAccordion";
 export { FeatureTile, type FeatureTileProps } from "./FeatureTile";
 export { LogoMarquee, type LogoMarqueeItem, type LogoMarqueeProps } from "./LogoMarquee";
 

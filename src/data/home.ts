@@ -1,6 +1,8 @@
 import type {
   AwardCardProps,
+  BlogCardProps,
   CourseCardProps,
+  FaqItem,
   LogoMarqueeItem,
   StatCardItem,
   TestimonialCardProps,
@@ -377,4 +379,75 @@ export const testimonialsContent = {
       },
     },
   ] satisfies readonly Pick<TestimonialCardProps, "title" | "quote" | "name" | "role" | "image">[],
+} as const;
+// Copy as in the Figma "Blogs" frame (desktop is the master; there are no tablet or phone frames).
+// TODO(client): confirm the slugs for /blog/[slug]; the posts come from WordPress later.
+// TODO(figma): alt texts are placeholders. Images to export (WebP, 2x of 332 x 186 = 664 x 372) into public/images/home/blogs/.
+export const blogsContent = {
+  title: "Blogs",
+  subtitle: "A little guidance, whenever you need it.",
+  readMoreLabel: "Read More",
+  cta: { label: "View All Blogs", href: "/blog" },
+  posts: [
+    {
+      slug: "how-your-birth-chart-shapes-your-career-path",
+      title: "How Your Birth Chart Shapes Your Career Path",
+      excerpt:
+        "A simple guide to reading planetary placements and what they mean for your professional life.",
+      image: {
+        src: "/images/home/blogs/blog-birth-chart-career.webp",
+        alt: "Woman using a laptop with an astrology wheel glowing behind her",
+      },
+    },
+    {
+      slug: "the-power-of-your-life-path-number",
+      title: "The Power of Your Life Path Number",
+      excerpt: "Discover what your Life Path Number reveals about your personality and purpose.",
+      image: {
+        src: "/images/home/blogs/blog-life-path-number.webp",
+        alt: "Glowing numerology wheel surrounded by golden numbers",
+      },
+    },
+    {
+      slug: "5-manifestation-habits-that-actually-work",
+      title: "5 Manifestation Habits That Actually Work",
+      excerpt: "Small, practical shifts you can start today to align your mindset with your goals.",
+      image: {
+        src: "/images/home/blogs/blog-manifestation-habits.webp",
+        alt: "Silhouette of a person with raised arms against a glowing sunset sky",
+      },
+    },
+  ] satisfies readonly (Pick<BlogCardProps, "title" | "excerpt" | "image"> & { slug: string })[],
+} as const;
+
+// Copy as in the Figma "FAQ" frames (desktop is the master). The numbers "1." to "5." are added by the component.
+// TODO(client): only the answer of question 1 is real Figma copy ("No. The Foundation Course ..."). Answers 2 to 5 are the
+
+export const faqContent = {
+  title: "Frequently Asked Questions",
+  items: [
+    {
+      question: "Do I need any prior knowledge to join a course?",
+      answer:
+        "No. The Foundation Course is designed for beginners and provides step-by-step learning.",
+    },
+    {
+      question: "Will I receive a certificate after completing the course?",
+      answer:
+        "Yes. A certificate is awarded after successfully completing the course assessment. Students are provided with up to three attempts to successfully complete the assessment.",
+    },
+    {
+      question: "Are study materials included with the course?",
+      answer: "Yes. Every course includes downloadable PDF study materials.",
+    },
+    {
+      question: "How are consultations conducted?",
+      answer:
+        "Recorded courses include access ranging from 6 months to 1 year, depending on the course selected.",
+    },
+    {
+      question: "Which consultation should I book?",
+      answer: "Courses are offered in both Recorded Learning and One-to-One Learning formats.",
+    },
+  ] satisfies readonly FaqItem[],
 } as const;

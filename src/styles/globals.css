@@ -310,6 +310,23 @@
   }
 }
 
+/* Figma FAQ question (H5): Lovelace Text 400. Phone "H5 M" 17.3/25, tablet "H5 T" 19.08/23.3, desktop H5 22.5/30.7.
+   The tablet size starts at 768 (md). TODO(figma): tablet and phone question panels were not received (sizes from the H5 list). */
+@utility type-faq-question {
+  font-size: 1.08125rem;
+  line-height: 1.5625rem;
+
+  @media (width >=theme(--breakpoint-md)) {
+    font-size: 1.1925rem;
+    line-height: 1.45625rem;
+  }
+
+  @media (width >=theme(--breakpoint-xl)) {
+    font-size: 1.40625rem;
+    line-height: 1.91875rem;
+  }
+}
+
 /* Figma H4 course card title: Lovelace Text 400. Desktop 28.13/35 (measured; Figma trims the 42.4 line box to a
    35 tall text box). Tablet "H4 T" 23.4 and phone "H4 M" 20.9 come from the style list; their line-heights keep the
    desktop ratio (estimated). TODO(figma): tablet and phone card title panels not received. */

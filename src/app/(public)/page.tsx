@@ -2,8 +2,10 @@ import { StarField } from "@/components/shared";
 import {
   AboutTeejaswinni,
   AwardsCertifications,
+  Blogs,
   ConsultationServices,
   Courses,
+  Faq,
   Hero,
   Milestones,
   ProudlyFeatured,
@@ -29,6 +31,11 @@ export default function HomePage() {
       </div>
       <ConsultationServices />
       <Testimonials />
+      <div className="relative isolate overflow-hidden">
+        <StarField />
+        <Blogs />
+        <Faq />
+      </div>
     </main>
   );
 }

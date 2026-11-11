@@ -19,11 +19,17 @@ const ornamentVariants = cva("h-auto", {
 
 export interface OrnamentProps extends VariantProps<typeof ornamentVariants> {
   className?: string;
+  tone?: "light" | "gold";
 }
 
-export function Ornament({ variant, className }: OrnamentProps) {
+export function Ornament({ variant, className, tone = "light" }: OrnamentProps) {
+  const { decor } = siteConfig;
   const { src, width, height } =
-    siteConfig.decor[variant === "section" ? "sectionOrnament" : "ornament"];
+    variant === "section"
+      ? tone === "gold"
+        ? decor.sectionOrnamentGold
+        : decor.sectionOrnament
+      : decor.ornament;
 
   return (
     <Image

@@ -15,12 +15,25 @@ export interface SectionHeadingProps {
   variant?: "center" | "feature";
   /** Title size for the "center" variant. "sectionTab" switches to the tablet size at 600px instead of 768px. */
   titleSize?: HeadingProps["size"];
-  /** Subtitle size for the "center" variant. "large" = Figma Body Large 18/22.6 (Consultation Services). */
-  subtitleSize?: "small" | "large";
+  /**
+   * Subtitle size for the "center" variant.
+   * "small" (default) = Figma Body small 16/22.2.
+   * "large" = Figma Body Large 18/22.6 on every viewport (Consultation Services).
+   * "largeXl" = Body small below xl, Body Large 18/22.6 from xl (Blogs; the Figma desktop frame is Body Large).
+   */
+  subtitleSize?: "small" | "large" | "largeXl";
   className?: string;
   subtitleClassName?: string;
   ornamentClassName?: string;
+  /** "gold" swaps in the gold section ornament (FAQ, Milestones). Default is the cream one. */
+  ornamentTone?: "light" | "gold";
 }
+
+const subtitleStyles = {
+  small: "type-body-small",
+  large: "type-body-large",
+  largeXl: "type-body-small xl:text-lg xl:leading-[22.6px] xl:tracking-normal",
+} as const;
 
 /** Section header: ornament, Lovelace title (Accent), subtitle. Gap 15 in Figma (25 / 15 in "feature"). */
 export function SectionHeading({
@@ -34,6 +47,7 @@ export function SectionHeading({
   className,
   subtitleClassName,
   ornamentClassName,
+  ornamentTone,
 }: SectionHeadingProps) {
   if (variant === "feature") {
     return (
@@ -66,7 +80,7 @@ export function SectionHeading({
 
   return (
     <div className={cn("flex w-full flex-col items-center gap-3.75", className)}>
-      <Ornament variant="section" className={ornamentClassName} />
+      <Ornament variant="section" tone={ornamentTone} className={ornamentClassName} />
       <Heading
         as={as}
         id={titleId}
@@ -81,11 +95,7 @@ export function SectionHeading({
         <Text
           weight="medium"
           align="center"
-          className={cn(
-            subtitleSize === "large" ? "type-body-large" : "type-body-small",
-            "text-light",
-            subtitleClassName
-          )}
+          className={cn(subtitleStyles[subtitleSize], "text-light", subtitleClassName)}
         >
           {subtitle}
         </Text>

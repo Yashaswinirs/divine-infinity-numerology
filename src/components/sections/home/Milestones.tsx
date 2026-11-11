@@ -35,7 +35,7 @@ export function Milestones() {
           titleId="milestones-heading"
           title={title}
           titleSize="sectionTab"
-          ornamentClassName="xl:mb-[1.66px]"
+          ornamentTone="gold"
           className={styles.heading}
         />
 

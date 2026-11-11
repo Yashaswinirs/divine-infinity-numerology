@@ -1,7 +1,9 @@
 export { AboutTeejaswinni } from "./AboutTeejaswinni";
 export { AwardsCertifications } from "./AwardsCertifications";
+export { Blogs } from "./Blogs";
 export { ConsultationServices } from "./ConsultationServices";
 export { Courses } from "./Courses";
+export { Faq } from "./Faq";
 export { Hero } from "./Hero";
 export { Milestones } from "./Milestones";
 export { ProudlyFeatured } from "./ProudlyFeatured";
