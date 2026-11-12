@@ -30,10 +30,10 @@ Home page: complete except section 12 (teammate) and the WhatsApp floating butto
 | 2 Contact info + enquiry form      | Done                                                |
 | 3 Looking for Personal Insights?   | Done                                                |
 | 4 Visit the Office + Find Us (map) | Done (about 97% match to Figma, 12 Nov 2026)        |
-| 5 FAQ                              | Not started (same as Home 11; built in another chat) |
+| 5 FAQ                              | Done (about 96% match to Figma, 12 Nov 2026)         |
 | 6 CTA + Footer                     | Teammate (not in this repo yet)                     |
 
-Contact route: `src/app/(public)/contact/page.tsx`. Sections 3 and 4 are built. Section 5 goes inside the shared wrapper in that file (sections 3 to 5 share one `<StarField copies={6} className="[--star-scale:0.5] tab:[--star-scale:1]" />`, see "Contact 4" below). The slot is marked `SLOT: section 5 (FAQ)`.
+Contact route: `src/app/(public)/contact/page.tsx`. Sections 3 to 5 are built and share one `<StarField copies={6} className="[--star-scale:0.5] tab:[--star-scale:1]" />` in a wrapper in that file (see "Contact 4" and "Contact 5" below). Only the CTA slot (teammate) is left.
 
 Project is LOCAL ONLY. It is never pushed to GitHub. Commit locally only.
 
@@ -53,7 +53,7 @@ Page wiring (`src/app/(public)/contact/page.tsx`): ContactHero, ContactEnquiry, 
 - Consultation (8): phone bottom padding, tablet card gap (about 30, +-3, read from the canvas) and the 1024 layout not confirmed; all five buttons go to /consultation (TODO(client)).
 - Testimonials (9): tablet and phone panels not received (tablet card about 327 tall and phone about 343 read or estimated); slide timing 500ms ease-in-out assumed; active dot width 24 estimated; desktop subtitle copy used.
 - Blogs (10): desktop measured (1440 x 744.42, padding 60 top/bottom, content 1260 wide, three 374 x 425 cards gap 70). Phone and tablet have NO Figma frame; they follow the Courses scroll-row pattern (snap-x, first card on section edge 20 phone / 60 tablet, three flexible cards from lg gap 40 / 70 from xl). Ornament widths 162 / 262 / 362; padding 25 / 40 / 60 copied from Testimonials. "View All Blogs" button not in the Figma desktop frame; added below the cards. SectionHeading uses `subtitleSize="largeXl"` (Body small below xl, Body Large 18/22.6 from xl). Ornament uses the default cream tone. Blog card images exist in public/.
-- FAQ (11): desktop measured (1440 x 841.42, padding 60 top/bottom, content 816 wide, 5 accordion cards 816 x 74 closed, gap 35). Tablet (768 x 678, padding 40/60, content 648, list gap 25). Phone (425 x 655.91, padding 25/20, content 385, title on two lines, heading block 105.91, gap 25). Ornament to title gap: 25 phone/tablet (SectionHeading 15 + 10), 69 desktop (15 + 54px). The ornament uses `ornamentTone="gold"` (gold section ornament SVG). Title to list: 30 phone / 54 tablet / 60 desktop. Shares wrapper C's StarField with Blogs.
+- FAQ (11): desktop measured (1440 x 841.42, padding 60 top/bottom, content 816 wide, 5 accordion cards 816 x 74 closed, gap 35). Tablet (768 x 678, padding 40/60, content 648, list gap 25). Phone (425 x 655.91, padding 25/20, content 385, title on two lines, heading block 105.91, gap 25). Ornament to title gap: 25 phone/tablet (SectionHeading 15 + 10), 69 desktop (15 + 54px). The ornament uses `ornamentTone="gold"` (gold section ornament SVG). Title to list: 30 phone / 54 tablet / 60 desktop. Shares wrapper C's StarField with Blogs. Toggle radius is 15 (was 10; changed 12 Nov 2026 from the Contact FAQ panel).
 
 - Contact 3 (Looking for Personal Insights?): desktop, tablet and phone measured (section 1440 x 540 / 768 x 804 / 425 x 677). New shared `InsightsCta` (ornament, title, text, button, image); copy in `contactInsightsContent` (`src/data/contact.ts`); the button goes to /consultation (not built yet). Phone top padding is 82 (Figma 40 plus a 42 gap read from the canvas, estimated). Paragraph `min-h` (91 / 68 / 89) copies the Figma text box heights, which are one line taller than the text (inferred). The phone frame reads 597 high but the measured parts add up to 589.42 (7.6 unexplained). No hover state is designed. Image: `public/images/contact/insights/contact-insights.webp` (2x, 1288 x 844); the alt text is a placeholder.
 
@@ -67,6 +67,16 @@ Page wiring (`src/app/(public)/contact/page.tsx`): ContactHero, ContactEnquiry, 
   - Background: ContactOffice paints no solid colour. It has one soft purple glow layer (`styles.glow`: gradient of #2a1845 at 0.7 and 0.55, transparent at top and bottom) sized in % of the section height, so it follows the section on desktop, tablet and phone and shows no seam with section 3.
   - Stars: StarField got a `copies` prop and a `--star-scale` CSS variable. The Contact wrapper passes `copies={6}` and `className="[--star-scale:0.5] tab:[--star-scale:1]"` (phone packs the 1962 x 995 star image at half size to match the 425 wide Figma phone star group; the 0.5 is estimated from the size ratio and looks right in the browser).
   - Known: the "Closed/Open based on client" line wraps to two lines at 320 and below (card still fits, left as is).
+
+- Contact 5 (FAQ): DONE, about 96% match to Figma (desktop about 97%, tablet about 96%, phone about 95%; checked at 1440, 1334, 1280, about 1024, 768, 600, 425, 375, 320).
+  - Files: `sections/contact/ContactFaq.tsx` (new); shared `FaqAccordion` (new `variant="compact"` and `FaqItem.compactQuestion`); `contactFaqContent` in `src/data/contact.ts`; new `type-faq-title` in globals.css; `contact/index.ts` and `contact/page.tsx` (section added in the shared StarField wrapper).
+  - Measured: desktop 1440 x 796 (content 816 x 612.42 centred, padding 91.79 derived, ornament 362 x 34.42, gap 69, title 43.95/48, title to list 60, 4 cards 816 x 74, gap 35). Tablet 768 x 585.16 (padding 50 / 60, ornament 212 x 20.16, gap 20, title 35/40, list 345 = 4 cards 60 tall, gap 35, toggle 42, radius 12). Phone 425 x 606.16 (padding 40 / 20, gap 25, title 30.43/38 on two lines, same cards).
+  - Breakpoints: md and xl, same as Home 11. Sections 3 and 4 switch at tab (600), so from 600 to 767 this section shows the phone layout.
+  - The heading is built in `ContactFaq` (the shared gold ornament file, not `SectionHeading`) because the ornament width (212), the three gaps (25 / 20 / 69) and the uncut title differ from Home.
+  - `FaqAccordion` compact variant: below xl the card is 60 tall (padding 9 plus a 42 row), radius 12, toggle 42, gap 35, wrapped questions indented 24 (`-my-1 pl-6 -indent-6`); from xl it is the same as the default card. The toggle glyph bars are now sized in % of the toggle (36% x 6%, the same 18 x 3 at 50). Toggle radius is 15 for every variant.
+  - Question 1 reads "How can a consultation be booked?" on desktop and "How can i book a consultation?" on tablet and phone (`compactQuestion`, shown below xl).
+  - Answers are the Figma prototype placeholder (the same text on all four cards).
+  - Stars: no change needed, `copies={6}` covers the section on every size.
 
 ## Contact page notes
 
@@ -139,8 +149,9 @@ Page wiring (`src/app/(public)/contact/page.tsx`): ContactHero, ContactEnquiry, 
 - Blogs (10): md, lg, xl (no tab). The scroll row lasts below lg; three flexible cards from lg.
 - FAQ (11): md, xl. Content max 816. Ornament only switches at xl (the `w-65.5` is the same on phone and tablet).
 - `type-faq-question`: md and xl.
+- `type-faq-title` (Contact FAQ title): phone 30.43/38, md 35/40, xl 43.95/48, no cap trim. md and xl.
 - INCONSISTENCY: Testimonials lays out at md but its title switches at tab. Blogs uses md for its tablet padding. FAQ uses md. This is consistent with the Testimonials pattern (md-based sections). Decision still open (see Open TODOs).
-- Contact 3 and 4: `tab` (600) for the tablet size and padding, `lg` (1024) for the two-column row, `xl` (1280) for 80px side padding and the 130px gap / desktop card sizes. The Contact 3 title grows with the width from lg (see `type-insights-title`). Contact FAQ (5) will use the Contact breakpoints unless Figma says otherwise (Home FAQ uses md and xl).
+- Contact 3 and 4: `tab` (600) for the tablet size and padding, `lg` (1024) for the two-column row, `xl` (1280) for 80px side padding and the 130px gap / desktop card sizes. The Contact 3 title grows with the width from lg (see `type-insights-title`). Contact FAQ (5) uses md and xl like the Home FAQ (decided 12 Nov 2026).
 
 ### Tokens in src/styles/globals.css
 
@@ -209,5 +220,5 @@ Unchanged from sections 1–9.
 - Contact 3: confirm the image alt text, the phone frame height (597 vs 589.42), the paragraph box height, and the title weight once Lovelace Text is loaded. Build /consultation (the button is a 404 until then).
 - Contact 2: differences are being collected (TODO from the user); apply them to ContactEnquiry / EnquiryForm only.
 - Contact 4: TODO(client) confirm the map pin and the Google listing name ("Diviine Infinity Numerologgy" looks misspelled); the Contact 2 address ("Bangalore") is still the Figma placeholder. TODO(figma): tablet and phone panels for the Office Hours card (value text 16 and 14, icon 40, gap 16 / 24 are estimated); the tablet Figma star group size (tablet and desktop stars use scale 1); phone star scale 0.5 is estimated from the size ratio (adjust to 0.6 / 0.4 if it looks off). The "Closed/Open based on client" line wraps at 320 and below (accepted).
-- Contact 5 (FAQ): not started; same pattern as Home 11 (reuse `FaqAccordion`, `SectionHeading`, `type-faq-question`). Goes into the `SLOT: section 5 (FAQ)` in `contact/page.tsx`.
+- Contact 5: TODO(client) send the real answers (placeholder now) and confirm the question 1 wording on tablet and phone (lowercase "i"). TODO(figma): tablet title panel, compact toggle radius (12 estimated), open-state spacing on tablet and phone (not designed), desktop padding 91.79 (derived), hover state.
 - WhatsApp: the real number and message are pending from the client (site.ts); the Home page already renders the button.
