@@ -9,10 +9,10 @@ Last updated: 11 Nov 2026
 | Navbar (desktop, tablet, mobile menu) | Done                            |
 | 1 Hero                                | Done                            |
 | 2 Proudly Featured                    | Done                            |
-| 3 About Teejaswini                    | Done                            |
+| 3 About Teejaswinni                    | Done                            |
 | 4 Milestones                          | Done                            |
 | 5 Awards & Certifications             | Done                            |
-| 6 Why Learn From Teejaswini           | Done                            |
+| 6 Why Learn From Teejaswinni           | Done                            |
 | 7 Courses                             | Done                            |
 | 8 Consultation Services               | Done                            |
 | 9 Testimonials                        | Done                            |
@@ -127,7 +127,7 @@ Unchanged from sections 1–9.
 - Unverified risk: tailwind-merge may not know custom utilities (text-h1 to text-h5, type-*).
 - `StarField` forces 1962 x 995 on any src; only 2 copies, so a very tall wrapper (phone) can run out of stars.
 - Button in link mode only passes href, target, rel, className. `siteConfig.login.href` uses `??`: an empty NEXT_PUBLIC_LMS_URL makes Button render a plain `<button>`.
-- Spelling: file `AboutTeejaswinni.tsx` and copy in data use "Teejaswinni"; the rest says "Teejaswini".
+- Spelling: "Teejaswinni" everywhere (confirmed 12 Nov 2026).
 - Lovelace Text is not loaded; Libre Baskerville is the stand-in.
 - AGENTS.md: this Next.js version has breaking changes; read `node_modules/next/dist/docs/`.
 - A teammate is building section 12. They will touch `(public)/layout.tsx` and probably shared files; merge against the current files.
@@ -147,7 +147,7 @@ Unchanged from sections 1–9.
 - Page background: confirm `bg-page-flow` angle (172deg) and glow positions, add values below 4350px, tablet and phone; check the Hero fade-strip seam.
 - Hero: verify the fade strip on tablet/mobile, estimated values and Om animation timing. ProudlyFeatured: find the remaining ~5% difference; confirm per-logo sizes.
 - Build the WhatsApp floating button (number, link, position unknown). Section 12 CTA + Footer: teammate.
-- Decide "Teejaswini" vs "Teejaswinni" in file names, data and docs. Decide whether to use `useScrolled` in the Navbar or remove it.
+-  Decide whether to use `useScrolled` in the Navbar or remove it.
 - Fonts: supply Lovelace Text files, load with next/font/local, drop Libre Baskerville.
 - globals.css: card gradient angle and stops; Territory, Dark, Text, Card color, Cards, Light Bg tokens; replace `bg-hero-gradient`.
 - ui primitives: radius, colors, sizes, paddings, hover/active states, font bindings are TODO(figma).

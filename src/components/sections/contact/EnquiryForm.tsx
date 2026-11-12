@@ -29,16 +29,16 @@ const styles = {
   icon: "size-5 shrink-0 text-light lg:size-6",
   rule: "h-5 w-px shrink-0 bg-light/40 lg:h-6",
   control:
-    "min-w-0 flex-1 bg-transparent text-sm font-medium text-light outline-none placeholder:text-light tab:text-base xl:text-lg xl:leading-[22.6px]",
+    "min-w-0 flex-1 bg-transparent text-sm font-medium text-light outline-none placeholder:text-light tab:text-base lg:text-sm xl:text-lg xl:leading-[22.6px]",
   select: "w-full appearance-none pr-6 [&>option]:bg-gradient-stop-5 [&>option]:text-light",
   chevron: "pointer-events-none absolute right-3 size-4 text-light",
   textarea:
     "h-31 rounded-lg border border-secondary/25 px-3 py-4 focus-within:border-accent lg:col-span-2 lg:h-35.75",
   textareaControl:
-    "size-full resize-none bg-transparent text-sm font-medium text-light outline-none placeholder:text-light tab:text-base xl:text-lg xl:leading-[22.6px]",
+    "size-full resize-none bg-transparent text-sm font-medium text-light outline-none placeholder:text-light tab:text-base lg:text-sm xl:text-lg xl:leading-[22.6px]",
   submit:
-    "flex h-10.5 w-full items-center justify-center gap-3 rounded-full bg-accent py-2.5 pr-2.5 pl-4 text-base font-bold tracking-[0.01em] text-[#655373] tab:mx-auto tab:w-63.25 lg:h-12 lg:w-fit",
-  arrow: "grid size-7 place-items-center rounded-full bg-[#655373] text-accent",
+    "flex h-10.5 w-full items-center justify-center gap-3 rounded-full bg-accent py-2.5 pr-2.5 pl-4 text-base font-bold tracking-[0.01em] text-primary tab:mx-auto tab:w-63.25 lg:h-12 lg:w-fit",
+  arrow: "grid size-7 place-items-center rounded-full bg-primary text-accent",
 } as const;
 
 function Field({ icon, label, children }: { icon: ReactNode; label: string; children: ReactNode }) {

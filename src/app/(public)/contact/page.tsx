@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { ContactEnquiry, ContactHero } from "@/components/sections/contact";
+import { WhatsAppButton } from "@/components/shared";
 import { contactMetadata } from "@/data/contact";
 
 export const metadata: Metadata = {
@@ -16,6 +17,7 @@ export default function ContactPage() {
       <ContactEnquiry />
       {/* SLOT: sections 3 to 5 (insights, office + map, FAQ) are added here, one at a time. */}
       {/* SLOT: "Ready to Take the Next Step?" CTA. Built by the teammate, not here. The Footer goes in (public)/layout.tsx. */}
+      <WhatsAppButton />
     </main>
   );
 }

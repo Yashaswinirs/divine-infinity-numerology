@@ -75,6 +75,4 @@ export const contactEnquiryContent = {
       "Other",
     ],
   },
-  // TODO(client): confirm the WhatsApp number or link.
-  whatsapp: { href: "https://wa.me/919876543210", label: "Chat with us on WhatsApp" },
 } as const;
