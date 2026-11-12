@@ -27,6 +27,11 @@ const headingVariants = cva("tracking-tight transition-colors", {
       courseTitle: "type-course-title font-normal tracking-normal",
       // Consultation card title (Figma H4 M / H4 T / H4): phone 20.91, tablet 23.35, desktop 28.13.
       consultTitle: "type-consult-title font-normal tracking-normal",
+      // Page hero title (Contact; Figma H1 M / H1 T / H1): 36.7/46 phone, 42.87/55 tablet, 54.93/70.4 laptop and desktop.
+      pageTitle: "type-page-title font-normal tracking-normal",
+      // Contact section titles (Figma H3): 35.16/100% laptop and desktop, estimated 28.8 tablet and 25.2 phone.
+      contactTitle: "type-contact-title font-normal tracking-normal",
+      // Contact section title (Figma H3 35.16px): 30.43/35 phone, 35.16 tablet and desktop.
     },
     color: {
       default: "text-inherit",

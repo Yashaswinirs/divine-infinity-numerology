@@ -65,6 +65,14 @@
   /* Awards cards (Figma Dev Mode; names are ours, Figma shows no style name for border or shadow) */
   --color-card-border: #5f1bb7;
   --shadow-card: 0 4px 24px 0 rgb(85 81 255 / 0.25);
+  /* WhatsApp floating button. TODO(figma): green and glow are not from a style panel. */
+  --color-whatsapp: #25d366;
+  --shadow-whatsapp: 0 4px 24px 0 rgb(37 211 102 / 0.45);
+  /* Contact submit button. TODO(figma): text colour and hover fill are not from a panel; the Figma desktop frame
+     shows the label lighter, like Primary #655373 on the Home accent buttons. */
+  --color-button-ink: #1f1438;
+  --color-accent-hover: #ffe0b6;
+
   --blur-hero-fade: 20px;
   /* Figma layer blur 40 */
   /* Tablet/mobile: the Om changes real width, so the tagline moves with it (as in the Figma prototype). */
@@ -385,6 +393,58 @@
   }
 }
 
+/* Figma page hero title (Contact): Lovelace Text 400. Phone "H1 M" 36.7/46 (the 46 is confirmed by the 147px text
+   frame: 46 + 12 + 89), tablet "H1 T" 42.87/55 (measured), laptop and desktop "H1" 54.93/70.4 (measured).
+   The tablet size starts at 600px (tab), the laptop size at 1024px (lg). TODO(figma): phone H1 panel not received. */
+@utility type-page-title {
+  font-size: 2.29375rem;
+  line-height: 2.875rem;
+
+  @media (width >=theme(--breakpoint-tab)) {
+    font-size: 2.679375rem;
+    line-height: 3.4375rem;
+  }
+
+  @media (width >=theme(--breakpoint-lg)) {
+    font-size: 3.433125rem;
+    line-height: 4.4rem;
+  }
+}
+
+/* Figma Contact section title (Contact Information & Have a Question): Lovelace Text 400.
+   Phone 30.43/35, tablet and desktop H3 35.16px, line-height 100% (measured).
+   Tablet size starts at 600px (tab). */
+@utility type-contact-title {
+  font-size: 1.575rem;
+  line-height: 1.25;
+
+  @media (width >=theme(--breakpoint-tab)) {
+    font-size: 1.78625rem;
+    line-height: 1.25;
+  }
+
+  @media (width >=theme(--breakpoint-lg)) {
+    font-size: 2.1975rem;
+    line-height: 1;
+  }
+}
+
+/* Contact section titles (Figma H3, Lovelace Text 400, line height 100%). Desktop 35.16 (measured); from lg the size
+   scales with the width (2.44vw) so "Contact Information" fits at 1024. Tablet 28.8 and phone 25.2 are estimated from
+   the canvas (TODO(figma): panels not received). */
+@utility type-contact-title {
+  font-size: 1.575rem;
+  line-height: 1;
+
+  @media (width >=theme(--breakpoint-tab)) {
+    font-size: 1.8rem;
+  }
+
+  @media (width >=theme(--breakpoint-lg)) {
+    font-size: clamp(1.75rem, 2.44vw, 2.1975rem);
+  }
+}
+
 /* Logo marquee: moves one set width to the left, then loops. Duration is set per breakpoint on the element. */
 @utility animate-marquee {
   animation: marquee var(--marquee-duration, 30s) linear infinite;
@@ -460,6 +520,25 @@
     var(--color-gradient-stop-2) var(--glow-4),
     var(--color-gradient-stop-4) var(--glow-5),
     var(--color-gradient-stop-5) var(--glow-6)
+  );
+  background-repeat: no-repeat;
+}
+
+/* One continuous page background for the Contact page (/contact).
+   Flows as deep midnight navy blue sky (#090d22) continuous with the Hero,
+   carrying a subtle horizontal band (line) of purple nebula (#23153d) across Section 2,
+   then returning to deep midnight navy sky. Matches Figma Desktop Contact Us canvas. */
+@utility bg-contact-flow {
+  background-color: var(--color-gradient-stop-5);
+  background-image: linear-gradient(
+    180deg,
+    var(--color-gradient-stop-1) 0px,
+    var(--color-gradient-stop-1) 560px,
+    #1d1334 760px,
+    #251642 840px,
+    #1d1334 920px,
+    var(--color-gradient-stop-1) 1120px,
+    var(--color-gradient-stop-1) 100%
   );
   background-repeat: no-repeat;
 }

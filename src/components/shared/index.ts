@@ -15,9 +15,12 @@ export { FeatureTile, type FeatureTileProps } from "./FeatureTile";
 export { LogoMarquee, type LogoMarqueeItem, type LogoMarqueeProps } from "./LogoMarquee";
 
 export { Ornament, type OrnamentProps } from "./Ornament";
+export { PageHero, type PageHeroProps } from "./PageHero";
 export { SectionHeading, type SectionHeadingProps } from "./SectionHeading";
 export { StarField, type StarFieldProps } from "./StarField";
 export { StarIcon, type StarIconProps } from "./StarIcon";
 export { StarRating, type StarRatingProps } from "./StarRating";
 export { StatCard, type StatCardItem, type StatCardProps } from "./StatCard";
 export { TestimonialCard, type TestimonialCardProps } from "./TestimonialCard";
+export { WhatsAppButton, type WhatsAppButtonProps } from "./WhatsAppButton";
+export { WhatsAppIcon } from "./WhatsAppIcon";

@@ -1,3 +1,22 @@
+export interface WhatsAppConfig {
+  /** Digits only, with country code (wa.me format): no "+", spaces or dashes. */
+  number: string;
+  /** Pre-filled message. Empty string = no pre-filled text. */
+  message: string;
+  /** Accessible name of the button. */
+  label: string;
+  /** Accessible name of the floating region. */
+  regionLabel: string;
+}
+
+// TODO(client): confirm the real WhatsApp number (with country code) and the pre-filled message.
+const whatsapp: WhatsAppConfig = {
+  number: "919876543210",
+  message: "",
+  label: "Chat with us on WhatsApp",
+  regionLabel: "Quick contact",
+};
+
 export const siteConfig = {
   name: "Divine Infinity Numerology",
   logo: {
@@ -9,6 +28,7 @@ export const siteConfig = {
     // TODO(client): confirm the LMS login path after NEXT_PUBLIC_LMS_URL
     href: process.env.NEXT_PUBLIC_LMS_URL ?? "/",
   },
+  whatsapp,
   decor: {
     sky: { src: "/images/shared/menu-bg.png" },
     ornament: { src: "/icons/ornament.svg", width: 120, height: 11.41 },
@@ -17,6 +37,5 @@ export const siteConfig = {
     // Laurels: rotated Figma groups exported with the rotation baked in (bounding box 25.8 x 52.28).
     laurelLeft: { src: "/icons/laurel-left.svg", width: 25.8, height: 52.28 },
     laurelRight: { src: "/icons/laurel-right.svg", width: 25.8, height: 52.28 },
-    star: { src: "/icons/star.svg", width: 12, height: 12 },
   },
 } as const;

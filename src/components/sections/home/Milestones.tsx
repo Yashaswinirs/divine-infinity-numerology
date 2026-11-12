@@ -8,7 +8,6 @@ import { milestonesContent } from "@/data/home";
 // Tablet (600-1023): frame 531 tall, cards 202 x 96 at the corners, ouroboros 432 wide (aspect kept) between the
 // card rows. Laptop step (1024-1279): frame 588 tall, ouroboros 648 wide, still clear of the cards.
 // Phone (below 600): single column, ouroboros below.
-// The corner lines (connectors.svg) are not rendered until the Figma "Group 8" export exists.
 const styles = {
   section: "pt-7.5 pb-7.5 tab:py-10 xl:pt-0",
   frame:

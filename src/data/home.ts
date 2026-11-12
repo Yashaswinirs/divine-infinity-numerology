@@ -139,7 +139,6 @@ export const milestonesContent = {
     { value: 30, prefix: "Top ", label: "Recognised Numerologist (2025)" },
   ] satisfies readonly StatCardItem[],
   ouroboros: { src: "/images/home/milestones/ouroboros.png" },
-  connectors: { src: "/images/home/milestones/connectors.svg" },
 } as const;
 
 // Desktop copy is the master. Tablet and mobile frames read "Rudraksha Studying" (TODO(client): confirm).

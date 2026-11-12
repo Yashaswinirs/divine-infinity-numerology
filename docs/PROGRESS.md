@@ -116,7 +116,7 @@ Unchanged from sections 1–9.
 
 - Run `pnpm typecheck` after every section, not only `pnpm lint`.
 - Image checks: run `file` on every exported image (1x1 PNG = placeholder). After replacing an image, stop the dev server, delete `.next`, restart.
-- Every path in `src/data/*.ts` must exist in `public/`. Missing today: `connectors.svg` (home.ts milestonesContent) and `/icons/star.svg` (site.ts siteConfig.decor.star). Blog images now exist.
+- Every path in `src/data/*.ts` must exist in `public/`. All referenced assets now exist (unused references to missing `connectors.svg` and `star.svg` removed). Blog images now exist.
 - Comments drifted from classes in sections 6 to 8. The classes are what runs; the comments are not trustworthy.
 - Testimonials mixes md and tab. Awards switches to 2 columns at sm (640).
 - Inline styles exist: carousel `transform`, StarField sizes, LogoMarquee `--logo-w` (all dynamic values).
@@ -142,7 +142,6 @@ Unchanged from sections 1–9.
 - TODO(client): course slugs for /courses/[slug]; where each "Book a Consultation" button goes; customers' permission for name, photo and quote; "Voices of Transformation" capitalisation; blog slugs for /blog/[slug] (posts come from WordPress later).
 - TODO(figma): placeholder alt texts (About portrait, awards, courses, consultation, testimonials, blogs); hover and pressed states of CourseCard, BlogCard, CarouselControls and FaqAccordion; carousel slide timing (500ms assumed) and active dot width (24); Lato 600 italic / 800 weights.
 - Verify `--color-dark` (#413f85) and update its stale TODO comment; align the raw #1e1633 uses. Replace `text-black`, `bg-black/60`, and `#1D1B4D` (FAQ glyph) with tokens.
-- Export Figma "Group 8" connector lines (`connectors.svg`) and render them in Milestones. Remove or create `/icons/star.svg`.
 - Awards: measure mobile card panels, desktop row 2 card/image sizes, tablet padding (53 estimated) and the tablet header gap (40 vs 36). Confirm CountUp duration (2000ms ease-out assumed). Confirm "Rudraksha Studying".
 - ArchPortrait: Ellipse 3, Ellipse 4 and Frame 32 panels not received. Confirm marquee duration (9s below xl, 15.5s at xl).
 - Page background: confirm `bg-page-flow` angle (172deg) and glow positions, add values below 4350px, tablet and phone; check the Hero fade-strip seam.

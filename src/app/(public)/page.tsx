@@ -1,4 +1,4 @@
-import { StarField } from "@/components/shared";
+import { StarField, WhatsAppButton } from "@/components/shared";
 import {
   AboutTeejaswinni,
   AwardsCertifications,
@@ -36,6 +36,7 @@ export default function HomePage() {
         <Blogs />
         <Faq />
       </div>
+      <WhatsAppButton />
     </main>
   );
 }
