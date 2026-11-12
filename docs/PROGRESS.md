@@ -20,7 +20,21 @@ Last updated: 11 Nov 2026
 | 11 FAQ                                | Done                            |
 | 12 CTA + Footer                       | Teammate (not in this repo yet) |
 
-Home page: complete except section 12 (teammate) and the WhatsApp floating button (NOT built; no code for it exists in the repo).
+Home page: complete except section 12 (teammate) and the WhatsApp floating button (built as shared/WhatsAppButton; on Contact now, being added to Home)
+
+
+## Status (Contact page)
+
+| Item                                            | Status                          |
+| ----------------------------------------------- | ------------------------------- |
+| 1 Hero ("Let's Connect")                        | Done                            |
+| 2 Contact info + enquiry form                   | Done                            |
+| 3 Looking for Personal Insights?                | Not started                     |
+| 4 Visit the Office + Find Us (map)              | Not started                     |
+| 5 FAQ                                           | Not started                     |
+| 6 CTA + Footer                                  | Teammate (not in this repo yet) |
+
+Contact route: `src/app/(public)/contact/page.tsx`. Sections 3 to 5 are empty slots in that file.
 
 Project is LOCAL ONLY. It is never pushed to GitHub. Commit locally only.
 
@@ -39,6 +53,13 @@ Page wiring (`src/app/(public)/page.tsx`): Hero, ProudlyFeatured, wrapper A (Abo
 - Testimonials (9): tablet and phone panels not received (tablet card about 327 tall and phone about 343 read or estimated); slide timing 500ms ease-in-out assumed; active dot width 24 estimated; desktop subtitle copy used.
 - Blogs (10): desktop measured (1440 x 744.42, padding 60 top/bottom, content 1260 wide, three 374 x 425 cards gap 70). Phone and tablet have NO Figma frame; they follow the Courses scroll-row pattern (snap-x, first card on section edge 20 phone / 60 tablet, three flexible cards from lg gap 40 / 70 from xl). Ornament widths 162 / 262 / 362; padding 25 / 40 / 60 copied from Testimonials. "View All Blogs" button not in the Figma desktop frame; added below the cards. SectionHeading uses `subtitleSize="largeXl"` (Body small below xl, Body Large 18/22.6 from xl). Ornament uses the default cream tone. Blog card images exist in public/.
 - FAQ (11): desktop measured (1440 x 841.42, padding 60 top/bottom, content 816 wide, 5 accordion cards 816 x 74 closed, gap 35). Tablet (768 x 678, padding 40/60, content 648, list gap 25). Phone (425 x 655.91, padding 25/20, content 385, title on two lines, heading block 105.91, gap 25). Ornament to title gap: 25 phone/tablet (SectionHeading 15 + 10), 69 desktop (15 + 54px). The ornament uses `ornamentTone="gold"` (gold section ornament SVG). Title to list: 30 phone / 54 tablet / 60 desktop. Shares wrapper C's StarField with Blogs.
+
+## Contact page notes
+
+- Contact data lives in `src/data/contact.ts` (exports contactMetadata, contactHeroContent, contactEnquiryContent). The form submits to the stub `submitEnquiry` in `src/lib/api/enquiry.ts` (TODO(api)).
+- Real phone, email, address and WhatsApp number: <fill in when confirmed>. TODO(client).
+- The WhatsApp number lives in ONE place only: `contactEnquiryContent.whatsapp` in contact.ts.
+- Contact uses the `tab` / `lg` / `xl` / `2xl` breakpoints.
 
 ## Section behavior (10 Blogs)
 
@@ -146,7 +167,7 @@ Unchanged from sections 1–9.
 - ArchPortrait: Ellipse 3, Ellipse 4 and Frame 32 panels not received. Confirm marquee duration (9s below xl, 15.5s at xl).
 - Page background: confirm `bg-page-flow` angle (172deg) and glow positions, add values below 4350px, tablet and phone; check the Hero fade-strip seam.
 - Hero: verify the fade strip on tablet/mobile, estimated values and Om animation timing. ProudlyFeatured: find the remaining ~5% difference; confirm per-logo sizes.
-- Build the WhatsApp floating button (number, link, position unknown). Section 12 CTA + Footer: teammate.
+- Section 12 (CTA + Footer) on Home and on Contact: teammate.
 -  Decide whether to use `useScrolled` in the Navbar or remove it.
 - Fonts: supply Lovelace Text files, load with next/font/local, drop Libre Baskerville.
 - globals.css: card gradient angle and stops; Territory, Dark, Text, Card color, Cards, Light Bg tokens; replace `bg-hero-gradient`.
