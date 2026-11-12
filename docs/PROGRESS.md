@@ -20,7 +20,7 @@ Last updated: 12 Nov 2026
 | 11 FAQ                                | Done                            |
 | 12 CTA + Footer                       | Teammate (not in this repo yet) |
 
-Home page: complete except section 12 (teammate) and the WhatsApp floating button (built as shared/WhatsAppButton; on Contact now, being added to Home)
+   Home page: complete except section 12 (teammate). The WhatsApp floating button is built (shared/WhatsAppButton) and renders on Home and Contact. (teammate) and the WhatsApp floating button (built as shared/WhatsAppButton; on Contact now, being added to Home)
 
 ## Status (Contact page)
 
@@ -34,6 +34,18 @@ Home page: complete except section 12 (teammate) and the WhatsApp floating butto
 | 6 CTA + Footer                     | Teammate (not in this repo yet)                     |
 
 Contact route: `src/app/(public)/contact/page.tsx`. Sections 3 to 5 are built and share one `<StarField copies={6} className="[--star-scale:0.5] tab:[--star-scale:1]" />` in a wrapper in that file (see "Contact 4" and "Contact 5" below). Only the CTA slot (teammate) is left.
+
+
+## Status (Consultation page)
+
+| Item                              | Status                          |
+| --------------------------------- | ------------------------------- |
+| 1 to 7                            | Not started (names: see below)  |
+| 8 and 9 (CTA + Footer)            | Teammate (not in this repo yet) |
+
+Consultation route: `src/app/(public)/consultation/page.tsx` (not created yet).
+
+
 
 Project is LOCAL ONLY. It is never pushed to GitHub. Commit locally only.
 
