@@ -445,6 +445,60 @@
   }
 }
 
+/* Figma "Looking for Personal Insights?" title (Contact section 3): Lovelace Text 400, Accent.
+   Phone "H2 M" 30.43/38, tablet "H2 T" 35 with line height 100%, desktop "H2" 43.95/48 (all measured).
+   The tablet size starts at 600px (tab). From lg (1024) the size follows the width (3.052vw = 43.95 at 1440),
+   so the title fits the narrower text column at 1024 and 1280. */
+@utility type-insights-title {
+  font-size: 1.9019rem;
+  line-height: 2.375rem;
+
+  @media (width >=theme(--breakpoint-tab)) {
+    font-size: 2.1875rem;
+    line-height: 1;
+  }
+
+  @media (width >=theme(--breakpoint-lg)) {
+    font-size: clamp(2rem, 3.052vw, 2.7469rem);
+    line-height: 1.0925;
+  }
+}
+
+/* Contact section 4 Office Hours card, label: Figma "H5 - Lato" 700. Phone "H5 M" 17.3/25, tablet "H5 T" 19.08/23.3
+   (starts at 600, tab and stays up to 1279), desktop 22.5/30.7 (measured, starts at 1280, xl). The weight comes from
+   font-bold on the element. */
+@utility type-info-label {
+  font-size: 1.08125rem;
+  line-height: 1.5625rem;
+
+  @media (width >=theme(--breakpoint-tab)) {
+    font-size: 1.1925rem;
+    line-height: 1.45625rem;
+  }
+
+  @media (width >=theme(--breakpoint-xl)) {
+    font-size: 1.40625rem;
+    line-height: 1.91875rem;
+  }
+}
+
+/* Contact section 4 Office Hours card, value: Figma "Body Large" 18/22.6 on desktop (measured, starts at 1280, xl).
+   TODO(figma): tablet 16 (up to 1279) and phone 14 are estimated (same as Contact 2); the panels were not received. */
+@utility type-info-value {
+  font-size: 0.875rem;
+  line-height: 1.375;
+
+  @media (width >=theme(--breakpoint-tab)) {
+    font-size: 1rem;
+    line-height: 1.3875rem;
+  }
+
+  @media (width >=theme(--breakpoint-xl)) {
+    font-size: 1.125rem;
+    line-height: 1.4125rem;
+  }
+}
+
 /* Logo marquee: moves one set width to the left, then loops. Duration is set per breakpoint on the element. */
 @utility animate-marquee {
   animation: marquee var(--marquee-duration, 30s) linear infinite;

@@ -76,3 +76,52 @@ export const contactEnquiryContent = {
     ],
   },
 } as const;
+// Contact section 3 "Looking for Personal Insights?" (Figma copy, same text on every frame).
+// TODO(client): confirm the image alt text. The button goes to /consultation, which is not built yet.
+export const contactInsightsContent = {
+  title: "Looking for Personal Insights?",
+  text: "For personalised insights based on individual needs and birth details, book a one-to-one consultation with Teejaswinni K Lokesh",
+  cta: { label: "Book a Consultation", href: "/consultation" },
+  image: {
+    src: "/images/contact/insights/contact-insights.webp",
+    alt: "Silhouette of a woman facing a glowing numerology wheel against a sunset sky",
+  },
+} as const;
+// Contact section 4 "Visit the Office" + "Find Us" (Figma copy; tablet and phone use "Office Hours" as the title).
+// TODO(client): the intro says "Mysore" in Figma while the contact info and the map say Bangalore. Confirm.
+// Real office pin (Google Maps embed of "Diviine Infinity Numerologgy", Mysore). embedUrl is the src of the Google
+// "Embed a map" iframe with !5e0 (road map) instead of !5e1 (satellite), so it looks like the Figma map.
+// TODO(client): confirm the pin and the name Google shows ("Diviine Infinity Numerologgy" looks misspelled).
+// TODO(client): mapsUrl opens the same pin by coordinates. Paste the Google Maps "Send a link" share URL here if you
+// want the business listing to open instead.
+const officeEmbedUrl =
+  "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4228.148291524342!2d76.63114097536442!3d12.300915329227209!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3baf7ba385c1f86b%3A0x5bc745feba9377aa!2sDiviine%20Infinity%20Numerologgy!5e0!3m2!1sen!2sin!4v1794467761079!5m2!1sen!2sin";
+const officeMapsUrl = "https://www.google.com/maps/search/?api=1&query=12.3009153,76.6311410";
+
+export const contactOfficeContent = {
+  title: "Visit the Office",
+  compactTitle: "Office Hours",
+  intro: "For in-person consultations, visitors can find the office in Mysore.",
+  hours: [
+    {
+      id: "weekdays",
+      icon: "/icons/calendar.svg",
+      title: "Monday - Saturday",
+      text: "10.00 AM - 6.00 PM",
+    },
+    {
+      id: "sunday",
+      icon: "/icons/calendar-close.svg",
+      title: "Sunday",
+      text: "Closed/Open based on client",
+    },
+  ],
+  findUsTitle: "Find Us",
+  map: {
+    embedUrl: officeEmbedUrl,
+    mapsUrl: officeMapsUrl,
+    mapTitle: "Map showing the office location",
+    linkLabel: "Open the office location in Google Maps",
+    buttonLabel: "View on Google map",
+  },
+} as const;

@@ -12,7 +12,10 @@ export { CountUp, type CountUpProps } from "./CountUp";
 export { CourseCard, type CourseCardAction, type CourseCardProps } from "./CourseCard";
 export { FaqAccordion, type FaqAccordionProps, type FaqItem } from "./FaqAccordion";
 export { FeatureTile, type FeatureTileProps } from "./FeatureTile";
+export { InfoCard, type InfoCardProps, type InfoCardRow } from "./InfoCard";
+export { InsightsCta, type InsightsCtaProps } from "./InsightsCta";
 export { LogoMarquee, type LogoMarqueeItem, type LogoMarqueeProps } from "./LogoMarquee";
+export { MapCard, type MapCardProps } from "./MapCard";
 
 export { Ornament, type OrnamentProps } from "./Ornament";
 export { PageHero, type PageHeroProps } from "./PageHero";

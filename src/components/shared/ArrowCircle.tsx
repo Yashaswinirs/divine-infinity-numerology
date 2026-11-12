@@ -2,15 +2,23 @@ import { cn } from "@/lib";
 
 export interface ArrowCircleProps {
   className?: string;
+  /** "dark" (default): Primary Dark circle (Hero). "primary": Primary circle #655373 (Contact, Figma "Frame 107"). */
+  tone?: "dark" | "primary";
 }
 
+const tones = {
+  dark: "bg-primary-dark",
+  primary: "bg-primary",
+} as const;
+
 /** 30px circle with a 16px caret, used inside accent buttons (Figma "Frame 107"). */
-export function ArrowCircle({ className }: ArrowCircleProps) {
+export function ArrowCircle({ className, tone = "dark" }: ArrowCircleProps) {
   return (
     <span
       aria-hidden="true"
       className={cn(
-        "bg-primary-dark text-light inline-flex size-7.5 shrink-0 items-center justify-center rounded-full",
+        "text-light inline-flex size-7.5 shrink-0 items-center justify-center rounded-full",
+        tones[tone],
         className
       )}
     >
