@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import {
   ContactEnquiry,
+  ContactFaq,
   ContactHero,
   ContactInsights,
   ContactOffice,
@@ -25,7 +26,7 @@ export default function ContactPage() {
         <StarField copies={6} className="tab:[--star-scale:1] [--star-scale:0.5]" />
         <ContactInsights />
         <ContactOffice />
-        {/* SLOT: section 5 (FAQ). */}
+        <ContactFaq />
       </div>
       {/* SLOT: "Ready to Take the Next Step?" CTA. Built by the teammate, not here. The Footer goes in (public)/layout.tsx. */}
       <WhatsAppButton />

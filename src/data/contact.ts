@@ -1,3 +1,5 @@
+import type { FaqItem } from "@/components/shared";
+
 // Copy as in the Figma "Contact Us" frames (desktop, tablet and mobile).
 // TODO(client): confirm the meta description and the wheel alt text.
 export const contactMetadata = {
@@ -124,4 +126,34 @@ export const contactOfficeContent = {
     linkLabel: "Open the office location in Google Maps",
     buttonLabel: "View on Google map",
   },
+} as const;
+
+// Contact section 5 "Frequently Asked Questions" (Figma "Contact Us" frames). The numbers "1." to "4." are added by the component.
+// Desktop is the master. The tablet and phone frames word question 1 differently ("How can i book a consultation?"); it is
+// kept as compactQuestion and shown below xl. TODO(client): confirm that wording (lowercase "i" looks like a typo).
+// TODO(client): the answers are the Figma prototype placeholder (the same text on all four cards). Send the real answers.
+const faqPlaceholderAnswer =
+  "Choose your astrology consultation, select a convenient time, and complete the booking. You'll receive the session details after confirmation.";
+
+export const contactFaqContent = {
+  title: "Frequently Asked Questions",
+  items: [
+    {
+      question: "How can a consultation be booked?",
+      compactQuestion: "How can i book a consultation?",
+      answer: faqPlaceholderAnswer,
+    },
+    {
+      question: "Are consultations available online and offline?",
+      answer: faqPlaceholderAnswer,
+    },
+    {
+      question: "How quickly will an enquiry receive a response?",
+      answer: faqPlaceholderAnswer,
+    },
+    {
+      question: "How can course-related questions be answered?",
+      answer: faqPlaceholderAnswer,
+    },
+  ] satisfies readonly FaqItem[],
 } as const;

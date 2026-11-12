@@ -606,3 +606,21 @@ body {
   background-color: var(--color-gradient-stop-5);
   color: var(--color-light);
 }
+
+/* Contact FAQ title (Figma H2 M / H2 T / H2): Lovelace Text 400. Phone 30.43/38 (measured), tablet 35/40, desktop 43.95/48.
+   No cap-height trim (the Figma panels show none). md and xl, like the Home FAQ.
+   TODO(figma): the tablet title panel was not received (35/40 is derived from the 80.16 heading block). */
+@utility type-faq-title {
+  font-size: 1.9019rem;
+  line-height: 2.375rem;
+
+  @media (width >=theme(--breakpoint-md)) {
+    font-size: 2.1875rem;
+    line-height: 2.5rem;
+  }
+
+  @media (width >=theme(--breakpoint-xl)) {
+    font-size: 2.7469rem;
+    line-height: 3rem;
+  }
+}
