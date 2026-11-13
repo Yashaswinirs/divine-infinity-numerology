@@ -65,9 +65,9 @@
   /* Awards cards (Figma Dev Mode; names are ours, Figma shows no style name for border or shadow) */
   --color-card-border: #5f1bb7;
   --shadow-card: 0 4px 24px 0 rgb(85 81 255 / 0.25);
-  /* WhatsApp floating button. TODO(figma): green and glow are not from a style panel. */
-  --color-whatsapp: #25d366;
-  --shadow-whatsapp: 0 4px 24px 0 rgb(37 211 102 / 0.45);
+  /* WhatsApp floating button (Figma Frame 279): fill #47C756, shadow 0 4 24 at 60%. */
+  --color-whatsapp: #47c756;
+  --shadow-whatsapp: 0 4px 24px 0 rgb(71 199 86 / 0.6);
   /* Contact submit button. TODO(figma): text colour and hover fill are not from a panel; the Figma desktop frame
      shows the label lighter, like Primary #655373 on the Home accent buttons. */
   --color-button-ink: #1f1438;
@@ -408,6 +408,28 @@
   @media (width >=theme(--breakpoint-lg)) {
     font-size: 3.433125rem;
     line-height: 4.4rem;
+  }
+}
+
+/* Figma Consultation hero title: Lovelace Text 400, Accent. Phone "H1 M" 36.72/46 and tablet "H1 T" 42.87/48, both
+   with cap-height trim (measured). From lg (1024) the size follows the width (3.8146vw = 54.93 at 1440, line-height
+   ratio 1.2816 = 70.4 / 54.93), so the title fits the narrower text column at 1024 and 1280. The tablet size starts
+   at 600px (tab). text-box-trim needs Chrome 133+ / Safari 18.2+; elsewhere the title box is just taller. */
+@utility type-consult-hero-title {
+  font-size: 2.295rem;
+  line-height: 2.875rem;
+  text-box-trim: trim-both;
+  text-box-edge: cap alphabetic;
+
+  @media (width >=theme(--breakpoint-tab)) {
+    font-size: 2.679375rem;
+    line-height: 3rem;
+  }
+
+  @media (width >=theme(--breakpoint-lg)) {
+    font-size: clamp(2.4414rem, 3.8146vw, 3.433125rem);
+    line-height: 1.2816;
+    text-box-trim: none;
   }
 }
 

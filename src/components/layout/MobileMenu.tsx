@@ -67,7 +67,7 @@ export function MobileMenu({ id, open, items, isActive, onClose }: MobileMenuPro
       inert={!open}
       onKeyDown={handleKeyDown}
       className={cn(
-        "bg-page-gradient fixed inset-0 z-60 overflow-y-auto xl:hidden",
+        "bg-page-gradient fixed inset-0 z-60 overflow-y-auto lg:hidden",
         "transition-[transform,visibility] duration-300 ease-out motion-reduce:transition-none",
         open ? "visible translate-x-0" : "invisible -translate-x-full"
       )}

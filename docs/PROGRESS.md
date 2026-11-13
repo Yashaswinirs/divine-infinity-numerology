@@ -1,6 +1,6 @@
 # PROGRESS (update after every finished section)
 
-Last updated: 12 Nov 2026
+Last updated: 13 Nov 2026
 
 ## Status (Home page)
 
@@ -38,12 +38,13 @@ Contact route: `src/app/(public)/contact/page.tsx`. Sections 3 to 5 are built an
 
 ## Status (Consultation page)
 
-| Item                              | Status                          |
-| --------------------------------- | ------------------------------- |
-| 1 to 7                            | Not started (names: see below)  |
-| 8 and 9 (CTA + Footer)            | Teammate (not in this repo yet) |
+| Item                   | Status                                                   |
+| ---------------------- | -------------------------------------------------------- |
+| 1 Hero                 | Done (about 96% match to Figma, 13 Nov 2026)             |
+| 2 to 7                 | Not started (names: see the next-section prompt)         |
+| 8 and 9 (CTA + Footer) | Teammate (not in this repo yet)                          |
 
-Consultation route: `src/app/(public)/consultation/page.tsx` (not created yet).
+Consultation route: `src/app/(public)/consultation/page.tsx` (created, Hero only so far). Section 2 builds the 95px strip between the hero and Section 2 (see "Consultation 1" below).
 
 
 
@@ -52,6 +53,8 @@ Project is LOCAL ONLY. It is never pushed to GitHub. Commit locally only.
 Page wiring (`src/app/(public)/page.tsx`): Hero, ProudlyFeatured, wrapper A (About + Milestones + StarField), Awards, wrapper B (WhyLearn + Courses + StarField), ConsultationServices, Testimonials, wrapper C (Blogs + FAQ + StarField). The Footer is a teammate's task; `(public)/layout.tsx` renders only the Navbar today.
 
 Page wiring (`src/app/(public)/contact/page.tsx`): ContactHero, ContactEnquiry, then one wrapper (`relative isolate overflow-hidden`) with the StarField, ContactInsights, ContactOffice and the FAQ slot, then the CTA slot (teammate) and WhatsAppButton. `<main>` carries the Contact page gradient (stops 0 / 1154 / 2307 / 3461 / 4614 px).
+
+Page wiring (`src/app/(public)/consultation/page.tsx`): ConsultationHero only so far (plus WhatsAppButton if the page renders it; check the file). The page background below the hero is the plain page gradient; Section 2 sets the real one.
 
 ## Section notes
 
@@ -90,6 +93,19 @@ Page wiring (`src/app/(public)/contact/page.tsx`): ContactHero, ContactEnquiry, 
   - Answers are the Figma prototype placeholder (the same text on all four cards).
   - Stars: no change needed, `copies={6}` covers the section on every size.
 
+- Consultation 1 (Hero): DONE, about 96% match to Figma (desktop about 96%, tablet about 96%, phone about 95%; checked at 1440, 1280, 1081, 1024, 768, 721, 600, 425, 375, 320). Lint, typecheck and format:check pass.
+  - Files: `sections/consultation/ConsultationHero.tsx` (+ `index.ts`); `consultationHeroContent` in `src/data/consultation.ts` (title, text, book, plans, background, wheel); route `src/app/(public)/consultation/page.tsx`. Uses `Section`, `Container`, `Button` (`variant="outline-accent"` and `"accent"`, `size="hero"`) and `ArrowCircle` (`tone="accent"` and `tone="primary"`).
+  - Breakpoints: phone below 600, `tab` (600) tablet, `lg` (1024) desktop layout. From lg the text width is `min(590px, 41vw)` and the H1 size follows the width (`clamp`) so the text stays clear of the wheel.
+  - Measured desktop (1440 x 561): text frame 590 at left 80 / top 169; H1 54.93/70.4 in a FIXED 133 tall box (`lg:h-[2.4213em]`, second line overflows as in Figma); gaps 12 / 34 / 16; paragraph 590 x 67; buttons 48 tall (Book 219 hug, View 262); wheel box 817 x 446 at left 638 / top 91, placed in % of the container (44.3056% / 56.7361%).
+  - Measured tablet (768 x 1024): text 590 at left 60 / top 190, H1 42.87/48 (cap trim), gap 24, paragraph 590 x 67, gap 40, buttons side by side (Book 211, View 238, padding 10/10/10/16 and 14 left); wheel box 648 x 440 at top 510 / left 60, 74 below it.
+  - Measured phone (425): text 385 at left 20 / top 160, H1 36.72/46 on TWO lines (72 tall), gap 24, paragraph 385 x 89 (4 lines), gap 40, buttons stacked gap 12; wheel box 371 x 252 at top 567 / left 27 (centred).
+  - Background: the Contact hero image `/images/contact/hero/contact-hero-bg.webp` (plain `next/image` `fill` + `object-cover`), black 30% overlay on every width. The Consultation tablet fill is named "Cosmic Astrology Background.png" in Figma; the Contact one is unconfirmed (TODO(figma)).
+  - Wheel: ONE file, `public/images/consultation/hero/consultation-hero-wheel.png` (1408 x 768, RGBA, transparent). Figma uses the same image ("bg_removal [Background removed].png") on all three frames with "Scale: Crop", so the hero fills each box with `object-cover object-center` (tablet 648 x 440 and phone 371 x 252 are centred crops; the 1 and 9 sit near the edges).
+  - Title: Figma letter spacing is 0% for Lovelace; `tracking-[-0.01em]` on `styles.title` compensates for the wider Libre Baskerville stand-in so "Important Decisions" stays on one line at 425 (second line about 377 of 385px, only about 8px spare: use `-0.02em` if it wraps in another browser or after the real font loads). 375 and 320 wrap to 3 and 4 lines (the Figma content width is 385, there is no smaller frame).
+  - Paragraph uses `type-body-small` (letter spacing 1% already there, matches Figma). Title uses `type-consult-hero-title` (phone 36.72/46 with cap trim, tablet 42.87/48 with cap trim, lg a fluid size and 1.2816 line height without trim).
+  - The old `ResponsivePicture` helper was removed (it forced "contain" and gave a white box). Do not bring it back.
+  - TODO(figma) / open: (1) The 95px strip between the hero and Section 2: Figma Rectangle 1 is 1440 x 95, 5-stop Gradient (#090D22, #2A1845, #1A1440, #0B1333, #040817), Layer blur 40, directly UNDER the hero image (not over it). Today the hero has its own simpler fade (`styles.fade`, transparent to `gradient-stop-1`, 95px) and a visible edge shows against the page background; build the real strip in Section 2 and then remove or adjust `styles.fade`. Tablet and phone panels of Rectangle 1 not received. (2) Figma "Rectangle 3" (768 x 154, gradient #15122B to transparent) sits behind the nav on the Tab and Mobile frames only; ours has none. Check whether Home and Contact tablet frames have it; if yes it belongs in the shared Navbar. (3) Phone bottom padding 74 (copied from tablet; the tablet 74 is measured) and the tablet button gap 16 (read from the canvas) are estimated; Frame 338 phone panel not received. (4) The crop offset inside the wheel image is assumed centred. (5) Libre Baskerville is a stand-in for Lovelace Text.
+
 ## Contact page notes
 
 - Contact data lives in `src/data/contact.ts` (exports contactMetadata, contactHeroContent, contactEnquiryContent, contactInsightsContent, contactOfficeContent). The form submits to the stub `submitEnquiry` in `src/lib/api/enquiry.ts` (TODO(api)).
@@ -125,6 +141,8 @@ Page wiring (`src/app/(public)/contact/page.tsx`): ContactHero, ContactEnquiry, 
 - siteConfig (site.ts): added `decor.sectionOrnamentGold: { src: "/icons/section-ornament-gold.svg", width: 362, height: 34.42 }`.
 - StarField (12 Nov 2026): new optional prop `copies` (default 2, so Home, About and the other sections are unchanged). Size and position now follow the CSS variable `--star-scale` (default 1), which a wrapper can set per breakpoint, for example `[--star-scale:0.5] tab:[--star-scale:1]`.
 - ArrowCircle: prop `tone`: "dark" (default, Hero) or "primary" (#655373, Contact buttons).
+- WhatsAppButton (13 Nov 2026, from the Consultation Frame 279 panels): 60 x 60 on every width (`size-15`, icon `size-7.5`), fill `--color-whatsapp: #47c756`, shadow `--shadow-whatsapp: 0 4px 24px 0 rgb(71 199 86 / 0.6)`. Applies to Home, Contact and Consultation. Offsets are still not from a panel: right 50 (`right-12.5`), bottom 24 phone / 32 from `tab`; the tablet frame shows right 60 / bottom 74 (derived). TODO(figma): desktop and phone panels, icon size (30 assumed), and whether Home and Contact use the same tablet offsets.
+- Navbar (13 Nov 2026): the desktop layout now starts at `lg` (1024) instead of `xl` (1280), because Figma has no frame for 1024 to 1279 and the page should look like 1280 and 1440 there. Changed in `Navbar.tsx` (`lg:pt-nav-y-xl`, `lg:h-12`, `lg:px-10 xl:px-20`, links `hidden lg:block`, toggle `lg:hidden`), `NavLinks.tsx` (`gap-4 xl:gap-6 2xl:gap-11.25`: 16 from 1024, 24 from 1280, 45 from 1536) and `MobileMenu.tsx` (panel `lg:hidden`). Side padding is 40 from lg and 80 from xl. The token is still named `--spacing-nav-y-xl` (30px), used only by `Navbar.tsx`. Check the nav on one line with no clipping at 1024, 1100, 1200, 1279. TODO: look at Home and Contact section layouts at 1024 to 1279 (the Navbar changed, their sections did not).
 
 ## New tokens and utilities in globals.css
 
@@ -133,6 +151,8 @@ Page wiring (`src/app/(public)/contact/page.tsx`): ContactHero, ContactEnquiry, 
 - `type-insights-title`: phone 30.43/38, from tab 35/35, from lg a fluid size (32 to 43.95, 3.052vw). Used by `InsightsCta`.
 - `type-info-label` (Contact 4 card label, Lato 700 from `font-bold` on the element): phone 17.3/25, from tab 19.08/23.3, from xl 22.5/30.7.
 - `type-info-value` (Contact 4 card value): phone 14/22, from tab 16/22.2, from xl 18/22.6 (phone and tablet estimated, TODO(figma)).
+- `type-consult-hero-title` (Consultation hero H1, Lovelace Text 400 stand-in): phone 36.72/46 (2.295rem / 2.875rem) with `text-box-trim: trim-both` and `text-box-edge: cap alphabetic`; from `tab` 42.87/48 (2.679375rem / 3rem) with cap trim; from `lg` `clamp(2.4414rem, 3.8146vw, 3.433125rem)` with line height 1.2816 and no trim.
+- `--color-whatsapp` and `--shadow-whatsapp` changed 13 Nov 2026 (see WhatsAppButton above).
 
 ## New data keys in src/data/home.ts
 
@@ -164,6 +184,7 @@ Page wiring (`src/app/(public)/contact/page.tsx`): ContactHero, ContactEnquiry, 
 - `type-faq-title` (Contact FAQ title): phone 30.43/38, md 35/40, xl 43.95/48, no cap trim. md and xl.
 - INCONSISTENCY: Testimonials lays out at md but its title switches at tab. Blogs uses md for its tablet padding. FAQ uses md. This is consistent with the Testimonials pattern (md-based sections). Decision still open (see Open TODOs).
 - Contact 3 and 4: `tab` (600) for the tablet size and padding, `lg` (1024) for the two-column row, `xl` (1280) for 80px side padding and the 130px gap / desktop card sizes. The Contact 3 title grows with the width from lg (see `type-insights-title`). Contact FAQ (5) uses md and xl like the Home FAQ (decided 12 Nov 2026).
+- Consultation 1 (Hero): `tab` (600) for tablet, `lg` (1024) for the desktop layout (same as Contact 3 and 4). The Navbar now also switches to its desktop layout at `lg` (see "Changes to existing components").
 
 ### Tokens in src/styles/globals.css
 
@@ -208,6 +229,11 @@ Unchanged from sections 1–9.
 - A teammate is building section 12. They will touch `(public)/layout.tsx` and probably shared files; merge against the current files.
 - A shared component edited in one chat or account (ArrowCircle, StarField, shared/index.ts, globals.css, contact.ts) must be pasted whole into the next chat; never paste an older copy over it.
 - Dev-only console warnings: Next/Image "width or height modified" for `icons/section-ornament-gold.svg` and `images/layout/logo.png` (navbar, old file, not changed). They do not affect how the page looks.
+- A PNG renamed to `.webp` is still a PNG: run `file` and `sips -g hasAlpha` on every export (a wheel exported without alpha shows a white box).
+- Do not wrap `next/image` in a helper that sets `object-contain`; use `fill` + `object-cover` directly (the old `ResponsivePicture` drew the Consultation background narrower than the frame and caused 7 Prettier warnings).
+- A Figma image fill with "Scale: Crop" means the SAME image is reused at another size: check the layer's image name before exporting a new crop. The Consultation wheel is one image on desktop, tablet and phone.
+- Dev-only console warnings: "Image with src ornament.svg / logo.png has either width or height modified" and "resource was preloaded but not used" (about 5 to 10 entries, probably the Next font preloads; the "No issues" panel is clean). None come from the Consultation hero.
+- WhatsApp colour and shadow tokens changed on 13 Nov 2026 and apply to every page.
 
 ## Open TODOs
 
@@ -234,3 +260,5 @@ Unchanged from sections 1–9.
 - Contact 4: TODO(client) confirm the map pin and the Google listing name ("Diviine Infinity Numerologgy" looks misspelled); the Contact 2 address ("Bangalore") is still the Figma placeholder. TODO(figma): tablet and phone panels for the Office Hours card (value text 16 and 14, icon 40, gap 16 / 24 are estimated); the tablet Figma star group size (tablet and desktop stars use scale 1); phone star scale 0.5 is estimated from the size ratio (adjust to 0.6 / 0.4 if it looks off). The "Closed/Open based on client" line wraps at 320 and below (accepted).
 - Contact 5: TODO(client) send the real answers (placeholder now) and confirm the question 1 wording on tablet and phone (lowercase "i"). TODO(figma): tablet title panel, compact toggle radius (12 estimated), open-state spacing on tablet and phone (not designed), desktop padding 91.79 (derived), hover state.
 - WhatsApp: the real number and message are pending from the client (site.ts); the Home page already renders the button.
+- Consultation 1: see the TODO(figma) list in the "Consultation 1" note above (fade strip to build in Section 2, Rectangle 3 nav backdrop, phone bottom padding and Frame 338, tablet button gap, wheel crop offset, Contact vs Consultation background file name). WhatsApp: desktop and phone offset panels and the icon size. Navbar at 1024 to 1279: check Home, Contact and Consultation.
+- Page background below the Consultation hero is a flat navy today; the 1024 to 1279 desktop layout of Home and Contact sections is not checked against the new Navbar breakpoint.

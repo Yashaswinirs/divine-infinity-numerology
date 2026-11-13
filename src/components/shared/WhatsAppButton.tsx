@@ -10,7 +10,8 @@ const { number, message, label, regionLabel } = siteConfig.whatsapp;
 const defaultHref = `https://wa.me/${number}${message ? `?text=${encodeURIComponent(message)}` : ""}`;
 
 // Floating action button, bottom right (Figma Contact Us & layout prototype).
-// TODO(figma): size and offsets are not from a panel (56px, 24px phone / 32px from 600px up). Same values on every page.
+// Figma Frame 279: 60 x 60, radius 30, padding 10, fill #47C756. On the tablet frame it sits right 60 / bottom 74 (derived).
+// TODO(figma): the offsets (right 50, bottom 24 phone / 32 from 600px up) and the icon size (30) are not from a panel yet.
 const styles = {
   root: "fixed right-12.5 bottom-6 tab:bottom-8 z-50",
   link: "bg-whatsapp shadow-whatsapp focus-visible:outline-accent flex size-12 items-center justify-center rounded-full text-white transition-transform duration-200 hover:scale-110 focus-visible:outline-2 focus-visible:outline-offset-2 active:scale-95 lg:size-15",

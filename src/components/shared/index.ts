@@ -19,6 +19,7 @@ export { MapCard, type MapCardProps } from "./MapCard";
 
 export { Ornament, type OrnamentProps } from "./Ornament";
 export { PageHero, type PageHeroProps } from "./PageHero";
+
 export { SectionHeading, type SectionHeadingProps } from "./SectionHeading";
 export { StarField, type StarFieldProps } from "./StarField";
 export { StarIcon, type StarIconProps } from "./StarIcon";

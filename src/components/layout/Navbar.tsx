@@ -47,12 +47,12 @@ export function Navbar() {
         />
         <Container
           padding="none"
-          className="pt-nav-y-sm md:pt-nav-y-md xl:pt-nav-y-xl px-5 pb-3 md:px-15 xl:px-20"
+          className="pt-nav-y-sm md:pt-nav-y-md lg:pt-nav-y-xl px-5 pb-3 md:px-15 lg:px-10 xl:px-20"
         >
-          <div className="flex h-12.5 items-center justify-between md:h-15 xl:h-12">
+          <div className="flex h-12.5 items-center justify-between md:h-15 lg:h-12">
             <Logo />
 
-            <NavLinks items={mainNav} isActive={isActive} className="hidden xl:block" />
+            <NavLinks items={mainNav} isActive={isActive} className="hidden lg:block" />
 
             <div className="flex items-center gap-4 md:gap-4.5">
               <Button variant="accent" size="nav" href={siteConfig.login.href}>
@@ -64,7 +64,7 @@ export function Navbar() {
                 aria-expanded={menuOpen}
                 aria-controls={MENU_ID}
                 onClick={() => setMenuOpen(true)}
-                className="md:size-8 xl:hidden"
+                className="md:size-8 lg:hidden"
               />
             </div>
           </div>
