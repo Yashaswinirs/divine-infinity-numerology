@@ -184,7 +184,8 @@ Page wiring (`src/app/(public)/consultation/page.tsx`): ConsultationHero only so
 - `type-faq-title` (Contact FAQ title): phone 30.43/38, md 35/40, xl 43.95/48, no cap trim. md and xl.
 - INCONSISTENCY: Testimonials lays out at md but its title switches at tab. Blogs uses md for its tablet padding. FAQ uses md. This is consistent with the Testimonials pattern (md-based sections). Decision still open (see Open TODOs).
 - Contact 3 and 4: `tab` (600) for the tablet size and padding, `lg` (1024) for the two-column row, `xl` (1280) for 80px side padding and the 130px gap / desktop card sizes. The Contact 3 title grows with the width from lg (see `type-insights-title`). Contact FAQ (5) uses md and xl like the Home FAQ (decided 12 Nov 2026).
-- Consultation 1 (Hero): `tab` (600) for tablet, `lg` (1024) for the desktop layout (same as Contact 3 and 4). The Navbar now also switches to its desktop layout at `lg` (see "Changes to existing components").
+- Consultation 1 (Hero): `tab` (600) for tablet, `lg` (1024) for the desktop layout (same as Contact 3 and 4).
+- NAVBAR (13 Nov 2026): the desktop layout starts at `lg` (1024), not `xl` (1280). Figma has no frame for 1024 to 1279, so it follows the 1280 and 1440 desktop layout. Changed in `Navbar.tsx` (`lg:pt-nav-y-xl`, `lg:h-12`, `lg:px-10 xl:px-20`, links `hidden lg:block`, toggle `lg:hidden`), `NavLinks.tsx` (`gap-4 xl:gap-6 2xl:gap-11.25`) and `MobileMenu.tsx` (panel `lg:hidden`). The token `--spacing-nav-y-xl` (30px) keeps its name and is used only in `Navbar.tsx`. Section layouts of Home and Contact at 1024 to 1279 were not changed or checked.
 
 ### Tokens in src/styles/globals.css
 
@@ -234,6 +235,7 @@ Unchanged from sections 1–9.
 - A Figma image fill with "Scale: Crop" means the SAME image is reused at another size: check the layer's image name before exporting a new crop. The Consultation wheel is one image on desktop, tablet and phone.
 - Dev-only console warnings: "Image with src ornament.svg / logo.png has either width or height modified" and "resource was preloaded but not used" (about 5 to 10 entries, probably the Next font preloads; the "No issues" panel is clean). None come from the Consultation hero.
 - WhatsApp colour and shadow tokens changed on 13 Nov 2026 and apply to every page.
+- WhatsAppButton (13 Nov 2026, from the Consultation Frame 279 panel): 60 x 60 on every width (`size-15`, icon `size-7.5`), fill `--color-whatsapp: #47c756`, shadow `--shadow-whatsapp: 0 4px 24px 0 rgb(71 199 86 / 0.6)`. Applies to Home, Contact and Consultation. Offsets are still not from a panel: right 50 (`right-12.5`), bottom 24 phone / 32 from `tab`; the tablet frame reads right 60 / bottom 74 (derived). TODO(figma): desktop and phone panels and the icon size (30 assumed).
 
 ## Open TODOs
 
