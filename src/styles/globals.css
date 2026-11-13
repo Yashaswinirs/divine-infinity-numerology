@@ -318,6 +318,28 @@
   }
 }
 
+/* Consultation plan card title and fee: Figma H5. Phone "H5 M" 17.3/25 and tablet "H5 T" 19.08/23.3 with cap-height
+   trim, desktop H5 22.5/30.7 (no trim). TODO(figma): the phone trim is assumed, as on the tablet. */
+@utility type-plan-title {
+  font-family: var(--font-heading);
+  font-weight: 400;
+  font-size: 1.08125rem;
+  line-height: 1.5625rem;
+  text-box-trim: trim-both;
+  text-box-edge: cap alphabetic;
+
+  @media (width >=theme(--breakpoint-tab)) {
+    font-size: 1.1925rem;
+    line-height: 1.45625rem;
+  }
+
+  @media (width >=theme(--breakpoint-xl)) {
+    font-size: 1.40625rem;
+    line-height: 1.91875rem;
+    text-box-trim: none;
+  }
+}
+
 /* Figma FAQ question (H5): Lovelace Text 400. Phone "H5 M" 17.3/25, tablet "H5 T" 19.08/23.3, desktop H5 22.5/30.7.
    The tablet size starts at 768 (md). TODO(figma): tablet and phone question panels were not received (sizes from the H5 list). */
 @utility type-faq-question {

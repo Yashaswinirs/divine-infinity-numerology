@@ -26,3 +26,70 @@ export const consultationHeroContent = {
     alt: "Golden numerology numbers around an astrology zodiac wheel",
   },
 } as const;
+
+// Section 2 "Personalised Guidance That Puts You First". Copy as in Figma (the title breaks after "Guidance" on every width).
+// TODO(client): every "Enroll Now" goes to /consultation/book (not built yet; Figma opens an overlay). Confirm whether the plan goes in the URL.
+// TODO(client): Figma spells "Personalised" in the title and "Personalized" in the cards, and "40Min - 1 Hr" without a space; kept as is.
+// TODO(client): the "+7 More" items of "Overall Reading" are not in Figma (plain text, no link).
+// The avatar is decorative (alt ""): one image file shared by the three cards (Figma "Scale: Crop" on one image).
+export interface ConsultationPlan {
+  id: string;
+  title: string;
+  description: string;
+  duration: string;
+  fee: string;
+  features: readonly string[];
+  moreLabel?: string;
+  image: { src: string; alt: string };
+  cta: { label: string; href: string };
+}
+
+const planCta = { label: "Enroll Now", href: "/consultation/book" } as const;
+const planImage = { src: "/images/consultation/plans/plan-avatar.webp", alt: "" } as const;
+
+const plans: readonly ConsultationPlan[] = [
+  {
+    id: "normal-session",
+    title: "Normal Session",
+    description: "Ideal for those seeking guidance on a single concern or specific question.",
+    duration: "15 Minutes",
+    fee: "₹1,000",
+    features: ["One focused question", "Personalized guidance"],
+    image: planImage,
+    cta: planCta,
+  },
+  {
+    id: "general-session",
+    title: "General Session",
+    description: "Designed for individuals looking for clarity across multiple related concerns.",
+    duration: "30 - 40 Minutes",
+    fee: "₹2,100",
+    features: [
+      "Discussion of 2–3 questions",
+      "Personalized analysis",
+      "One detailed chart reading",
+    ],
+    image: planImage,
+    cta: planCta,
+  },
+  {
+    id: "overall-reading",
+    title: "Overall Reading",
+    description:
+      "A comprehensive consultation offering detailed guidance across multiple areas of life through personalized analysis.",
+    duration: "40Min - 1 Hr",
+    fee: "₹3,700",
+    features: ["Personality insights", "Career guidance"],
+    moreLabel: "+7 More",
+    image: planImage,
+    cta: planCta,
+  },
+];
+export const consultationPlansContent = {
+  title: "Personalised Guidance\nThat Puts You First",
+  text: "Whether you’re looking for quick guidance on a specific concern or a detailed analysis across different areas of life, there’s a consultation designed to support your journey.",
+  feeLabel: "Fee:",
+  // Check icon: Figma frame "ai-art" (24 x 24), exported as SVG.
+  featureIcon: "/icons/plan-check.svg",
+  plans,
+} as const;

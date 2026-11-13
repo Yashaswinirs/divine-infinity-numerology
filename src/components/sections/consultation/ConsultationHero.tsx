@@ -19,7 +19,7 @@ import { consultationHeroContent } from "@/data/consultation";
 // Buttons: 48 tall on every width. Outline "Book" pads 24 (desktop) / 16 left and 10 right; the 1px border is inside the
 // 48 in Figma, so the padding here is 1 less per side (23 / 15 / 9). Filled "View" is 262 wide on desktop (content
 // centred), hug with 14 left / 10 right below lg.
-// Background: black 30% overlay on every width; the 95px fade at the bottom blends into the page navy.
+// Background: black 30% overlay on every width. No fade of its own: the page-level HeroSeam strip (Figma Rectangle 1) blends it into the page.
 // The wheel is one file (consultation-hero-wheel.png, 1408 x 768). Figma uses the same image on all three frames and
 // crops it (Scale: Crop) to 817 x 446 desktop / 648 x 440 tablet / 371 x 252 phone, so it fills its box (object-cover,
 // centred). The crop offset inside the image is assumed centred: check the numbers 1 and 9 against Figma.
@@ -27,12 +27,12 @@ import { consultationHeroContent } from "@/data/consultation";
 // the Home hero) so "Important Decisions" stays on one line at 425 (content 385).
 // Phone buttons are measured: Book 211 x 48 (padding 10 / 10 / 10 / 16), View 238 x 48 (left 14), gap 12.
 // TODO(figma): phone bottom padding (74 copied from tablet; the tablet 74 is measured) and the tablet button gap (16)
-// are estimated; the fade strip is still the Contact one (Figma Rectangle 1: 1440 x 95, 5-stop Gradient, blur 40).
+// are estimated.
 const styles = {
   section: "overflow-hidden lg:min-h-140.25",
   background: "absolute inset-0",
   overlay: "absolute inset-0 bg-black/30",
-  fade: "to-gradient-stop-1 absolute inset-x-0 bottom-0 h-23.75 bg-linear-to-b from-transparent",
+
   container:
     "relative flex flex-col gap-18.5 px-5 pt-40 pb-18.5 tab:mx-auto tab:max-w-192 tab:gap-15.75 tab:px-[min(3.75rem,calc(1.25rem_+_(100vw_-_37.5rem)_*_0.238))] tab:pt-47.5 lg:max-w-360 lg:gap-0 lg:px-20 lg:pt-42.25 lg:pb-0",
   text: "relative z-10 flex flex-col gap-10 tab:max-w-147.5 lg:w-[min(36.875rem,41vw)] lg:max-w-none lg:gap-8.5",
@@ -66,7 +66,6 @@ export function ConsultationHero() {
           className="object-cover object-center"
         />
         <div className={styles.overlay} />
-        <div className={styles.fade} />
       </div>
 
       <Container padding="none" className={styles.container}>
