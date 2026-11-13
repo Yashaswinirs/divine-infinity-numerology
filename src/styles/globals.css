@@ -457,6 +457,29 @@
   }
 }
 
+/* Figma Consultation "What to Expect" step number: Lovelace Text 400, Accent colour on the element. Phone "H1 M" 36.72/46 and
+   tablet "H1 T" 42.87/48, both with cap-height trim (measured). Desktop "H1" 54.93/70.4, no trim (measured). The tablet size
+   starts at 600px (tab), the desktop size at 1280px (xl). text-box-trim needs Chrome 133+ / Safari 18.2+. */
+@utility type-step-number {
+  font-family: var(--font-heading);
+  font-weight: 400;
+  font-size: 2.295rem;
+  line-height: 2.875rem;
+  text-box-trim: trim-both;
+  text-box-edge: cap alphabetic;
+
+  @media (width >=theme(--breakpoint-tab)) {
+    font-size: 2.679375rem;
+    line-height: 3rem;
+  }
+
+  @media (width >=theme(--breakpoint-xl)) {
+    font-size: 3.433125rem;
+    line-height: 4.4rem;
+    text-box-trim: none;
+  }
+}
+
 /* Figma Contact section title (Contact Information & Have a Question): Lovelace Text 400.
    Phone 30.43/35, tablet and desktop H3 35.16px, line-height 100% (measured).
    Tablet size starts at 600px (tab). */

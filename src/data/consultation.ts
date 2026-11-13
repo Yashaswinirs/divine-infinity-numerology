@@ -190,3 +190,60 @@ export const consultationTypesContent = {
   href: "#plans",
   types: consultationTypes,
 } as const;
+
+// Section 4 "What to Expect". Copy as in Figma (desktop, "Consultation Tab" and "Consultation Mobile").
+// Step 1, 3 and 4 hand line breaks are the same on desktop and tablet (`text`); the phone lets the card width wrap the copy
+// (`compactText`). Step 2 has an extra first line (`intro`). Figma has no colon after "Share the following details".
+// TODO(client): on the phone Figma cuts step 2 to "Full Name, Date of Birth..." (ellipsis). We show the same cut plus a
+// "Read more" toggle (not in Figma) that opens the full copy, so no required detail is hidden. Confirm the toggle and its labels.
+export interface ConsultationStep {
+  id: string;
+  intro?: string;
+  /** Faint Accent dot of Figma "Ellipse 8" (card 4 only, from lg). */
+  glow?: boolean;
+  /** Phone-only visible copy for step 2 (Figma cuts it with an ellipsis). The full copy stays in compactText for screen readers. */
+  shortText?: string;
+  text: string;
+  compactText: string;
+}
+
+const consultationSteps: readonly ConsultationStep[] = [
+  {
+    id: "choose-plan",
+    text: "Choose the consultation\nplan that best suits your\nrequirements.",
+    compactText: "Choose the consultation plan that best suits your requirements.",
+  },
+  {
+    id: "share-details",
+    intro: "Share the following details",
+    text: "Full Name, Date of Birth,\nTime of Birth, Place of Birth\n& Mobile Number",
+    compactText: "Full Name, Date of Birth, Time of Birth, Place of Birth & Mobile Number",
+    shortText: "Full Name,\nDate of Birth…",
+  },
+  {
+    id: "confirm-booking",
+    text: "Complete the booking\nconfirmation and\nadvance payment.",
+    compactText: "Complete the booking confirmation and advance payment.",
+  },
+  {
+    id: "attend",
+    glow: true,
+    text: "Attend your\nconsultation at the\nscheduled date and time.",
+    compactText: "Attend your consultation at the scheduled date and time.",
+  },
+];
+
+export const consultationExpectationContent = {
+  title: "What to Expect",
+  text: "Booking a consultation is simple and designed to ensure every session is well prepared.",
+  note: "Consultations are available in both online and offline modes.",
+  compactNote: "Consultations are available in both\nonline and offline modes.",
+  stepLabel: "Step",
+  // Figma Groups 17, 18 and 19 (84.17 x 23.79). Connector 1 has its own zig-zag; 2 and 3 are the same file.
+  connectors: [
+    "/icons/consultation/step-connector-1.svg",
+    "/icons/consultation/step-connector.svg",
+    "/icons/consultation/step-connector.svg",
+  ],
+  steps: consultationSteps,
+} as const;

@@ -1,3 +1,4 @@
+export { ConsultationExpectation } from "./ConsultationExpectation";
 export { ConsultationHero } from "./ConsultationHero";
 export { ConsultationPlans } from "./ConsultationPlans";
 export { ConsultationTypes } from "./ConsultationTypes";

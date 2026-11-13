@@ -32,13 +32,12 @@ export function Ornament({ variant, className, tone = "light" }: OrnamentProps) 
       : decor.ornament;
 
   return (
-    <Image
-      src={src}
-      alt=""
-      width={width}
-      height={height}
+    <span
       aria-hidden="true"
-      className={cn(ornamentVariants({ variant, className }))}
-    />
+      className={cn("relative block", ornamentVariants({ variant, className }))}
+      style={{ aspectRatio: `${width} / ${height}` }}
+    >
+      <Image src={src} alt="" fill sizes="362px" className="object-contain" />
+    </span>
   );
 }
