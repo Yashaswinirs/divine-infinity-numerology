@@ -26,8 +26,9 @@ export interface ConsultationPlanCardProps {
 // Title and fee: Figma H5 (17.3/25 phone, 19.08/23.3 tablet, both cap-trimmed; 22.5/30.7 from xl).
 // Desktop button is 2px wider than the content and sits 23px from the card bottom (xl:pb-5.75), both copied from Figma.
 // TODO(figma): fee colour (Accent assumed) and "+7 More" style (14px medium, Accent assumed) are not from a panel.
+// Hover (prototype screenshot): border Accent 100% and a soft Accent glow, the fill stays. TODO(figma): values estimated, no hover panel.
 const styles = {
-  card: "bg-card-gradient border-accent/25 flex min-h-113.25 w-full flex-col gap-6 rounded-xl border p-7.5 tab:min-h-118.75 lg:min-h-120.5 xl:pb-5.75",
+  card: "bg-card-gradient border-accent/25 hover:border-accent hover:shadow-accent-glow flex min-h-113.25 w-full flex-col gap-6 rounded-xl border p-7.5 transition-[border-color,box-shadow] duration-300 ease-out motion-reduce:transition-none tab:min-h-118.75 lg:min-h-120.5 xl:pb-5.75",
   top: "flex flex-col gap-4",
   header: "flex items-start justify-between",
   avatar: "size-15 shrink-0 rounded-full object-cover",

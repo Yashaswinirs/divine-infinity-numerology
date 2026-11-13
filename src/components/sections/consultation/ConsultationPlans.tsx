@@ -16,15 +16,16 @@ import { ConsultationPlanCard } from "./ConsultationPlanCard";
 // The side padding eases from 20 at 600 to 60 at 768 (same formula as the Consultation hero). From lg it is 60, from xl 80.
 // The title has a fixed line break after "Guidance" (Figma breaks it by hand on every width).
 // The strip behind the top of this section is HeroSeam (page wrapper), the stars are the page's StarField.
-// TODO(figma): the phone ornament width (180) and its gap to the title (30) are read from the canvas; the tablet ornament
-// gap (25) is derived from the 207.91 heading block; lg (1024 to 1279) follows the desktop layout with gap 24 (no frame).
+// The phone and tablet ornament is 262 wide with gap 25 to the title (261.97 x 24.91, the same ornament as section 3).
+// scroll-mt keeps the heading clear of the fixed navbar after a click on #plans (80 below lg, 60 from lg; estimated,
+// TODO(figma): the navbar height was not measured). lg (1024 to 1279) follows the desktop layout with gap 24 (no frame).
 const styles = {
-  section: "relative",
+  section: "relative scroll-mt-20 lg:scroll-mt-15",
   container:
     "mx-auto flex w-full flex-col items-center gap-7.5 px-5 py-6.25 tab:max-w-192 tab:gap-10 tab:px-[min(3.75rem,calc(1.25rem_+(100vw-37.5rem)*_0.238))] tab:py-10 lg:max-w-360 lg:gap-16.5 lg:px-15 lg:py-15 xl:px-20",
   heading: "flex w-full flex-col items-center gap-6.25 text-center lg:max-w-203.5",
   titleGroup: "flex flex-col items-center gap-6.25",
-  ornament: "w-65.5 xl:w-90.5",
+  ornament: "aspect-[10.517] h-auto w-65.5 xl:w-90.5",
   title: "text-accent whitespace-pre-line",
   text: "type-body-large text-light w-full font-medium",
   list: "flex w-full flex-col gap-5 tab:flex-row tab:flex-wrap tab:justify-center lg:flex-nowrap lg:justify-start lg:gap-6 xl:gap-8",

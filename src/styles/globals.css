@@ -68,6 +68,8 @@
   /* WhatsApp floating button (Figma Frame 279): fill #47C756, shadow 0 4 24 at 60%. */
   --color-whatsapp: #47c756;
   --shadow-whatsapp: 0 4px 24px 0 rgb(71 199 86 / 0.6);
+  /* Hover glow of the consultation tiles and plan cards. TODO(figma): estimated from the prototype screenshot (soft Accent glow), no panel received. */
+  --shadow-accent-glow: 0 0 16px 0 rgb(255 216 162 / 0.4);
   /* Contact submit button. TODO(figma): text colour and hover fill are not from a panel; the Figma desktop frame
      shows the label lighter, like Primary #655373 on the Home accent buttons. */
   --color-button-ink: #1f1438;

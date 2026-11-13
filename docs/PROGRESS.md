@@ -20,34 +20,33 @@ Last updated: 13 Nov 2026
 | 11 FAQ                                | Done                            |
 | 12 CTA + Footer                       | Teammate (not in this repo yet) |
 
-   Home page: complete except section 12 (teammate). The WhatsApp floating button is built (shared/WhatsAppButton) and renders on Home and Contact. (teammate) and the WhatsApp floating button (built as shared/WhatsAppButton; on Contact now, being added to Home)
+Home page: complete except section 12 (teammate). The WhatsApp floating button is built (shared/WhatsAppButton) and renders on Home, Contact and Consultation.
 
 ## Status (Contact page)
 
-| Item                               | Status                                              |
-| ---------------------------------- | --------------------------------------------------- |
-| 1 Hero ("Let's Connect")           | Done                                                |
-| 2 Contact info + enquiry form      | Done                                                |
-| 3 Looking for Personal Insights?   | Done                                                |
-| 4 Visit the Office + Find Us (map) | Done (about 97% match to Figma, 12 Nov 2026)        |
-| 5 FAQ                              | Done (about 96% match to Figma, 12 Nov 2026)         |
-| 6 CTA + Footer                     | Teammate (not in this repo yet)                     |
+| Item                               | Status                                       |
+| ---------------------------------- | -------------------------------------------- |
+| 1 Hero ("Let's Connect")           | Done                                         |
+| 2 Contact info + enquiry form      | Done                                         |
+| 3 Looking for Personal Insights?   | Done                                         |
+| 4 Visit the Office + Find Us (map) | Done (about 97% match to Figma, 12 Nov 2026) |
+| 5 FAQ                              | Done (about 96% match to Figma, 12 Nov 2026) |
+| 6 CTA + Footer                     | Teammate (not in this repo yet)              |
 
 Contact route: `src/app/(public)/contact/page.tsx`. Sections 3 to 5 are built and share one `<StarField copies={6} className="[--star-scale:0.5] tab:[--star-scale:1]" />` in a wrapper in that file (see "Contact 4" and "Contact 5" below). Only the CTA slot (teammate) is left.
 
-
 ## Status (Consultation page)
 
-| Item                                           | Status                                                   |
-| ---------------------------------------------- | -------------------------------------------------------- |
-| 1 Hero                                         | Done (about 96% match to Figma, 13 Nov 2026)             |
-| 2 Personalised Guidance That Puts You First (plans) | Done (about 96% match to Figma, 13 Nov 2026)        |
-| 3 to 7                                         | Not started (names: see the next-section prompt)         |
-| 8 and 9 (CTA + Footer)                         | Teammate (not in this repo yet)                          |
+| Item                                                          | Status                                                                      |
+| ------------------------------------------------------------- | -------------------------------------------------------------------------------- |
+| 1 Hero                                                        | Done (about 96% match to Figma, 13 Nov 2026)                                     |
+| 2 Personalised Guidance That Puts You First (plans)           | Done (about 96% match to Figma, 13 Nov 2026)                                     |
+| 3 Choose the Consultation That Fits Your Needs (service tiles) | Done (layout about 99.8%, overall about 96% match to Figma, 13 Nov 2026)         |
+| 4 What to Expect                                              | Not started (next)                                                               |
+| 5 to 7                                                        | Not started (names: see the next-section prompt)                                 |
+| 8 and 9 (CTA + Footer)                                        | Teammate (not in this repo yet)                                                  |
 
-Consultation route: `src/app/(public)/consultation/page.tsx` (Hero, HeroSeam and Section 2 so far). Section 2 built the 95px strip between the hero and Section 2 (see "Consultation 1" and "Consultation 2" below). Sections 3 to 7 go inside the star wrapper after `ConsultationPlans` (marked SLOT in page.tsx).
-
-
+Consultation route: `src/app/(public)/consultation/page.tsx` (Hero, HeroSeam, Section 2 and Section 3 so far). Section 2 built the 95px strip between the hero and Section 2 (see "Consultation 1" and "Consultation 2" below). Sections 4 to 7 go inside the star wrapper after `ConsultationTypes` (marked SLOT in page.tsx).
 
 Project is LOCAL ONLY. It is never pushed to GitHub. Commit locally only.
 
@@ -55,7 +54,7 @@ Page wiring (`src/app/(public)/page.tsx`): Hero, ProudlyFeatured, wrapper A (Abo
 
 Page wiring (`src/app/(public)/contact/page.tsx`): ContactHero, ContactEnquiry, then one wrapper (`relative isolate overflow-hidden`) with the StarField, ContactInsights, ContactOffice and the FAQ slot, then the CTA slot (teammate) and WhatsAppButton. `<main>` carries the Contact page gradient (stops 0 / 1154 / 2307 / 3461 / 4614 px).
 
-Page wiring (`src/app/(public)/consultation/page.tsx`): ConsultationHero, HeroSeam (page-level, right after the hero), then one wrapper (`relative isolate z-20 overflow-hidden`) with ONE `StarField copies={6}` (`[--star-scale:0.5]` below tab) holding ConsultationPlans and the SLOT for Sections 3 to 7 (plus WhatsAppButton if the page renders it; check the file). `<main>` carries the Consultation page gradient: stops `#090D22 / #2A1845 / #1A1440 / #0B1333 / #040817` at 0 / 1560 / 3120 / 4681 / 6241 px (even spacing and 180deg are ASSUMED; see "Consultation 2" open items).
+Page wiring (`src/app/(public)/consultation/page.tsx`): ConsultationHero, HeroSeam (page-level, right after the hero), then one wrapper (`relative isolate z-20 overflow-hidden`) with ONE `StarField copies={6}` (`[--star-scale:0.5]` below tab) holding ConsultationPlans, ConsultationTypes and the SLOT for Sections 4 to 7, then the CTA slot (teammate) and WhatsAppButton. `<main>` carries TWO background gradients (13 Nov 2026): below lg the evenly spaced 5-stop one (`#090D22 / #2A1845 / #1A1440 / #0B1333 / #040817` at 0 / 1560 / 3120 / 4681 / 6241 px, 180deg, ASSUMED), and from lg (1024) a measured-position one for the Section 3 area (see "Consultation 3" and "Decisions"). The sections paint NO background of their own, so the gradient runs continuously under every section.
 
 ## Section notes
 
@@ -111,7 +110,7 @@ Page wiring (`src/app/(public)/consultation/page.tsx`): ConsultationHero, HeroSe
 - Consultation 2 (Personalised Guidance That Puts You First, plans): DONE, about 96% match to Figma (13 Nov 2026; checked at 1440, 1280, 1024, 768, 600, 425, 375, 320). Console: 0 issues. Commit: `feat(consultation): add plans section and hero seam strip`. The remaining gap is mostly the Lovelace Text font (not loaded; Libre Baskerville stand-in) and the estimates in the open items below.
   - Files: NEW `sections/consultation/HeroSeam.tsx`, `ConsultationPlanCard.tsx`, `ConsultationPlans.tsx`; EDIT `sections/consultation/index.ts` (exports ConsultationPlans, HeroSeam), `ConsultationHero.tsx` (removed `styles.fade` and its div), `src/data/consultation.ts` (`ConsultationPlan` type, `consultationPlansContent`), `src/app/(public)/consultation/page.tsx` (hero, HeroSeam, star wrapper `relative isolate z-20 overflow-hidden`, page gradient), `src/styles/globals.css` (added `type-plan-title`: serif, cap trim below xl).
   - Assets: `public/images/consultation/plans/plan-avatar.webp` is ONE file for all three cards (120 x 120, real WebP, from Figma Ellipse 3, exported at 2x PNG then `cwebp -q 85`; Figma crops the same image per card, the difference at 60px is not worth three files). `public/icons/plan-check.svg`: 24 x 24 check icon (Figma frame "ai-art"), no embedded raster.
-  - Structure: section id is `plans` (the hero's "View Consultation Plans" targets `#plans`). Sections 2 to 7 share one `StarField copies={6}` in the page wrapper (`[--star-scale:0.5]` below tab). Sections 3 to 7 go inside that wrapper, after `ConsultationPlans` (marked SLOT in page.tsx). Avatar is skipped when `src` is empty (prevents the next/image console errors).
+  - Structure: section id is `plans` (the hero's "View Consultation Plans" and every Section 3 tile target `#plans`). Sections 2 to 7 share one `StarField copies={6}` in the page wrapper (`[--star-scale:0.5]` below tab). Sections 4 to 7 go inside that wrapper, after `ConsultationTypes` (marked SLOT in page.tsx). Avatar is skipped when `src` is empty (prevents the next/image console errors).
   - HeroSeam: owned by the PAGE (Figma Rectangle 1: 1440 x 95, 5-stop gradient, layer blur 40, bottom-most layer of the frame). Rendered right after the hero, `z-10`, `-top-9.5`, `-inset-x-10`, blur token `--blur-hero-fade` (20px = Figma 40). Estimated Y: the canvas reads about 42px above the hero bottom, code uses 38px (within 4px, the seam is clean, left as is).
   - The wrapper must be `z-20` so the strip does not dim the Section 2 ornament on tablet and phone (padding 40 / 25 is smaller than the 57px the strip reaches into the section).
   - Measured (Figma): section padding 60 / 80 desktop (1440), 40 / 60 tablet (768), 25 / 20 phone (425). Gap heading to cards 66 / 40 / 30. Heading block 814 wide gap 25 (desktop), 648 wide (tablet), 385 wide (phone). Title H2 43.95/48 desktop, H2 T 35/40 cap trim tablet, H2 M 30.43/35 cap trim phone. Paragraph Body Large 18/22.6 on all three. Card 403.33 x 482 desktop, 314 x 475 tablet (row 2: 511), 385 x 453 phone. Card gap 32 / 20 / 20. Enroll Now: 48 tall, radius 40, padding 10, gap 10, Accent fill, Primary text, Body Large BTN 16 (same on all three).
@@ -121,8 +120,23 @@ Page wiring (`src/app/(public)/consultation/page.tsx`): ConsultationHero, HeroSe
   - Ornament: gold section ornament, 262 wide on phone and tablet, 362 from xl, gap 25 to the title. The title breaks after "Guidance" on every width.
   - Breakpoints: `tab` (600) tablet, `lg` (1024) three columns, `xl` (1280) desktop sizes.
   - Panels received after the build: Consultation frame 1440 x 6241 (gradient stops `#090D22 / #2A1845 / #1A1440 / #0B1333 / #040817`, positions and angle not shown); Rectangle 1 (1440 x 95, same stops, Layer blur 40, bottom-most layer); Frame 279 / WhatsApp (60 x 60, radius 30, `#47C756`, shadow 0 4 24 at 60%, scroll position Fixed; applied, see WhatsAppButton); Rectangle 3 (tablet and phone, 768 x 154, `#15122B` to `#1A1837` at 0% opacity, in the FIXED group with the nav).
-  - Open items (estimates, no code until the panel or answer arrives): (1) Page gradient: stop positions and angle are not in the panel. Even spacing over 6241px assumed (0 / 1560 / 3120 / 4681 / 6241 at desktop), 180deg. Switch to 0 / 25 / 50 / 75 / 100% when Section 7 is built so tablet and phone heights work. Confirm by clicking the gradient swatch in Figma. (2) Rectangle 1: X/Y and angle not in the panel. (3) Rectangle 3: waiting for the real `src/components/layout/Navbar.tsx` and whether the Home and Contact tablet frames have it. If yes, it belongs in the shared Navbar (decorative, below lg, behind the nav content, fixed). If no, hero only. (4) WhatsApp: size, colour and shadow match tokens. Right offset about 50 (canvas), bottom cannot be read from a fixed layer. Tablet frame read right 60 / bottom 74. Not changed. (5) Fee colour (Accent assumed) and "+7 More" style (14px medium, Accent assumed): panels not received. (6) Lovelace Text not loaded; need Regular 400 woff2 (about 3% of the gap: old-style numerals in the fee, letter widths). (7) 1024 to 1279 has no Figma frame (desktop layout with gap 24, checked by eye). (8) Phone ornament width (262) now measured; tablet ornament gap 25 derived.
+  - Open items (estimates, no code until the panel or answer arrives): (1) Page gradient: stop positions and angle are not in the panel. See "Consultation 3" for the desktop positions that were measured on 13 Nov 2026; tablet and phone still use the even spacing. (2) Rectangle 1: X/Y and angle not in the panel. (3) Rectangle 3: waiting for the real `src/components/layout/Navbar.tsx` and whether the Home and Contact tablet frames have it. If yes, it belongs in the shared Navbar (decorative, below lg, behind the nav content, fixed). If no, hero only. (4) WhatsApp: size, colour and shadow match tokens. Right offset about 50 (canvas), bottom cannot be read from a fixed layer. Tablet frame read right 60 / bottom 74. Not changed. (5) Fee colour (Accent assumed) and "+7 More" style (14px medium, Accent assumed): panels not received. (6) Lovelace Text not loaded; need Regular 400 woff2 (about 3% of the gap: old-style numerals in the fee, letter widths). (7) 1024 to 1279 has no Figma frame (desktop layout with gap 24, checked by eye). (8) Phone ornament width (262) now measured; tablet ornament gap 25 derived.
   - Client TODOs: every "Enroll Now" goes to `/consultation/book` (not built; Figma opens an overlay); confirm whether the plan goes in the URL. Copy kept as in Figma: "Personalised" in the title vs "Personalized" in the cards, "40Min - 1 Hr". The "+7 More" items of Overall Reading are not in Figma (plain text, not a link).
+
+- Consultation 3 (Choose the Consultation That Fits Your Needs, service tiles): DONE, layout about 99.8% and overall about 96% match to Figma (13 Nov 2026; checked at 1440, 1280, 1279, 1024, 768, 600, 425, 401, 375, 320 with DevTools measurements). The 4% gap is the Lovelace Text font (not loaded) and the estimates in the open items below. Commit: `feat(consultation): add service tiles section, plan card hover and smooth scroll to plans`.
+  - Files: NEW `sections/consultation/ConsultationTypes.tsx` (id `services`) and `ConsultationTypeTile.tsx` (client component: smooth scroll, `usePrefersReducedMotion` from `@/hooks`). EDIT `sections/consultation/index.ts` (exports ConsultationTypes), `src/app/(public)/consultation/page.tsx` (section added; desktop gradient, see below), `src/data/consultation.ts` (`ConsultationType`, `consultationTypesContent`), `src/styles/globals.css` (token `--shadow-accent-glow`), `ConsultationPlanCard.tsx` (hover), `ConsultationPlans.tsx` (`scroll-mt-20 lg:scroll-mt-15`, stale ornament comment fixed).
+  - Fixes applied after the first build: (1) both ornaments got `h-auto` (removes the "width or height modified" console warning of this section); (2) title `max-[374px]:text-balance` (even wrap below 375); (3) ornament `aspect-[10.517] h-auto w-65.5 xl:w-90.5` in ConsultationTypes and ConsultationPlans so the ornament is 362 x 34.42 and 261.97 x 24.91 like Figma (the file ratio gave 35 and 25.33); (4) hover fill opacity 70; (5) desktop page gradient (see "Decisions").
+  - Assets: 12 SVG icons (40 x 40, outline, Accent stroke, no embedded raster) in `public/icons/consultation/`: `service-love.svg`, `service-marriage.svg`, `service-career.svg`, `service-business.svg`, `service-health.svg`, `service-numerology.svg`, `service-astrology.svg`, `service-vaastu.svg`, `service-tarot.svg`, `service-rudraksha.svg`, `service-sai-baba.svg`, `service-manifestation.svg`. Exported from the 40 x 40 icon frame inside each Figma tile.
+  - Measured (Figma): desktop 1440 x 793.42 (padding 60 top and bottom, 80 sides, content 1280, gap 60; heading block 814 wide, gap 25, 226.42 tall: ornament 362 x 34.42, title 43.95/48 on two lines (96), paragraph 814 x 46; grid 1280 x 387 = 4 columns x 3 rows, gap 24, tile 302 x 113). Tablet 768 x 1105.91 (padding 40 / 60, content 648, gap 40; heading 207.91 tall: ornament 261.97 x 24.91, title 35/40 with cap trim (65), paragraph 538 x 68; grid 648 x 778 = 2 columns x 6 rows, gap 20, tile 314 x 113). Phone 425 x 1217.91 (padding 25 / 20, content 385, gap 30; heading 221.91 tall: title 30.43/35 with cap trim (56), paragraph 385 x 91; grid 385 x 916, gap 20, tile 182.5 x 136, label box 102 x 46). Tile: radius 12, 1px border `#FFD8A2` at 25%, padding 20, gap 10, no fill, icon 40 x 40, label Lato 500 18/22.6 `#ECECEC`.
+  - Implementation (DevTools, 13 Nov 2026, before the aspect fix): 1440 section 794 / title 96 / paragraph 814 x 46 / grid 387 / tile 302 x 113; 1280 tile 262 x 113; 1024 section 739.28 / title 66.95 / grid 371 / tile 214 x 113; 768 section 1108.28 / title 66.95 / paragraph 538 x 68 / grid 778 / tile 314.02 x 113; 600 tile 270 x 113; 425 section 1220.76 / title 58.43 / paragraph 385 x 91 / grid 916 / tile 182.5 x 136; 375 tile 157.5 x 136; 320 tile 130 x 136, no horizontal scroll. Grid, tile and paragraph are exact. The section is 0.4 to 2.4px taller than Figma because of the stand-in font (cap-height trim box 1.95 taller on tablet, 2.43 on phone) and the 0.4px ornament ratio (fixed by the aspect edit).
+  - Structure: same heading as Section 2 (`Heading size="sectionTab"`, gold `Ornament`, `type-body-large` paragraph). The title is two strings in `consultationTypesContent` (`title` breaks after "That" from 600, `compactTitle` breaks after "Consultation" below 600). Each tile has two label strings (`label` on one line from 600, `compactLabel` with "\n" below 600; Figma breaks every phone label by hand). The grid is `<ul>` / `<li>`, 2 columns, 4 from lg.
+  - Tile: an `<a href="#plans">` (every Figma tile scrolls to Section 2: prototype "Scroll to Component 8" on desktop, "Frame 287" on tablet and phone, ease out, 416.71ms). Click does `scrollIntoView({ behavior: "smooth" })` (instant with `prefers-reduced-motion`), plain anchor jump without JavaScript. `#plans` has `scroll-mt-20 lg:scroll-mt-15` (estimated, navbar height not measured) so the heading is not hidden by the fixed navbar. Padding: 19 plus the 1px border (= 20 in Figma); lg 8, xl 19, below 375 px-2 (so "Rudraksha Consultation" and the phone words fit). Heights are min-heights: `min-h-34` (136) phone, `tab:min-h-28.25` (113), because Figma rounds each text line up to 23px and CSS lines are 22.6px.
+  - Hover (tiles, lg to 2xl and tablets with a mouse; `hover:` only applies on hover-capable pointers): border Accent 100%, `shadow-accent-glow` (0 0 16px, Accent at 40%), and a separate `bg-card-gradient` layer fades in behind the content at opacity 70% (a gradient cannot be transitioned directly), 300ms ease-out, `motion-reduce:transition-none`. Same effect on `focus-visible` plus an outline. Plan cards (Section 2) got the same border and glow, the fill is unchanged. ALL hover values are ESTIMATED from the Figma prototype screenshots (no hover panel received).
+  - Section background (13 Nov 2026): measured positions at 1440 and 1280 (same): section top 1456, heading 1575, paragraph 1696, grid 1802, row 3 top 2076, section bottom 2249 (px from the top of `<main>`). The page gradient from lg is purple at the paragraph, bluish at tile row 1 and navy from tile row 2 like the Figma desktop frame (see "Decisions").
+  - Breakpoints: `tab` (600) tablet (2 columns, one-line labels, title 35px), `lg` (1024) four columns (gap 16, tile padding 8), `xl` (1280) Figma desktop sizes (gap 24).
+  - Accuracy: layout 99.8% on desktop, tablet and phone; overall about 96 to 97% (1440, 768, 425); about 95% at 1024, 375 and 320 (no Figma frame). The title is the one stand-in font effect: "Choose the Consultation" is about 382px wide in Libre Baskerville, so the phone title wraps to 3 lines at 401, 375 and 320 (Figma content width is 385).
+  - Open items (TODO(figma)): (1) hover panels (Fill, Stroke, Effects of the tile and of the plan card hover variants): fill opacity 70, glow 16px at 40% and 300ms are estimated. (2) Navbar height for `scroll-mt` (80 below lg, 60 from lg estimated; the scroll duration is the browser's smooth scroll, not 416.71ms). (3) The Gradient panel of the Consultation Tab and Consultation Mobile frames: below lg the page gradient is still the even 5-stop one and Figma looks lighter and more purple there. Select the frame, open Fill, click the gradient swatch and screenshot the stops and angle. (4) Page gradient positions after 1940px (desktop) are placeholders until Sections 4 to 7 are built. (5) 1024 to 1279 and below 425 have no Figma frame (gap 16, padding 8 and text-balance are derived). (6) Lovelace Text. (7) The paragraph uses curly apostrophes (as Section 2); the Figma screenshot may show straight ones, accepted. (8) At 320 "Healing Cards" has about 2px to spare in its 112px box.
+  - Client TODOs: the tiles do not pick a service yet. If the booking page should know the service, link to `/consultation/book?service=<id>` instead (not built). Confirm the service names and order. The icon files are decorative (alt "" and aria-hidden), the label is the accessible name.
 
 ## Contact page notes
 
@@ -158,6 +172,11 @@ Page wiring (`src/app/(public)/consultation/page.tsx`): ConsultationHero, HeroSe
 - ConsultationPlanCard (`sections/consultation/ConsultationPlanCard.tsx`): one plan card (avatar, title, description, fee, features, Enroll Now). Takes a `ConsultationPlan` from `consultationPlansContent`. Skips the avatar when `src` is empty.
 - ConsultationPlans (`sections/consultation/ConsultationPlans.tsx`): Section 2 (id `plans`), heading with gold ornament plus the three cards. Takes no props.
 
+## New components in Consultation 3
+
+- ConsultationTypes (`sections/consultation/ConsultationTypes.tsx`): Section 3 (id `services`), heading with gold ornament (same structure as ConsultationPlans) plus the 12-tile grid. Takes no props; reads `consultationTypesContent`.
+- ConsultationTypeTile (`sections/consultation/ConsultationTypeTile.tsx`): `"use client"`. Props: `label`, `compactLabel`, `icon`, `href`, `className?`. One `<a>` tile (icon, label, hover fill layer, in-page smooth scroll). Used only inside ConsultationTypes, not exported from the barrel.
+
 ## Changes to existing components
 
 - SectionHeading: `subtitleSize` expanded from `"small" | "large"` to `"small" | "large" | "largeXl"`. `"largeXl"` renders `type-body-small xl:text-lg xl:leading-[22.6px] xl:tracking-normal` (Body small below xl, Body Large from xl). New prop `ornamentTone?: "light" | "gold"` (default "light"), passed to Ornament.
@@ -168,6 +187,9 @@ Page wiring (`src/app/(public)/consultation/page.tsx`): ConsultationHero, HeroSe
 - WhatsAppButton (13 Nov 2026, from the Consultation Frame 279 panels): 60 x 60 on every width (`size-15`, icon `size-7.5`), fill `--color-whatsapp: #47c756`, shadow `--shadow-whatsapp: 0 4px 24px 0 rgb(71 199 86 / 0.6)`. Applies to Home, Contact and Consultation. Offsets are still not from a panel: right 50 (`right-12.5`), bottom 24 phone / 32 from `tab`; the tablet frame shows right 60 / bottom 74 (derived). TODO(figma): desktop and phone panels, icon size (30 assumed), and whether Home and Contact use the same tablet offsets.
 - Navbar (13 Nov 2026): the desktop layout now starts at `lg` (1024) instead of `xl` (1280), because Figma has no frame for 1024 to 1279 and the page should look like 1280 and 1440 there. Changed in `Navbar.tsx` (`lg:pt-nav-y-xl`, `lg:h-12`, `lg:px-10 xl:px-20`, links `hidden lg:block`, toggle `lg:hidden`), `NavLinks.tsx` (`gap-4 xl:gap-6 2xl:gap-11.25`: 16 from 1024, 24 from 1280, 45 from 1536) and `MobileMenu.tsx` (panel `lg:hidden`). Side padding is 40 from lg and 80 from xl. The token is still named `--spacing-nav-y-xl` (30px), used only by `Navbar.tsx`. Check the nav on one line with no clipping at 1024, 1100, 1200, 1279. TODO: look at Home and Contact section layouts at 1024 to 1279 (the Navbar changed, their sections did not).
 - ConsultationHero (13 Nov 2026, Consultation 2): removed `styles.fade` and its div; the page-level `HeroSeam` replaces it.
+- ConsultationPlanCard (13 Nov 2026, Consultation 3): hover added (`hover:border-accent hover:shadow-accent-glow`, 300ms `transition-[border-color,box-shadow]`, `motion-reduce:transition-none`). The fill is unchanged. Hover values estimated.
+- ConsultationPlans (13 Nov 2026, Consultation 3): `section` class `relative scroll-mt-20 lg:scroll-mt-15` (so a click on `#plans` keeps the heading clear of the fixed navbar); ornament class `aspect-[10.517] h-auto w-65.5 xl:w-90.5`; the stale ornament comment (180 wide) was fixed (it is 262).
+- `consultation/page.tsx` (13 Nov 2026, Consultation 3): ConsultationTypes added after ConsultationPlans; stale gradient comment fixed (the classes used 1560 / 3120 / 4681 / 6241); desktop gradient from lg added (see "Decisions").
 
 ## New tokens and utilities in globals.css
 
@@ -179,6 +201,7 @@ Page wiring (`src/app/(public)/consultation/page.tsx`): ConsultationHero, HeroSe
 - `type-consult-hero-title` (Consultation hero H1, Lovelace Text 400 stand-in): phone 36.72/46 (2.295rem / 2.875rem) with `text-box-trim: trim-both` and `text-box-edge: cap alphabetic`; from `tab` 42.87/48 (2.679375rem / 3rem) with cap trim; from `lg` `clamp(2.4414rem, 3.8146vw, 3.433125rem)` with line height 1.2816 and no trim.
 - `type-plan-title` (13 Nov 2026, Consultation 2 plan card title and fee): serif (Lovelace via `--font-heading`, weight 400 copied from the utility it sits next to), phone 17.3/25, tablet 19.08/23.3 with cap trim (below xl), from xl 22.5/30.7. Breakpoints: `tab` and `xl`.
 - `--blur-hero-fade` (13 Nov 2026): 20px, equals Figma layer blur 40. Used by `HeroSeam`.
+- `--shadow-accent-glow` (13 Nov 2026, Consultation 3): `0 0 16px 0 rgb(255 216 162 / 0.4)`, in `@theme` (gives the `shadow-accent-glow` utility). Hover glow of the service tiles and the plan cards. Estimated from the prototype screenshot (TODO(figma)).
 - `--color-whatsapp` and `--shadow-whatsapp` changed 13 Nov 2026 (see WhatsAppButton above).
 
 ## New data keys in src/data/home.ts
@@ -189,13 +212,14 @@ Page wiring (`src/app/(public)/consultation/page.tsx`): ConsultationHero, HeroSe
 ## New data keys in src/data/consultation.ts
 
 - `ConsultationPlan` (type) and `consultationPlansContent` (13 Nov 2026): heading (title, text) and the three plans. The shared avatar is ONE object (`{ src, alt }`), not a function per plan (see Gotchas).
+- `ConsultationType` (type: `id`, `label`, `compactLabel`, `icon`) and `consultationTypesContent` (13 Nov 2026, Consultation 3): `title` ("Choose the Consultation That\nFits Your Needs"), `compactTitle` ("Choose the Consultation\nThat Fits Your Needs"), `text` (the same paragraph as Section 2, curly apostrophes), `href` ("#plans"), `types` (12 entries, icons `/icons/consultation/service-*.svg`).
 
 ## Barrel updates
 
 - `sections/home/index.ts`: exports 11 (added Blogs, Faq). HeroEyebrow, HeroVideo and TestimonialsCarousel are still not exported.
 - `shared/index.ts`: exports 17 components as of section 11 (added BlogCard + BlogCardProps, FaqAccordion + FaqAccordionProps + FaqItem). Contact 3 and 4 added more (see above).
 - `sections/contact/index.ts`: exports ContactHero, ContactEnquiry, ContactInsights, ContactOffice.
-- `sections/consultation/index.ts`: exports ConsultationHero, ConsultationPlans, HeroSeam (ConsultationPlanCard is used only inside ConsultationPlans).
+- `sections/consultation/index.ts`: exports ConsultationHero, ConsultationPlans, ConsultationTypes, HeroSeam (ConsultationPlanCard and ConsultationTypeTile are used only inside their sections).
 
 ## Decisions
 
@@ -206,7 +230,7 @@ Page wiring (`src/app/(public)/consultation/page.tsx`): ConsultationHero, HeroSe
 - Container `padding="page"` = px-5 md:px-15 xl:px-20. Default max width 1440px.
 - Hero is full-bleed. Sections 6–11 use `container={false} spacing="none"` with their own Container.
 - Star fields: wrapper A (About + Milestones), wrapper B (WhyLearn + Courses), wrapper C (Blogs + FAQ) each have ONE `<StarField />`. Awards, ConsultationServices and Testimonials render their own. Contact: one wrapper for sections 3 to 5 with `copies={6}` and the `--star-scale` class above. Consultation: one wrapper (`relative isolate z-20 overflow-hidden`) for sections 2 to 7 with `copies={6}` and `[--star-scale:0.5]` below tab.
-- Consultation page gradient (13 Nov 2026): 5 stops `#090D22 / #2A1845 / #1A1440 / #0B1333 / #040817` over the 6241px frame; even spacing and 180deg ASSUMED (0 / 1560 / 3120 / 4681 / 6241 at desktop). Switch to 0 / 25 / 50 / 75 / 100% when Section 7 is built.
+- Consultation page gradient (13 Nov 2026): below lg, 5 stops `#090D22 / #2A1845 / #1A1440 / #0B1333 / #040817` over the 6241px frame; even spacing and 180deg ASSUMED (0 / 1560 / 3120 / 4681 / 6241 at desktop). From lg (Consultation 3) the `<main>` has a second `lg:bg-[linear-gradient(180deg, ...)]` with stops `gradient-stop-1` at 0, `gradient-stop-2` at 1700 (purple peak at the Section 3 paragraph), `gradient-stop-3` at 1850 (bluish at tile row 1), `gradient-stop-1` at 1940 (navy at tile row 2), `gradient-stop-5` at 2300 and to 6241. The colours are read by eye from the Figma desktop frame. The positions are the measured top of each part of Section 3 at 1440 and 1280. The positions after 1940px are PLACEHOLDERS: Figma runs in waves (purple again at "What to Expect"), so when Sections 4 to 7 are built, measure their tops with the console snippet in Gotchas and replace the placeholder stops in ONE edit of `page.tsx`. The background must stay continuous: no section paints its own background. Below lg (tablet and phone) is NOT matched to Figma yet (Figma looks lighter and more purple); it needs the Gradient panel of the Consultation Tab and Consultation Mobile frames. Changing the lg gradient also changes what sits behind Section 2 (plans) on desktop.
 
 ### Breakpoints
 
@@ -219,11 +243,12 @@ Page wiring (`src/app/(public)/consultation/page.tsx`): ConsultationHero, HeroSe
 - Contact 3 and 4: `tab` (600) for the tablet size and padding, `lg` (1024) for the two-column row, `xl` (1280) for 80px side padding and the 130px gap / desktop card sizes. The Contact 3 title grows with the width from lg (see `type-insights-title`). Contact FAQ (5) uses md and xl like the Home FAQ (decided 12 Nov 2026).
 - Consultation 1 (Hero): `tab` (600) for tablet, `lg` (1024) for the desktop layout (same as Contact 3 and 4).
 - Consultation 2 (Plans): `tab` (600) for the tablet layout (2 columns plus the third card centred), `lg` (1024) for three columns, `xl` (1280) for the desktop sizes (gap 32, title 22.5/30.7, ornament 362). Description reserves 4 lines from 600 to 1279.
+- Consultation 3 (Tiles): `tab` (600) tablet (one-line labels, title 35px, paragraph 538 wide), `lg` (1024) four columns, `xl` (1280) the Figma desktop sizes. Section side padding eases from 20 at 600 to 60 at 768 (same formula as Section 2), 60 from lg, 80 from xl.
 - NAVBAR (13 Nov 2026): the desktop layout starts at `lg` (1024), not `xl` (1280). Figma has no frame for 1024 to 1279, so it follows the 1280 and 1440 desktop layout. Changed in `Navbar.tsx` (`lg:pt-nav-y-xl`, `lg:h-12`, `lg:px-10 xl:px-20`, links `hidden lg:block`, toggle `lg:hidden`), `NavLinks.tsx` (`gap-4 xl:gap-6 2xl:gap-11.25`) and `MobileMenu.tsx` (panel `lg:hidden`). The token `--spacing-nav-y-xl` (30px) keeps its name and is used only in `Navbar.tsx`. Section layouts of Home and Contact at 1024 to 1279 were not changed or checked.
 
 ### Tokens in src/styles/globals.css
 
-Additions for sections 10 and 11: `type-faq-question`. The gold ornament SVG is referenced through siteConfig, not a new CSS token. Contact additions: `type-insights-title`, `type-info-label`, `type-info-value` (see above). Consultation additions: `type-consult-hero-title`, `type-plan-title`, `--blur-hero-fade` (see above).
+Additions for sections 10 and 11: `type-faq-question`. The gold ornament SVG is referenced through siteConfig, not a new CSS token. Contact additions: `type-insights-title`, `type-info-label`, `type-info-value` (see above). Consultation additions: `type-consult-hero-title`, `type-plan-title`, `--blur-hero-fade`, `--shadow-accent-glow` (see above).
 
 ### Components
 
@@ -241,6 +266,8 @@ New for Contact 4: `/icons/section-ornament-gold.svg` (reused), `/icons/contact-
 
 New for Consultation 2: `/images/consultation/plans/plan-avatar.webp` (ONE file for all three cards, 120 x 120), `/icons/plan-check.svg` (24 x 24), `/icons/section-ornament-gold.svg` (reused).
 
+New for Consultation 3: 12 SVG icons `/icons/consultation/service-love.svg`, `service-marriage.svg`, `service-career.svg`, `service-business.svg`, `service-health.svg`, `service-numerology.svg`, `service-astrology.svg`, `service-vaastu.svg`, `service-tarot.svg`, `service-rudraksha.svg`, `service-sai-baba.svg`, `service-manifestation.svg` (all exist in public/). The gold ornament is reused.
+
 ### Stack facts from the code
 
 Unchanged from sections 1–9.
@@ -248,7 +275,7 @@ Unchanged from sections 1–9.
 ## Gotchas
 
 - Run `pnpm typecheck` after every section, not only `pnpm lint`. Also run `pnpm format:check` (it checks docs too: run `pnpm prettier --write docs/PROGRESS.md` after editing this file).
-- Image checks: run `file` on every exported image (1x1 PNG = placeholder). After replacing an image, stop the dev server, delete `.next`, restart.
+- Image checks: run `file` on every exported image (1x1 PNG = placeholder). After replacing an image, stop the dev server, delete `.next`, restart. For SVG exports run `file x.svg` and `grep -c "<image" x.svg` (must print 0: a raster inside an SVG is not allowed).
 - Every path in `src/data/*.ts` must exist in `public/`. All referenced assets now exist (unused references to missing `connectors.svg` and `star.svg` removed). Blog images now exist.
 - Comments drifted from classes in sections 6 to 8. The classes are what runs; the comments are not trustworthy.
 - Testimonials mixes md and tab. Awards switches to 2 columns at sm (640).
@@ -256,28 +283,33 @@ Unchanged from sections 1–9.
 - Raw colours without a token: `text-black` (CarouselControls caret), `bg-black/60` (HeroVideo overlay), `#1D1B4D` (FaqAccordion toggle glyph bars). Heading, Text and Icon colour variants still use old hex.
 - Lato 600 italic and 800 are not loaded (fonts.ts has 400 / 500 / 700): the browser draws testimonial quotes as synthetic italic and the title at 700.
 - `SectionHeading` `subtitleSize="large"` is still unused (Consultation and Testimonials repeat Body Large by hand). `"largeXl"` is used by Blogs.
-- `text-box-trim` needs Chrome 133+ / Safari 18.2+; elsewhere the boxes are taller.
+- `text-box-trim` needs Chrome 133+ / Safari 18.2+; elsewhere the boxes are taller (check the Chrome version first when a measured heading height is off).
 - Unverified risk: tailwind-merge may not know custom utilities (text-h1 to text-h5, type-*).
 - `StarField` forces 1962 x 995 (times `--star-scale`) on any src. The default is 2 copies, so a very tall wrapper can run out of stars: pass a higher `copies` (the Contact wrapper passes 6 with scale 0.5 on phone).
 - Button in link mode only passes href, target, rel, className. `siteConfig.login.href` uses `??`: an empty NEXT_PUBLIC_LMS_URL makes Button render a plain `<button>`.
 - Spelling: "Teejaswinni" everywhere (confirmed 12 Nov 2026).
-- Lovelace Text is not loaded; Libre Baskerville is the stand-in.
+- Lovelace Text is not loaded; Libre Baskerville is the stand-in. It is the main reason every section stops at about 96 to 97%.
 - AGENTS.md: this Next.js version has breaking changes; read `node_modules/next/dist/docs/`.
 - A teammate is building section 12. They will touch `(public)/layout.tsx` and probably shared files; merge against the current files.
 - A shared component edited in one chat or account (ArrowCircle, StarField, shared/index.ts, globals.css, contact.ts) must be pasted whole into the next chat; never paste an older copy over it.
-- Dev-only console warnings: Next/Image "width or height modified" for `icons/section-ornament-gold.svg` and `images/layout/logo.png` (navbar, old file, not changed). They do not affect how the page looks.
+- Dev-only console warnings: Next/Image "width or height modified" for `icons/ornament.svg` (the cream ornament of another section) and `images/layout/logo.png` (navbar, old file), and "resource was preloaded but not used" (about 5 to 10 entries, probably the Next font preloads). None come from the Consultation sections (the `section-ornament-gold.svg` one is gone since `h-auto`). The yellow count grows with every reload and resize: clear the console before counting.
 - A PNG renamed to `.webp` is still a PNG: run `file` and `sips -g hasAlpha` on every export (a wheel exported without alpha shows a white box).
 - Do not wrap `next/image` in a helper that sets `object-contain`; use `fill` + `object-cover` directly (the old `ResponsivePicture` drew the Consultation background narrower than the frame and caused 7 Prettier warnings).
 - A Figma image fill with "Scale: Crop" means the SAME image is reused at another size: check the layer's image name before exporting a new crop. The Consultation wheel is one image on desktop, tablet and phone.
-- Dev-only console warnings: "Image with src ornament.svg / logo.png has either width or height modified" and "resource was preloaded but not used" (about 5 to 10 entries, probably the Next font preloads; the "No issues" panel is clean). None come from the Consultation hero.
-- WhatsApp colour and shadow tokens changed on 13 Nov 2026 and apply to every page.
-- WhatsAppButton (13 Nov 2026, from the Consultation Frame 279 panel): 60 x 60 on every width (`size-15`, icon `size-7.5`), fill `--color-whatsapp: #47c756`, shadow `--shadow-whatsapp: 0 4px 24px 0 rgb(71 199 86 / 0.6)`. Applies to Home, Contact and Consultation. Offsets are still not from a panel: right 50 (`right-12.5`), bottom 24 phone / 32 from `tab`; the tablet frame reads right 60 / bottom 74 (derived). TODO(figma): desktop and phone panels and the icon size (30 assumed).
+- WhatsApp colour and shadow tokens changed on 13 Nov 2026 and apply to every page (see "Changes to existing components").
 - Next.js `public/` is the web root: image paths start with `/images/...`, never `public/images/...` (lesson from Consultation 2).
 - Shared data images are an object, not a function. A function or an empty `src` triggers three next/image console errors (Consultation 2).
 - When replacing or adding a type utility, copy `font-family` and `font-weight` from the one it replaces (the serif was lost once, in `type-plan-title`).
 - A decorative layer with a z-index can dim the section below it (the HeroSeam strip dimmed the Section 2 ornament until the wrapper got `z-20`). Check the ornament and first heading at 768, 425 and 320.
 - Layer blur 40 in Figma is `blur(20px)` in CSS (token `--blur-hero-fade`).
-- Check the console shows 0 issues and test every breakpoint: 1440, 1280, 1024, 768, 600, 425, 375, 320.
+- Check the console shows 0 new issues and test every breakpoint: 1440, 1280, 1024, 768, 600, 425, 375, 320 (and 1279 and 401 when a layout switches near them).
+- `next/image` with only a width class (for example the ornament) logs "width or height modified": add `h-auto`. If Figma's ratio differs from the file's ratio, add `aspect-[w/h]` as well (Consultation 3: ornament 10.517).
+- A gradient cannot be transitioned with CSS. For a hover that fades a gradient in, use a separate absolutely positioned layer and transition its opacity (ConsultationTypeTile `fill`).
+- In Tailwind v4 `hover:` only applies on devices with a real pointer, so touch screens do not get a stuck hover.
+- To measure the page for gradient or spacing work, paste this in the DevTools console at the width to check (Chrome first asks you to type `allow pasting` and press Enter; the script only reads sizes): `(() => { const m = document.querySelector("main").getBoundingClientRect(); const s = document.getElementById("<section id>"); const top = (el) => Math.round(el.getBoundingClientRect().top - m.top); console.table({ sectionTop: top(s), headingTop: top(s.querySelector("h2")), gridTop: top(s.querySelector("ul")), sectionBottom: top(s) + Math.round(s.getBoundingClientRect().height), mainHeight: Math.round(m.height) }); })();`. For sizes use `getBoundingClientRect()` on the title, paragraph, grid and first tile and compare with the Figma panel values.
+- The page background must never be painted by a section. If a section needs a tint (Contact 4), use a glow layer sized in % of the section, not a solid colour.
+- A cursor arrow is not visible in macOS screenshots: to point at a place in Figma say "below the paragraph" or "tile row 2", or draw a mark.
+- Do not trust screenshot pixels for exact values; use DevTools or the Figma panel (screenshots are accurate to about 2px).
 
 ## Open TODOs
 
@@ -305,5 +337,6 @@ Unchanged from sections 1–9.
 - Contact 5: TODO(client) send the real answers (placeholder now) and confirm the question 1 wording on tablet and phone (lowercase "i"). TODO(figma): tablet title panel, compact toggle radius (12 estimated), open-state spacing on tablet and phone (not designed), desktop padding 91.79 (derived), hover state.
 - WhatsApp: the real number and message are pending from the client (site.ts); the Home page already renders the button.
 - Consultation 1: see the TODO(figma) list in the "Consultation 1" note above (Rectangle 3 nav backdrop, phone bottom padding and Frame 338, tablet button gap, wheel crop offset, Contact vs Consultation background file name). The fade strip is DONE (HeroSeam, Consultation 2). WhatsApp: desktop and phone offset panels and the icon size. Navbar at 1024 to 1279: check Home, Contact and Consultation.
-- Consultation 2: see the open items in the "Consultation 2" note above (page gradient stop positions and angle, Rectangle 1 X/Y and angle, Rectangle 3 and the Navbar, WhatsApp offsets, fee colour and "+7 More" style, Lovelace Text woff2, 1024 to 1279 has no Figma frame, tablet ornament gap derived). TODO(client): where "Enroll Now" goes (`/consultation/book` is not built; Figma opens an overlay; confirm whether the plan goes in the URL), "Personalised" vs "Personalized" and "40Min - 1 Hr" kept as in Figma, "+7 More" items of Overall Reading are not in Figma.
-- Page background below the Consultation hero now uses the assumed even-spaced 5-stop gradient (see Decisions); confirm the stop positions and angle in Figma. The 1024 to 1279 desktop layout of Home and Contact sections is not checked against the new Navbar breakpoint.
+- Consultation 2: see the open items in the "Consultation 2" note above (Rectangle 1 X/Y and angle, Rectangle 3 and the Navbar, WhatsApp offsets, fee colour and "+7 More" style, Lovelace Text woff2, 1024 to 1279 has no Figma frame, tablet ornament gap derived). TODO(client): where "Enroll Now" goes (`/consultation/book` is not built; Figma opens an overlay; confirm whether the plan goes in the URL), "Personalised" vs "Personalized" and "40Min - 1 Hr" kept as in Figma, "+7 More" items of Overall Reading are not in Figma.
+- Consultation 3: see the open items in the "Consultation 3" note above (hover panels, navbar height for `scroll-mt`, tablet and phone page gradient Fill panels, gradient positions after 1940px for Sections 4 to 7, no frame at 1024 to 1279 and below 425). TODO(client): the tiles do not pick a service (optional `/consultation/book?service=<id>`).
+- Page background of the Consultation page: from lg it follows the measured Section 3 positions (see "Decisions"); below lg and after 1940px it is still the assumed even-spaced 5-stop gradient (angle and stop positions not confirmed in Figma). Confirm by clicking the gradient swatch in the Fill panel of the frame. The 1024 to 1279 desktop layout of Home and Contact sections is not checked against the new Navbar breakpoint.

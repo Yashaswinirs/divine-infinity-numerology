@@ -93,3 +93,100 @@ export const consultationPlansContent = {
   featureIcon: "/icons/plan-check.svg",
   plans,
 } as const;
+
+// Section 3 "Choose the Consultation That Fits Your Needs". Copy as in Figma (same paragraph as section 2, curly apostrophes).
+// The title breaks by hand: after "That" on tablet and desktop, after "Consultation" on phone (`compactTitle`).
+// Phone labels (`compactLabel`) are broken in two lines by hand in Figma, tablet and desktop labels are one line.
+// Every tile scrolls to the plans (Figma prototype: Component 8 on desktop, Frame 287 on tablet and phone).
+// TODO(client): the tiles do not pick a service yet. If the booking page should know the service, link to
+// /consultation/book?service=<id> instead (not built yet).
+// TODO(figma): the icons are exported from the 40 x 40 frames inside each tile (SVG, `public/icons/consultation/`).
+export interface ConsultationType {
+  id: string;
+  label: string;
+  compactLabel: string;
+  icon: string;
+}
+
+const consultationTypes: readonly ConsultationType[] = [
+  {
+    id: "love",
+    label: "Love Consultation",
+    compactLabel: "Love\nConsultation",
+    icon: "/icons/consultation/service-love.svg",
+  },
+  {
+    id: "marriage",
+    label: "Marriage Consultation",
+    compactLabel: "Marriage\nConsultation",
+    icon: "/icons/consultation/service-marriage.svg",
+  },
+  {
+    id: "career",
+    label: "Career Guidance",
+    compactLabel: "Career\nGuidance",
+    icon: "/icons/consultation/service-career.svg",
+  },
+  {
+    id: "business",
+    label: "Business Consultation",
+    compactLabel: "Business\nConsultation",
+    icon: "/icons/consultation/service-business.svg",
+  },
+  {
+    id: "health",
+    label: "Health Consultation",
+    compactLabel: "Health\nConsultation",
+    icon: "/icons/consultation/service-health.svg",
+  },
+  {
+    id: "numerology",
+    label: "Numerology Guidance",
+    compactLabel: "Numerology\nGuidance",
+    icon: "/icons/consultation/service-numerology.svg",
+  },
+  {
+    id: "astrology",
+    label: "Astrology Consultation",
+    compactLabel: "Astrology\nConsultation",
+    icon: "/icons/consultation/service-astrology.svg",
+  },
+  {
+    id: "vaastu",
+    label: "Vaastu Consultation",
+    compactLabel: "Vaastu\nConsultation",
+    icon: "/icons/consultation/service-vaastu.svg",
+  },
+  {
+    id: "tarot",
+    label: "Tarot Reading",
+    compactLabel: "Tarot\nReading",
+    icon: "/icons/consultation/service-tarot.svg",
+  },
+  {
+    id: "rudraksha",
+    label: "Rudraksha Consultation",
+    compactLabel: "Rudraksha\nConsultation",
+    icon: "/icons/consultation/service-rudraksha.svg",
+  },
+  {
+    id: "sai-baba",
+    label: "Sai Baba Healing Cards",
+    compactLabel: "Sai Baba\nHealing Cards",
+    icon: "/icons/consultation/service-sai-baba.svg",
+  },
+  {
+    id: "manifestation",
+    label: "Manifestation Guidance",
+    compactLabel: "Manifestation\nGuidance",
+    icon: "/icons/consultation/service-manifestation.svg",
+  },
+];
+
+export const consultationTypesContent = {
+  title: "Choose the Consultation That\nFits Your Needs",
+  compactTitle: "Choose the Consultation\nThat Fits Your Needs",
+  text: "Whether you’re looking for quick guidance on a specific concern or a detailed analysis across different areas of life, there’s a consultation designed to support your journey.",
+  href: "#plans",
+  types: consultationTypes,
+} as const;
