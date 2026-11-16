@@ -247,3 +247,16 @@ export const consultationExpectationContent = {
   ],
   steps: consultationSteps,
 } as const;
+
+// Section 5 "Connect Your Way". Copy as in Figma (desktop, "Consultation Tab" and "Consultation Mobile"; the paragraph is the same on all three).
+// The image is ONE file for all three frames (Figma "Scale: Crop" on the same image, "its not bhaganad Gita its Bhagvat Geeta.png").
+// TODO(client): the paragraph says "Mysore" while the Contact page says Bangalore. Confirm.
+// TODO(client): confirm the image alt text (written from the picture, not supplied).
+export const consultationConnectContent = {
+  title: "Connect Your Way",
+  text: "Online consultations offer the convenience of connecting from anywhere. Individuals visiting Mysore can also book an appointment for an in-person consultation at the office.",
+  image: {
+    src: "/images/consultation/connect/connect-your-way.webp",
+    alt: "A woman sitting at a wooden desk in a softly lit room, speaking with a consultant on a video call on her laptop",
+  },
+} as const;
