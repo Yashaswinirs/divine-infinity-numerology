@@ -16,8 +16,10 @@ export interface FaqAccordionProps {
    * "default" (Home FAQ): card 74 tall on every width, gap 25 below xl and 35 from xl.
    * "compact" (Contact FAQ): below xl the card is 60 tall (radius 12, toggle 42, gap 35, hanging indent for wrapped
    * questions); from xl it is the same as "default".
+   * "indent" (Consultation FAQ): the same card as "default" (74 tall, toggle 50) plus a hanging indent of 24 for wrapped
+   * questions below md (Figma Consultation Mobile).
    */
-  variant?: "default" | "compact";
+  variant?: "default" | "compact" | "indent";
   className?: string;
 }
 
@@ -69,6 +71,13 @@ const variantStyles = {
     trigger: "gap-1.5 xl:gap-4",
     question: "-my-1 pl-6 -indent-6 xl:my-0 xl:pl-0 xl:indent-0",
     toggle: "size-10.5 rounded-xl xl:size-12.5 xl:rounded-[15px]",
+  },
+  indent: {
+    list: "gap-6.25 xl:gap-8.75",
+    card: "rounded-3xl py-3",
+    trigger: "gap-4 md:gap-0 lg:gap-4",
+    question: "pl-6 -indent-6 md:pl-0 md:indent-0",
+    toggle: "size-12.5 rounded-[15px]",
   },
 } as const;
 

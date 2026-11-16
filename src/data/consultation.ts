@@ -260,3 +260,42 @@ export const consultationConnectContent = {
     alt: "A woman sitting at a wooden desk in a softly lit room, speaking with a consultant on a video call on her laptop",
   },
 } as const;
+
+// Section 6 "The Expertise Behind Every Session". Copy as in Figma (desktop, "Consultation Tab" and "Consultation Mobile"; the same on all three).
+// The title wraps by itself (Figma title box is 633 wide), so there is no compactTitle. The paragraph uses a straight apostrophe as the Figma panel does.
+// The wheel is ONE file for all three frames (Figma "Scale: Crop", image 22 "bg_removal [Background removed].png", a different picture from the hero wheel).
+// The wheel and the check icons are decorative (alt "" in the component). The icon is the Section 2 check (Figma frame "ai-art", 24 x 24).
+// TODO(client): confirm the six list items and the paragraph copy.
+export const consultationExpertiseContent = {
+  title: "The Expertise Behind Every Session",
+  text: "Every consultation draws from years of learning, professional training, and practical experience to provide support tailored to each individual's situation.",
+  listTitle: "Why People Choose Teejaswinni",
+  items: [
+    "Personalized one-to-one guidance",
+    "Practical and easy-to-understand explanations",
+    "Multiple disciplines under one consultation",
+    "Structured and confidential sessions",
+    "Guidance focused on clarity and informed decision-making",
+    "Trusted by hundreds of students and clients",
+  ],
+  icon: "/icons/plan-check.svg",
+  wheel: { src: "/images/consultation/expertise/expertise-wheel.webp" },
+} as const;
+
+// Section 7 "Frequently Asked Questions". Copy as in Figma (desktop, "Consultation Tab" and "Consultation Mobile"; the same on all three).
+// The numbers "1." to "6." are added by FaqAccordion. Tablet and phone word the questions like desktop (the Figma layer names are stale).
+// TODO(client): the answers are the Figma prototype placeholder (the same text on all six cards). Send the real answers.
+const faqPlaceholderAnswer =
+  "Choose your astrology consultation, select a convenient time, and complete the booking. You’ll receive the session details after confirmation.";
+
+export const consultationFaqContent = {
+  title: "Frequently Asked Questions",
+  items: [
+    { question: "What details are required before booking?", answer: faqPlaceholderAnswer },
+    { question: "How long does each consultation last?", answer: faqPlaceholderAnswer },
+    { question: "Are consultations available online?", answer: faqPlaceholderAnswer },
+    { question: "Can an appointment be rescheduled?", answer: faqPlaceholderAnswer },
+    { question: "Can a consultation be cancelled?", answer: faqPlaceholderAnswer },
+    { question: "How can a consultation be booked?", answer: faqPlaceholderAnswer },
+  ],
+} as const;
