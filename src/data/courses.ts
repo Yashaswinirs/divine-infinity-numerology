@@ -1,3 +1,6 @@
+import type { CourseCardProps } from "@/components/shared";
+import { coursesContent as homeCoursesContent } from "@/data/home";
+
 // Copy as in the Figma "Courses" frames (desktop and "Courses Tab"). The "Courses Mobile" frame still shows the Consultation
 // copy (a stale placeholder), so the desktop copy is used on every width (confirmed 16 Nov 2026).
 // TODO(client): confirm the page title and the meta description (the description reuses the hero copy).
@@ -23,4 +26,73 @@ export const coursesHeroContent = {
     src: "/images/courses/hero/courses-hero-wheel.webp",
     alt: "Golden astrology zodiac wheel with a sun at its centre",
   },
+} as const;
+
+export interface CoursesPathItem extends Pick<CourseCardProps, "title" | "description" | "image"> {
+  id: string;
+  comingSoon: boolean;
+}
+
+// Section 2 "Choose the Path That's Right for You". Cards 1 to 3 reuse the Home course data (title, image, text). Figma's Courses frame has no
+// comma in the Manifestation text ("clarity, focus and a positive mindset"), Home has one: Figma wins here, Home is left as it is.
+const figmaDescriptions: Partial<Record<string, string>> = {
+  Manifestation: "Learn simple practices to develop clarity, focus and a positive mindset.",
+};
+
+const availableCourses: readonly CoursesPathItem[] = homeCoursesContent.courses.map(
+  ({ title, description, image, href }) => ({
+    id: href.split("/").pop() ?? title,
+    title,
+    description: figmaDescriptions[title] ?? description,
+    image,
+    comingSoon: false,
+  })
+);
+
+// Cards 4 to 6 are "Coming Soon" in Figma (dimmed button). Copy as in the Figma desktop frame.
+// TODO(client): the Sai Baba description talks about "tarot cards" (Figma copy, looks copied from a tarot card); "Vaastu" in the title and
+// "Vastu" in the text are both as in Figma. Confirm the three descriptions. TODO(figma): alt texts are written from the pictures.
+// Images to export (WebP, 2x of 332 x 186 = 664 x 372, WITHOUT the "Coming Soon" text) into public/images/courses/paths/.
+const comingSoonCourses: readonly CoursesPathItem[] = [
+  {
+    id: "sai-baba-healing-cards",
+    title: "Sai Baba Healing Cards",
+    description:
+      "Learn the meaning of tarot cards and how they can be used for guidance and self-understanding.",
+    image: {
+      src: "/images/courses/paths/sai-baba-healing-cards.webp",
+      alt: "Hands holding healing cards over a table with more cards spread out",
+    },
+    comingSoon: true,
+  },
+  {
+    id: "bhrigu-nandi-nadi-astrology",
+    title: "Bhrigu Nandi Nadi Astrology",
+    description:
+      "Explore the principles and practical understanding of Bhrigu Nandi Nadi Astrology.",
+    image: {
+      src: "/images/courses/paths/bhrigu-nandi-nadi-astrology.webp",
+      alt: "Zodiac wheel glowing in a purple cosmic cloud",
+    },
+    comingSoon: true,
+  },
+  {
+    id: "vaastu",
+    title: "Vaastu",
+    description:
+      "Understand the principles of Vastu and how they can be applied to homes and workplaces.",
+    image: {
+      src: "/images/courses/paths/vaastu.webp",
+      alt: "Antique compass resting on an old map",
+    },
+    comingSoon: true,
+  },
+];
+
+// TODO(client): the "Enroll Now" buttons have no destination yet (plain buttons, no route).
+export const coursesPathsContent = {
+  title: "Choose the Path That's Right for You",
+  enrollLabel: "Enroll Now",
+  comingSoonLabel: "Coming Soon",
+  courses: [...availableCourses, ...comingSoonCourses],
 } as const;

@@ -26,86 +26,86 @@ import { coursesHeroContent } from "@/data/courses";
 // Title: Figma letter spacing is 0% for Lovelace; -0.01em compensates for the wider Libre Baskerville stand-in.
 // TODO(figma): tablet and phone panels (text frame, H1, paragraph, buttons, wheel layer) were not received.
 const styles = {
-    section: "overflow-hidden min-h-225 tab:min-h-256 lg:min-h-143.5",
-    background: "absolute inset-0",
-    overlay: "absolute inset-0 bg-black/30",
+  section: "overflow-hidden min-h-225 tab:min-h-256 lg:min-h-143.5",
+  background: "absolute inset-0",
+  overlay: "absolute inset-0 bg-black/30",
 
-    container:
-        "relative flex flex-col px-5 pt-40 pb-2.5 tab:mx-auto tab:max-w-192 tab:gap-8 tab:px-[min(3.75rem,calc(1.25rem_+_(100vw_-_37.5rem)_*_0.238))] tab:pt-47.5 tab:pb-1.25 lg:max-w-360 lg:gap-0 lg:px-20 lg:pt-46 lg:pb-0",
-    text: "relative z-10 flex flex-col gap-10 tab:max-w-150 lg:w-[min(47.5rem,calc(61.75vw_-_8.0625rem))] lg:max-w-none",
-    copy: "flex flex-col gap-6 tab:gap-4.75",
-    title: "type-consult-hero-title font-heading tracking-[-0.01em] whitespace-pre-line text-accent",
-    paragraph: "type-body-small text-light font-medium lg:max-w-171",
-    actions: "flex flex-col items-start gap-3 tab:flex-row tab:gap-4",
-    explore: "h-12 pr-2.25 pl-3.75",
-    book: "h-12 pl-4",
-    wheel:
-        "relative mx-auto -mt-2.25 aspect-385/368 w-full max-w-96.25 tab:mt-0 tab:aspect-648/568 tab:max-w-162 lg:pointer-events-none lg:absolute lg:top-26.25 lg:left-[47.0833%] lg:mx-0 lg:aspect-782/440 lg:w-[54.3056%] lg:max-w-none",
+  container:
+    "relative flex flex-col px-5 pt-40 pb-2.5 tab:mx-auto tab:max-w-192 tab:gap-8 tab:px-[min(3.75rem,calc(1.25rem_+_(100vw_-_37.5rem)_*_0.238))] tab:pt-47.5 tab:pb-1.25 lg:max-w-360 lg:gap-0 lg:px-20 lg:pt-46 lg:pb-0",
+  text: "relative z-10 flex flex-col gap-10 tab:max-w-150 lg:w-[min(47.5rem,calc(61.75vw_-_8.0625rem))] lg:max-w-none",
+  copy: "flex flex-col gap-6 tab:gap-4.75",
+  title: "type-consult-hero-title font-heading tracking-[-0.01em] whitespace-pre-line text-accent",
+  paragraph: "type-body-small text-light font-medium lg:max-w-171",
+  actions: "flex flex-col items-start gap-3 tab:flex-row tab:gap-4",
+  explore: "h-12 pr-2.25 pl-3.75",
+  book: "h-12 pl-4",
+  wheel:
+    "relative mx-auto -mt-2.25 aspect-385/368 w-full max-w-96.25 tab:mt-0 tab:aspect-648/568 tab:max-w-162 lg:pointer-events-none lg:absolute lg:top-26.25 lg:left-[47.0833%] lg:mx-0 lg:aspect-782/440 lg:w-[54.3056%] lg:max-w-none",
 } as const;
 
 export function CoursesHero() {
-    const { title, text, explore, book, background, wheel } = coursesHeroContent;
+  const { title, text, explore, book, background, wheel } = coursesHeroContent;
 
-    return (
-        <Section
-            container={false}
-            spacing="none"
-            aria-labelledby="courses-hero-heading"
-            className={styles.section}
-        >
-            <div aria-hidden="true" className={styles.background}>
-                <Image
-                    src={background.src}
-                    alt=""
-                    fill
-                    priority
-                    sizes="100vw"
-                    className="object-cover object-center"
-                />
-                <div className={styles.overlay} />
-            </div>
+  return (
+    <Section
+      container={false}
+      spacing="none"
+      aria-labelledby="courses-hero-heading"
+      className={styles.section}
+    >
+      <div aria-hidden="true" className={styles.background}>
+        <Image
+          src={background.src}
+          alt=""
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover object-center"
+        />
+        <div className={styles.overlay} />
+      </div>
 
-            <Container padding="none" className={styles.container}>
-                <div className={styles.text}>
-                    <div className={styles.copy}>
-                        <h1 id="courses-hero-heading" className={styles.title}>
-                            {title}
-                        </h1>
-                        <p className={styles.paragraph}>{text}</p>
-                    </div>
-                    <div className={styles.actions}>
-                        <Button
-                            href={explore.href}
-                            variant="outline-accent"
-                            size="hero"
-                            className={styles.explore}
-                            iconRight={<ArrowCircle tone="accent" />}
-                        >
-                            {explore.label}
-                        </Button>
-                        <Button
-                            href={book.href}
-                            variant="accent"
-                            size="hero"
-                            className={styles.book}
-                            iconRight={<ArrowCircle tone="primary" />}
-                        >
-                            {book.label}
-                        </Button>
-                    </div>
-                </div>
+      <Container padding="none" className={styles.container}>
+        <div className={styles.text}>
+          <div className={styles.copy}>
+            <h1 id="courses-hero-heading" className={styles.title}>
+              {title}
+            </h1>
+            <p className={styles.paragraph}>{text}</p>
+          </div>
+          <div className={styles.actions}>
+            <Button
+              href={explore.href}
+              variant="outline-accent"
+              size="hero"
+              className={styles.explore}
+              iconRight={<ArrowCircle tone="accent" />}
+            >
+              {explore.label}
+            </Button>
+            <Button
+              href={book.href}
+              variant="accent"
+              size="hero"
+              className={styles.book}
+              iconRight={<ArrowCircle tone="primary" />}
+            >
+              {book.label}
+            </Button>
+          </div>
+        </div>
 
-                <div className={styles.wheel}>
-                    <Image
-                        src={wheel.src}
-                        alt={wheel.alt}
-                        fill
-                        priority
-                        sizes="(min-width: 1024px) 782px, (min-width: 600px) 648px, 385px"
-                        className="object-cover object-center"
-                    />
-                </div>
-            </Container>
-        </Section>
-    );
+        <div className={styles.wheel}>
+          <Image
+            src={wheel.src}
+            alt={wheel.alt}
+            fill
+            priority
+            sizes="(min-width: 1024px) 782px, (min-width: 600px) 648px, 385px"
+            className="object-cover object-center"
+          />
+        </div>
+      </Container>
+    </Section>
+  );
 }
