@@ -96,3 +96,22 @@ export const coursesPathsContent = {
   comingSoonLabel: "Coming Soon",
   courses: [...availableCourses, ...comingSoonCourses],
 } as const;
+
+// Section 3 "Support Beyond the Course". Copy as in the Figma desktop, "Courses Tab" and "Courses Mobile" frames (the same on all three).
+// One image file for all three frames (Figma "image 20" / "image 21", the same picture cropped). The check icon is the plan check icon.
+// TODO(client): confirm the image alt text (written from the picture, not supplied).
+export const coursesSupportContent = {
+  title: "Support Beyond the Course",
+  text: "The learning continues beyond course completion, with continued guidance to help students apply their knowledge and build confidence.",
+  listTitle: "You'll Also Receive",
+  items: [
+    "Continued guidance after course completion",
+    "Support in applying their learning",
+    "Business and marketing guidance for those planning to start their own practice",
+  ],
+  icon: "/icons/plan-check.svg",
+  image: {
+    src: "/images/courses/support/support-beyond-course.webp",
+    alt: "Two women in a study room talking over a birth chart together",
+  },
+} as const;
