@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import {
+  CoursesFit,
   CoursesHero,
   CoursesLearning,
   CoursesPaths,
@@ -28,16 +29,17 @@ export default function CoursesPage() {
       {/* Same seam strip as the Consultation page (Figma Rectangle 1), so the hero image fades into the page with no line. */}
       <HeroSeam />
       {/* Sections 2 to 6 share one StarField (same pattern as Consultation). The wrapper is z-20 so the seam strip does not dim the Section 2 ornament. */}
-      {/* copies is 9 (was 8, 7, 6): below tab one copy covers about 497px. Measured wrapper (main minus the 900px hero) with Section 4:
+      {/* copies is 11 (was 9, 8, 7, 6; with Courses 5 the phone wrapper is about 4,570 / 4,810 / 5,120px at 425 / 375 / 320, estimated, so 10 copies (about 4,970px) run out at 320 and 11 cover about 5,467px): below tab one copy covers about 497px. Measured wrapper (main minus the 900px hero) with Section 4:
           3,819px at 425, 3,935px at 375, 4,229px at 320 (the carousel card is as tall as the tallest slide). 8 copies cover only about
           3,976px, so 320 ran out; 9 cover about 4,473px. Raise it by about 1 per 500px of extra height below tab when Sections 5 and 6
           are added. */}
       <div className="relative isolate z-20 overflow-hidden">
-        <StarField copies={9} className="tab:[--star-scale:1] [--star-scale:0.5]" />
+        <StarField copies={11} className="tab:[--star-scale:1] [--star-scale:0.5]" />
         <CoursesPaths />
         <CoursesSupport />
         <CoursesLearning />
-        {/* SLOT: Sections 5 and 6 go here, inside this wrapper (after CoursesLearning). */}
+        <CoursesFit />
+        {/* SLOT: Section 6 (FAQ) goes here, inside this wrapper (after CoursesFit). */}
       </div>
       {/* SLOT: "Ready to Connect?" CTA (section 7). Built by the teammate, not here. The Footer goes in (public)/layout.tsx. */}
       <WhatsAppButton />

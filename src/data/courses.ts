@@ -128,3 +128,24 @@ export const coursesLearningContent = {
   labels: homeTestimonialsContent.labels,
   items: homeTestimonialsContent.items,
 } as const;
+
+// Section 5 "Is This the Right Course for You?". Copy as in the Figma desktop, "Courses Tab" and "Courses Mobile" frames (the same on all three,
+// except the stale Consultation paragraph under the title on tablet and phone, which is NOT used). The title is two parts because the Figma
+// tablet and phone frames break it after "the" (desktop wraps by itself after "Course").
+// The wheel is the SAME picture as Consultation Section 6 (confirmed 17 Nov 2026), so the existing file is used (no copy). It is decorative
+// (alt "" in the component). The check icon is the plan check icon.
+// TODO(client): confirm the six list items.
+export const coursesFitContent = {
+  titleLines: ["Is This the", "Right Course for You?"],
+  listTitle: "These courses are ideal for individuals who:",
+  items: [
+    "Are completely new to the subject",
+    "Want to strengthen their existing knowledge",
+    "Prefer structured and easy-to-follow learning",
+    "Wish to apply these concepts in everyday life",
+    "Want guidance from an experienced mentor",
+    "Plan to build their own professional practice in the future",
+  ],
+  icon: "/icons/plan-check.svg",
+  wheel: { src: "/images/consultation/expertise/expertise-wheel.webp" },
+} as const;
