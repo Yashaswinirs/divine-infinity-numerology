@@ -1,5 +1,8 @@
 import type { CourseCardProps } from "@/components/shared";
-import { coursesContent as homeCoursesContent } from "@/data/home";
+import {
+  coursesContent as homeCoursesContent,
+  testimonialsContent as homeTestimonialsContent,
+} from "@/data/home";
 
 // Copy as in the Figma "Courses" frames (desktop and "Courses Tab"). The "Courses Mobile" frame still shows the Consultation
 // copy (a stale placeholder), so the desktop copy is used on every width (confirmed 16 Nov 2026).
@@ -114,4 +117,14 @@ export const coursesSupportContent = {
     src: "/images/courses/support/support-beyond-course.webp",
     alt: "Two women in a study room talking over a birth chart together",
   },
+} as const;
+
+// Section 4 "Learning That Makes a Difference". The carousel is the Home testimonial carousel: the five slides (title, quote, name, role,
+// photo) and the labels are the Home data, the same as the Figma Courses variants. The title is two parts because the Figma tablet and
+// phone frames break it after "That" (desktop is one line).
+// TODO(client): confirm the customers allow their name, photo and quote on the site (same TODO as Home).
+export const coursesLearningContent = {
+  titleLines: ["Learning That", "Makes a Difference"],
+  labels: homeTestimonialsContent.labels,
+  items: homeTestimonialsContent.items,
 } as const;
