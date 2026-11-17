@@ -1,3 +1,4 @@
+export { CoursesFaq } from "./CoursesFaq";
 export { CoursesFit } from "./CoursesFit";
 export { CoursesHero } from "./CoursesHero";
 export { CoursesLearning } from "./CoursesLearning";

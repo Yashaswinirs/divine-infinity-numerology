@@ -149,3 +149,44 @@ export const coursesFitContent = {
   icon: "/icons/plan-check.svg",
   wheel: { src: "/images/consultation/expertise/expertise-wheel.webp" },
 } as const;
+
+// Section 6 "Frequently Asked Questions". Six questions as in the Figma desktop, "Courses Tab" and "Courses Mobile" frames. Question 3 is
+// worded differently by frame: "Are study materials included?" on desktop and "...included with the course?" on tablet and phone, so
+// it uses `compactQuestion` (FaqAccordion shows it below xl). The numbers "1." to "6." are added by the component.
+// Answer 1 is the real copy from the hidden Figma layer (Frame 173 > Component 1). Answers 2 to 6 are the same Figma prototype
+// placeholder used on Contact and Consultation (not invented here).
+// TODO(client): send the real answers for questions 2 to 6 (and confirm answer 1).
+const faqPlaceholderAnswer =
+  "Choose your astrology consultation, select a convenient time, and complete the booking. You’ll receive the session details after confirmation.";
+
+export const coursesFaqContent = {
+  title: "Frequently Asked Questions",
+  items: [
+    {
+      question: "Do I need prior knowledge to join a course?",
+      answer:
+        "No. The Foundation Course is designed for beginners and provides step-by-step learning.",
+    },
+    {
+      question: "Will I receive a certificate after completing the course?",
+      answer: faqPlaceholderAnswer,
+    },
+    {
+      question: "Are study materials included?",
+      compactQuestion: "Are study materials included with the course?",
+      answer: faqPlaceholderAnswer,
+    },
+    {
+      question: "How long will I have access to the course?",
+      answer: faqPlaceholderAnswer,
+    },
+    {
+      question: "Which learning formats are available?",
+      answer: faqPlaceholderAnswer,
+    },
+    {
+      question: "Which language are the courses available in?",
+      answer: faqPlaceholderAnswer,
+    },
+  ],
+} as const;
