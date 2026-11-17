@@ -7,9 +7,8 @@ import {
   ConsultationHero,
   ConsultationPlans,
   ConsultationTypes,
-  HeroSeam,
 } from "@/components/sections/consultation";
-import { StarField, WhatsAppButton } from "@/components/shared";
+import { HeroSeam, StarField, WhatsAppButton } from "@/components/shared";
 import { consultationMetadata } from "@/data/consultation";
 
 export const metadata: Metadata = {

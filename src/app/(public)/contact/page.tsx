@@ -6,7 +6,7 @@ import {
   ContactInsights,
   ContactOffice,
 } from "@/components/sections/contact";
-import { StarField, WhatsAppButton } from "@/components/shared";
+import { HeroSeam, StarField, WhatsAppButton } from "@/components/shared";
 import { contactMetadata } from "@/data/contact";
 
 export const metadata: Metadata = {
@@ -20,6 +20,8 @@ export default function ContactPage() {
   return (
     <main className="bg-gradient-stop-5 bg-[linear-gradient(180deg,var(--color-gradient-stop-1)_0px,var(--color-gradient-stop-2)_1154px,var(--color-gradient-stop-3)_2307px,var(--color-gradient-stop-4)_3461px,var(--color-gradient-stop-5)_4614px)]">
       <ContactHero />
+      {/* Figma Rectangle 1 under the hero (95px strip): the hero photo fades into the page with no hard edge. */}
+      <HeroSeam />
       <ContactEnquiry />
       {/* Sections 3 to 5 share one StarField, like the Home wrappers. Sections 4 and 5 go inside this div. */}
       <div className="relative isolate overflow-hidden">

@@ -77,6 +77,7 @@
 
   --blur-hero-fade: 20px;
   /* Figma layer blur 40 */
+
   /* Tablet/mobile: the Om changes real width, so the tagline moves with it (as in the Figma prototype). */
   --animate-om-pulse-shift: om-pulse-shift 3s ease-in-out infinite;
 

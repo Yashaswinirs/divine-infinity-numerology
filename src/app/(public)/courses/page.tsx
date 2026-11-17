@@ -8,9 +8,7 @@ import {
   CoursesSmoothScroll,
   CoursesSupport,
 } from "@/components/sections/courses";
-// Direct import: the Consultation barrel would pull every Consultation section into this page.
-import { HeroSeam } from "@/components/sections/consultation/HeroSeam";
-import { StarField, WhatsAppButton } from "@/components/shared";
+import { HeroSeam, StarField, WhatsAppButton } from "@/components/shared";
 import { coursesMetadata } from "@/data/courses";
 
 export const metadata: Metadata = {

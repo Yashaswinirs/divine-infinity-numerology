@@ -22,7 +22,8 @@ const itemIcons = {
 // Below lg (estimated from the canvas, TODO(figma): panels not received): one column, no intro texts, second ornament
 // and the title "Consultation Enquiry Form", horizontal star divider.
 const styles = {
-  section: "relative overflow-hidden",
+  // z-20 keeps the page-level HeroSeam strip (z-10) from dimming the ornament and heading.
+  section: "relative z-20 overflow-hidden",
   stars: "pointer-events-none absolute inset-0",
   container:
     "relative flex flex-col items-center gap-5.5 px-5 pt-12.5 pb-12.5 lg:gap-15 lg:px-20 lg:pt-13.75 lg:pb-13.75",

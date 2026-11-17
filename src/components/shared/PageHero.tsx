@@ -30,13 +30,11 @@ export interface PageHeroProps {
 // no gap (about 278 square = 425 - 147, 72.2% of 385). 572 - 112 - 425 leaves 35 below.
 // Tablet and phone show the same image as a square crop of its right side (object-right): the wheel sits at about 48%
 // to 99% of the image width. Background: black 30% overlay on every width.
-// The 95px fade at the bottom blends the photo into the page navy (estimated on every width).
-// TODO(figma): wheel image box on tablet and phone (read from the canvas) and the fade strip are not from a panel.
+
 const styles = {
   section: "overflow-hidden lg:min-h-143.5",
   background: "absolute inset-0",
   overlay: "absolute inset-0 bg-black/30",
-  fade: "to-gradient-stop-1 absolute inset-x-0 bottom-0 h-23.75 bg-linear-to-b from-transparent",
   container:
     "relative flex flex-col px-5 pt-28 pb-8.75 tab:flex-row tab:items-center tab:justify-between tab:px-[min(3.75rem,calc(1.25rem_+_(100vw_-_37.5rem)_*_0.238))] tab:pt-22.75 tab:pb-6 lg:block lg:px-20 lg:pt-46 lg:pb-0",
   // 55.4% = 359 / 648. From lg the text is capped at 724 and also kept clear of the wheel:
@@ -68,7 +66,6 @@ export function PageHero({
           className="object-cover object-center"
         />
         <div className={styles.overlay} />
-        <div className={styles.fade} />
       </div>
 
       <Container padding="none" className={styles.container}>
