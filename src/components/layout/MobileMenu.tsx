@@ -88,7 +88,7 @@ export function MobileMenu({ id, open, items, isActive, onClose }: MobileMenuPro
           />
         </div>
         <div className="relative mx-auto flex w-full max-w-162 flex-col gap-10">
-          <div className="flex h-12.5 items-center justify-between md:h-15">
+          <div className="tab:h-15 flex h-12.5 items-center justify-between">
             <Logo onClick={onClose} />
             <MenuToggleButton
               ref={closeRef}

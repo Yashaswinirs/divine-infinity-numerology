@@ -31,30 +31,32 @@ export function Navbar() {
 
   return (
     <>
-      <header
-        className={cn(
-          "fixed inset-x-0 top-0 z-50 border-b border-transparent transition-[background-color,border-color] duration-300",
-          scrolled && "border-accent/10 bg-gradient-stop-1/95 backdrop-blur-sm"
-        )}
-      >
-        {/* Stars, same image as the page background. Fades in with the dark background. */}
+      <header className="fixed inset-x-0 top-0 z-50">
+        {/* Scrolled veil. No border, no own stars: the page's stars show through. A soft vertical
+            gradient plus a mask fades the blur out below the bar, so content slides away smoothly
+            instead of hitting an edge. Reaches 24px below the bar. Hidden at the top (Figma look).
+            TODO(figma): not designed; opacities (80 / 60 / 0), blur (4px) and the 70% mask are
+            chosen by eye. */}
         <div
           aria-hidden="true"
           className={cn(
-            "pointer-events-none absolute inset-0 -z-10 bg-[url('/images/shared/stars-bg.svg')] bg-cover bg-center opacity-0 transition-opacity duration-300",
-            scrolled && "opacity-70"
+            "pointer-events-none absolute inset-x-0 top-0 -bottom-6 -z-10 opacity-0",
+            "from-gradient-stop-1/80 via-gradient-stop-1/60 to-gradient-stop-1/0 bg-linear-to-b",
+            "[mask-image:linear-gradient(to_bottom,black_70%,transparent)] backdrop-blur-xs",
+            "transition-opacity duration-300 motion-reduce:transition-none",
+            scrolled && "opacity-100"
           )}
         />
         <Container
           padding="none"
-          className="pt-nav-y-sm md:pt-nav-y-md lg:pt-nav-y-xl px-5 pb-3 md:px-15 lg:px-10 xl:px-20"
+          className="pt-nav-y-sm tab:pt-nav-y-md lg:pt-nav-y-xl tab:px-[clamp(1.25rem,calc(23.81vw-7.679rem),3.75rem)] px-5 pb-3 lg:px-10 xl:px-20"
         >
-          <div className="flex h-12.5 items-center justify-between md:h-15 lg:h-12">
+          <div className="tab:h-15 flex h-12.5 items-center justify-between lg:h-12">
             <Logo />
 
             <NavLinks items={mainNav} isActive={isActive} className="hidden lg:block" />
 
-            <div className="flex items-center gap-4 md:gap-4.5">
+            <div className="tab:gap-4.5 flex items-center gap-4">
               <Button variant="accent" size="nav" href={siteConfig.login.href}>
                 {siteConfig.login.label}
               </Button>
@@ -64,7 +66,7 @@ export function Navbar() {
                 aria-expanded={menuOpen}
                 aria-controls={MENU_ID}
                 onClick={() => setMenuOpen(true)}
-                className="md:size-8 lg:hidden"
+                className="tab:size-8 lg:hidden"
               />
             </div>
           </div>
