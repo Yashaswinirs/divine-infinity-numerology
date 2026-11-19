@@ -8,7 +8,7 @@ import {
   CoursesSmoothScroll,
   CoursesSupport,
 } from "@/components/sections/courses";
-import { HeroSeam, StarField, WhatsAppButton } from "@/components/shared";
+import { CtaBanner, HeroSeam, StarField, WhatsAppButton } from "@/components/shared";
 import { coursesMetadata } from "@/data/courses";
 
 export const metadata: Metadata = {
@@ -41,6 +41,7 @@ export default function CoursesPage() {
         <CoursesFaq />
       </div>
       {/* SLOT: "Ready to Connect?" CTA (section 7). Built by the teammate, not here. The Footer goes in (public)/layout.tsx. */}
+      <CtaBanner />
       <WhatsAppButton />
     </main>
   );

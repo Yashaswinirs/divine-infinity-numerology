@@ -8,7 +8,7 @@ import {
   ConsultationPlans,
   ConsultationTypes,
 } from "@/components/sections/consultation";
-import { HeroSeam, StarField, WhatsAppButton } from "@/components/shared";
+import { CtaBanner, HeroSeam, StarField, WhatsAppButton } from "@/components/shared";
 import { consultationMetadata } from "@/data/consultation";
 
 export const metadata: Metadata = {
@@ -46,6 +46,7 @@ export default function ConsultationPage() {
         <ConsultationFaq />
       </div>
       {/* SLOT: "Looking for Clarity?" CTA (section 8). Built by the teammate, not here. The Footer goes in (public)/layout.tsx. */}
+      <CtaBanner data={{ heading: "Looking for Clarity?" }} />
       <WhatsAppButton />
     </main>
   );

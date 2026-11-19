@@ -6,7 +6,7 @@ import {
   ContactInsights,
   ContactOffice,
 } from "@/components/sections/contact";
-import { HeroSeam, StarField, WhatsAppButton } from "@/components/shared";
+import { CtaBanner, HeroSeam, StarField, WhatsAppButton } from "@/components/shared";
 import { contactMetadata } from "@/data/contact";
 
 export const metadata: Metadata = {
@@ -31,6 +31,7 @@ export default function ContactPage() {
         <ContactFaq />
       </div>
       {/* SLOT: "Ready to Take the Next Step?" CTA. Built by the teammate, not here. The Footer goes in (public)/layout.tsx. */}
+      <CtaBanner data={{ heading: "Ready to Take the Next Step?" }} />
       <WhatsAppButton />
     </main>
   );
