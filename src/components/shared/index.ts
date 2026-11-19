@@ -1,5 +1,15 @@
 export { ArrowCircle, type ArrowCircleProps } from "./ArrowCircle";
 export { LogoMarquee, type LogoMarqueeItem, type LogoMarqueeProps } from "./LogoMarquee";
 export { Ornament, type OrnamentProps } from "./Ornament";
+export { SectionOrnament, type SectionOrnamentProps } from "./SectionOrnament";
 export { SectionHeading, type SectionHeadingProps } from "./SectionHeading";
 export { StarIcon, type StarIconProps } from "./StarIcon";
+export { WhatsAppButton, type WhatsAppButtonProps } from "./WhatsAppButton";
+export { CtaBanner, type CtaBannerProps } from "./CtaBanner";
+export { CtaBannerButton, type CtaBannerButtonProps } from "./CtaBannerButton";
+export { Footer, type FooterProps } from "./Footer";
+export { FooterLinkColumn, type FooterLinkColumnProps, type FooterLinkItem } from "./FooterLinkColumn";
+export { FooterContactColumn, type FooterContactColumnProps } from "./FooterContactColumn";
+export { FooterCourseColumn, type FooterCourseColumnProps } from "./FooterCourseColumn";
+export { FooterSocialSection, type FooterSocialSectionProps } from "./FooterSocialSection";
+export { FooterBottomBar, type FooterBottomBarProps } from "./FooterBottomBar";

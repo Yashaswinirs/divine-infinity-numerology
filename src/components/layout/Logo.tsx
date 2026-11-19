@@ -31,6 +31,7 @@ export function Logo({ className, onClick }: LogoProps) {
         height={120}
         priority
         className={styles.image}
+        style={{ width: "auto", height: "auto" }}
       />
     </Link>
   );

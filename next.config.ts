@@ -12,6 +12,14 @@ import type { NextConfig } from "next";
  * removed alongside this config cleanup; turbopack is not used in production
  * builds (scripts use --webpack).
  */
-const nextConfig: NextConfig = {/* config options here */};
+const nextConfig: NextConfig = {
+  output: "export",
+  images: {
+    unoptimized: true,
+  },
+  experimental: {
+    agentUpgrade: "security",
+  },
+};
 
 export default nextConfig;

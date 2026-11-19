@@ -1,9 +1,67 @@
 @import "tailwindcss";
 
+@font-face {
+  font-family: 'Lato';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/fonts/Lato-Regular.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Lato';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url('/fonts/Lato-Medium.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Lato';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('/fonts/Lato-Bold.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Lovelace Text';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/fonts/LovelaceText-Regular.otf') format('opentype');
+}
+
+@font-face {
+  font-family: 'Lovelace Text';
+  font-style: italic;
+  font-weight: 700;
+  font-display: swap;
+  src: url('/fonts/LovelaceText-BoldItalic.otf') format('opentype');
+}
+
+@property --num {
+  syntax: '<integer>';
+  initial-value: 0;
+  inherits: false;
+}
+
 :root {
-  /* TODO(figma): verify card gradient stops */
-  --color-card-gradient-start: #2b1f51;
-  --color-card-gradient-end: #482857;
+  /* Font variables */
+  --font-sans: var(--font-lato-loaded), 'Lato', sans-serif;
+  --font-lato: var(--font-lato-loaded), 'Lato', sans-serif;
+  --font-eyebrow: var(--font-eyebrow-loaded), "Mirza", sans-serif;
+  /* Lovelace Text (licensed font files) */
+  --font-heading: var(--font-heading-loaded), "Lovelace Text", "Libre Baskerville", Georgia, serif;
+  --font-libre-baskerville: var(--font-libre-baskerville-loaded), "Libre Baskerville", serif;
+  /* Figma "Card color" gradient stops. TODO(figma): angle and stop positions not confirmed (180deg assumed). */
+  --color-card-gradient-start: #1d1b4d;
+  --color-card-gradient-end: #512b58;
+
+  /* Shared Zodiac border gold token */
+  --zodiac-border-gold: rgba(255, 216, 162, 0.25);
+  /* Shared Zodiac inactive tab text token */
+  --zodiac-tab-inactive: rgba(255, 240, 219, 0.7);
 
   /* Typography fluid tokens (Figma master desktop and mobile clamp) */
   --font-size-h1: clamp(2.294rem, 2.157rem + 0.582vw, 2.681rem);
@@ -17,6 +75,279 @@
   --line-height-h5: clamp(1.456rem, 1.597rem - 0.16vw, 1.563rem);
 
   --container-max-width: 1440px;
+}
+
+:root,
+.blogs-hero {
+  /* 320 -> 424 (Mobile) */
+  --hero-h: 534px;
+  --hero-pad-x: 20px;
+  --hero-header-x: 20.5px;
+  --hero-header-top: 30px;
+  --hero-content-top: 127px;
+  --hero-content-w: min(385px, calc(100vw - 40px));
+  --hero-heading-w: 100%;
+  --hero-gap: 38px;
+  --btn-w: 100%;
+  --btn-h: 44px;
+  --burger-w: clamp(26px, calc(13.81px + 3.81vw), 30px);
+  --bg-right: 228px;
+  --bg-scale: 1;
+  --bg-aspect: 1983 / 1298;
+  --bg-offset-x: clamp(-130px, calc(-14vw - 35px), -70px);
+  --bg-effective-right: max(var(--bg-right), calc(var(--bg-offset-x) * -1));
+}
+
+@media (min-width: 425px) {
+
+  :root,
+  .blogs-hero {
+    --hero-h: clamp(472px, calc(610.82px - 18.076vw), 534px);
+    --hero-pad-x: clamp(20px, calc(11.662vw - 29.56px), 60px);
+    --hero-header-x: clamp(20.5px, calc(11.516vw - 28.44px), 60px);
+    --hero-content-top: clamp(122px, calc(133.2px - 1.458vw), 127px);
+    --hero-content-w: clamp(385px, calc(248.7px + 32.07vw), 495px);
+    --hero-heading-w: clamp(385px, calc(290.8px + 22.16vw), 461px);
+    --hero-gap: clamp(38px, calc(30.57px + 1.749vw), 44px);
+    --btn-w: clamp(197px, calc(617.9px - 54.81vw), 100%);
+    --burger-w: 30px;
+    --bg-right: clamp(78px, calc(413.86px - 43.732vw), 228px);
+    --bg-scale: 1;
+    --bg-aspect: 1983 / 1298;
+    --bg-offset-x: clamp(-95px, calc(18.8vw - 174.4px), -30px);
+  }
+}
+
+@media (min-width: 768px) {
+
+  :root,
+  .blogs-hero {
+    --hero-h: clamp(472px, calc(353.14px + 15.476vw), 576px);
+    --hero-pad-x: clamp(60px, calc(37.14px + 2.976vw), 80px);
+    --hero-header-x: var(--hero-pad-x);
+    --hero-content-top: clamp(122px, calc(93.43px + 3.72vw), 147px);
+    --hero-content-w: clamp(495px, calc(236.7px + 33.631vw), 721px);
+    --hero-heading-w: clamp(461px, calc(163.9px + 38.69vw), 721px);
+    --hero-gap: 44px;
+    --btn-w: 197px;
+    --btn-h: clamp(44px, calc(39.43px + 0.595vw), 48px);
+    --bg-right: clamp(0px, calc(167.14px - 11.607vw), 78px);
+    --bg-scale: 1;
+    --bg-aspect: 1983 / 1298;
+    --bg-offset-x: clamp(-30px, calc(-11.719vw + 60px), 0px);
+    /* <-- Tablet left shift */
+  }
+}
+
+@media (min-width: 1024px) {
+
+  :root,
+  .blogs-hero {
+    /* 1024px+ Master Desktop: 100% FROZEN */
+    --bg-scale: 1;
+    --bg-aspect: 1440 / 576;
+    --bg-offset-x: 0px;
+    /* <-- Desktop frozen at 0 */
+  }
+}
+
+/* ==========================================================================
+   Blog Card Fluid Responsive Tokens (Below W_d = 1024px)
+   Desktop (1024px+) is strictly frozen and byte-identical.
+   Segment A: 425px -> 768px
+   Segment B: 768px -> 1023px (lands on exact desktop values at 1024px)
+   ========================================================================== */
+@media (max-width: 1023px) {
+  .blog-card {
+    /* Base: mobile up to 768px (Segment A: 425 -> 768) */
+    --card-w: clamp(314px, calc(472.97px - 20.7vw), 385px);
+    --card-h: clamp(429px, calc(379.44px + 11.662vw), 469px);
+    --card-px: clamp(14px, calc(19.598px - 0.7289vw), 16.5px);
+    --card-pb: 19px;
+    --card-radius: 10px;
+    --img-radius: 12px;
+    --bmp-left: clamp(-31px, calc(16.02px - 6.122vw), -10px);
+    --h-size: clamp(17.33px, calc(15.162px + 0.5102vw), 19.08px);
+    --h-lh: clamp(23.3px, calc(27.106px - 0.4956vw), 25px);
+    --h-min: clamp(50px, calc(25.343px + 5.802vw), 69.9px);
+    --p-min: clamp(56.4px, calc(33.106px + 5.481vw), 75.2px);
+    --cat-w: clamp(130px, calc(115.13px + 3.499vw), 142px);
+    --cat-h: 28px;
+    --cat-top: 184px;
+    --cat-size: clamp(17.33px, calc(15.162px + 0.5102vw), 19.08px);
+    --cat-lh: 1;
+    --gap-img-content: 23px;
+    --gap-content: 20px;
+
+    /* Card styling overrides below 1024px */
+    width: var(--card-w) !important;
+    max-width: 100% !important;
+    min-height: var(--card-h) !important;
+    height: auto !important;
+    border-radius: var(--card-radius) !important;
+    padding-left: var(--card-px) !important;
+    padding-right: var(--card-px) !important;
+    padding-top: 21px !important;
+    padding-bottom: var(--card-pb) !important;
+    justify-content: flex-start !important;
+  }
+
+  .blog-card .blog-card-img-frame {
+    width: 100% !important;
+    height: 186px !important;
+    border-radius: var(--img-radius) !important;
+    position: relative !important;
+    overflow: hidden !important;
+    flex-shrink: 0 !important;
+  }
+
+  .blog-card .blog-card-bitmap {
+    position: absolute !important;
+    top: 0 !important;
+    height: 186px !important;
+    width: 373px !important;
+    left: var(--bmp-left) !important;
+  }
+
+  .blog-card .blog-card-bitmap img {
+    object-fit: cover !important;
+  }
+
+  .blog-card .blog-card-category {
+    position: absolute;
+    top: 184px;
+    left: 0;
+    right: 0;
+    margin-inline: auto;
+    transform: none;
+    translate: none;
+    width: max-content;
+    min-width: var(--cat-w);
+    max-width: calc(100% - 2 * var(--card-px));
+    height: var(--cat-h);
+    padding-inline: 1ch;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    white-space: nowrap;
+  }
+
+  .blog-card .blog-card-category-text {
+    font-size: var(--cat-size);
+    line-height: var(--cat-lh);
+  }
+
+  .blog-card .blog-card-content {
+    margin-top: var(--gap-img-content) !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: var(--gap-content) !important;
+    width: 100% !important;
+    height: auto !important;
+    flex: 1 1 auto !important;
+    justify-content: space-between !important;
+  }
+
+  .blog-card .blog-card-text-group {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 12px !important;
+    width: 100% !important;
+  }
+
+  .blog-card .blog-card-text-block {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 8px !important;
+    width: 100% !important;
+  }
+
+  .blog-card .blog-card-heading {
+    font-size: var(--h-size) !important;
+    line-height: var(--h-lh) !important;
+    min-height: var(--h-min) !important;
+    height: auto !important;
+    -webkit-line-clamp: unset !important;
+    line-clamp: unset !important;
+  }
+
+  .blog-card .blog-card-desc {
+    font-size: 14px !important;
+    line-height: 18.8px !important;
+    min-height: var(--p-min) !important;
+    height: auto !important;
+    -webkit-line-clamp: unset !important;
+    line-clamp: unset !important;
+  }
+
+  .blog-card .blog-card-meta {
+    display: flex !important;
+    justify-content: space-between !important;
+    width: 100% !important;
+    opacity: 0.7 !important;
+  }
+
+  .blog-card .blog-card-meta span {
+    white-space: nowrap !important;
+  }
+
+  .blog-card .blog-card-action {
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 6px !important;
+  }
+
+  .blog-card .blog-card-link {
+    border-radius: var(--card-radius) !important;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+
+  /* Segment B: 768 -> 1024 (lands exactly on desktop at 1024px) */
+  .blog-card {
+    --card-w: clamp(314px, calc(20px + 38.281vw), 412px);
+    --card-h: clamp(445px, calc(541px - 9.375vw), 469px);
+    --card-px: clamp(14px, calc(-4px + 2.3438vw), 20px);
+    --card-pb: clamp(19px, calc(16px + 0.3906vw), 20px);
+    --card-radius: clamp(10px, calc(-32px + 5.4688vw), 24px);
+    --img-radius: clamp(12px, 1.5625vw, 16px);
+    --bmp-left: clamp(-31px, calc(-124px + 12.1094vw), 0px);
+    --h-size: clamp(19.08px, calc(8.82px + 1.3359vw), 22.5px);
+    --h-lh: clamp(23.3px, calc(1.1px + 2.8906vw), 30.7px);
+    --h-min: clamp(60px, calc(99.6px - 3.8672vw), 69.9px);
+    --p-min: clamp(57px, calc(129.8px - 7.1094vw), 75.2px);
+    --cat-w: clamp(142px, calc(-20px + 21.0938vw), 196px);
+    --cat-h: clamp(28px, calc(10px + 2.3438vw), 34px);
+    --cat-size: clamp(19.08px, calc(8.82px + 1.3359vw), 22.5px);
+    --cat-lh: clamp(19.08px, calc(-15.78px + 4.5391vw), 30.7px);
+    --gap-img-content: clamp(23px, calc(5px + 2.3438vw), 29px);
+    --gap-content: clamp(18px, calc(26px - 0.7813vw), 20px);
+  }
+}
+
+/* ==========================================================================
+   Blog Carousel (Mobile & Tablet Horizontal Scroll Layout)
+   Desktop (1024px+) remains frozen 3-card grid.
+   ========================================================================== */
+@media (max-width: 1023px) {
+  .blog-carousel .blog-card {
+    flex-shrink: 0 !important;
+    max-width: none !important;
+  }
+}
+
+@media (max-width: 767px) {
+  .blog-card {
+    /* Mobile card width reduced by 8% */
+    --card-w: calc(clamp(314px, calc(472.97px - 20.7vw), 385px) * 0.92);
+  }
+
+  .blog-carousel .blog-card {
+    --card-w: calc(clamp(314px, calc(472.97px - 20.7vw), 385px) * 0.92);
+    width: var(--card-w) !important;
+  }
 }
 
 @theme {
@@ -37,12 +368,18 @@
   /* Hero (Figma Dev Mode; names are ours, Figma shows no style name) */
   --color-gold: #fdbb5d;
   --color-primary-dark: #3e2066;
+  /* About portrait outline and dots (Figma border #806398, no style name; name is ours). Differs from Territory #8061a5. */
+  --color-arch-border: #806398;
+  /* Awards cards (Figma Dev Mode; names are ours, Figma shows no style name for border or shadow) */
+  --color-card-border: #5f1bb7;
+  --shadow-card: 0 4px 24px 0 rgb(85 81 255 / 0.25);
   --blur-hero-fade: 20px;
   /* Figma layer blur 40 */
   /* Tablet/mobile: the Om changes real width, so the tagline moves with it (as in the Figma prototype). */
   --animate-om-pulse-shift: om-pulse-shift 3s ease-in-out infinite;
 
   @keyframes om-pulse-shift {
+
     0%,
     100% {
       opacity: 1;
@@ -61,6 +398,7 @@
 
   /* TODO(figma): timing assumed */
   @keyframes om-pulse {
+
     0%,
     100% {
       opacity: 1;
@@ -92,15 +430,76 @@
   --font-sans: var(--font-lato-loaded), sans-serif;
   --font-lato: var(--font-lato-loaded), sans-serif;
   --font-eyebrow: var(--font-eyebrow-loaded), sans-serif;
-  /* TODO(figma): Lovelace Text is not loaded yet. Add font files, then load with next/font/local. */
-  --font-heading: "Lovelace Text", var(--font-heading-loaded), Georgia, serif;
+  /* Heading font: Lovelace Text (Next.js loaded) */
+  --font-heading: var(--font-heading-loaded), "Lovelace Text", "Libre Baskerville", Georgia, serif;
+  --font-libre-baskerville: var(--font-libre-baskerville-loaded), "Libre Baskerville", serif;
+}
+
+/* Utility to hide scrollbars while preserving scrollability */
+@utility scrollbar-none {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+/* Zodiac panel & backdrop gradient (Figma verified) */
+@utility bg-zodiac-panel {
+  background: linear-gradient(165.6deg, #090D22 1.7%, #2A1845 28.11%, #1A1440 50.11%, #0B1333 72.12%, #040817 89.73%);
+}
+
+/* Font family utilities */
+@utility font-lato {
+  font-family: var(--font-lato-loaded), 'Lato', sans-serif;
+}
+
+@utility font-heading {
+  font-family: var(--font-heading-loaded), "Lovelace Text", "Libre Baskerville", Georgia, serif;
+}
+
+@utility font-libre-baskerville {
+  font-family: var(--font-libre-baskerville-loaded), "Libre Baskerville", serif;
+}
+
+@utility font-eyebrow {
+  font-family: var(--font-eyebrow-loaded), "Mirza", sans-serif;
 }
 
 /* Figma text styles */
 @utility type-body-small {
+  font-family: var(--font-lato-loaded), 'Lato', sans-serif;
+  font-weight: 500;
   font-size: 1rem;
   line-height: 1.3875rem;
   letter-spacing: 0.01em;
+}
+
+@utility type-body-lead {
+  font-family: var(--font-lato-loaded), 'Lato', sans-serif;
+  font-weight: 500;
+  font-size: 0.9375rem;
+  line-height: 1.25rem;
+
+  @media (width >=theme(--breakpoint-md)) {
+    font-size: 1rem;
+    line-height: 1.375rem;
+  }
+
+  @media (width >=theme(--breakpoint-xl)) {
+    font-size: 1.125rem;
+    line-height: 1.4125rem;
+  }
+}
+
+/* Figma Body 18px (Lato 500 18px/22.6px, letter-spacing 0%) */
+@utility type-body-18 {
+  font-family: var(--font-lato-loaded), 'Lato', sans-serif;
+  font-weight: 500;
+  font-size: 1.125rem;
+  line-height: 1.4125rem;
+  letter-spacing: 0;
 }
 
 @utility type-h5-t {
@@ -110,20 +509,26 @@
   font-weight: 400;
 }
 
-/* Hero H1: Lovelace Text 400. Mobile 30.43/35, tablet 35/40, desktop 54.93/70.4 (Figma). */
+/* Figma H5 (Lovelace Text 400): desktop 22.5/30.7, tablet "H5 T" 19.1/23.3, mobile "H5 M" 17.3/25. Fluid clamp across all screens. */
+@utility type-h5 {
+  font-family: var(--font-heading);
+  font-weight: 400;
+  font-size: clamp(1.08125rem, 0.945rem + 0.512vw, 1.40625rem);
+  line-height: clamp(1.45625rem, max(1.45625rem, 0.928rem + 1.1vw), 1.91875rem);
+}
+
+/* Milestone number: Desktop H2 43.95/48, Tablet "H3 T" 28.58, Mobile "H3 M" 25.2. Fluid clamp across all screens. Font: Lovelace Text (matches Recognition title font-heading) */
+@utility type-stat-number {
+  font-family: var(--font-heading-loaded), "Lovelace Text", "Libre Baskerville", Georgia, serif;
+  font-weight: 400;
+  font-size: clamp(1.575rem, max(1.313rem + 0.985vw, 0.689rem + 2.287vw), 2.7469rem);
+  line-height: 1;
+}
+
+/* Hero H1 / Section Heading: Lovelace Text 400. Mobile 30.43/35, tablet 35/40, desktop 54.93/70.4. Fluid clamp across all screens. */
 @utility type-hero-h1 {
-  font-size: 1.9019rem;
-  line-height: 2.1875rem;
-
-  @media (width >=theme(--breakpoint-md)) {
-    font-size: 2.1875rem;
-    line-height: 2.5rem;
-  }
-
-  @media (width >=theme(--breakpoint-xl)) {
-    font-size: 3.4331rem;
-    line-height: 4.4rem;
-  }
+  font-size: clamp(1.9019rem, max(1.548rem + 1.332vw, 0.764rem + 2.966vw), 3.4331rem);
+  line-height: clamp(2.1875rem, max(1.8rem + 1.458vw, 0.329rem + 4.524vw), 4.4rem);
 }
 
 /* Hero eyebrow: Mirza 700 uppercase. Desktop 26 (measured), tablet 19 and mobile 15 (estimated). */
@@ -170,6 +575,34 @@
   }
 }
 
+/* Figma H2 T on mobile and tablet (Awards uses it on mobile too), H2 at xl. Cap-height trim below xl. */
+@utility type-section-title-t {
+  font-size: 2.1875rem;
+  line-height: 2.5rem;
+  text-box-trim: trim-both;
+  text-box-edge: cap alphabetic;
+
+  @media (width >=theme(--breakpoint-xl)) {
+    font-size: 2.7469rem;
+    line-height: 3rem;
+    text-box-trim: none;
+  }
+}
+
+/* Figma H5 T (19.08/23.3, cap trim) below xl, H5 (22.5/30.7) at xl. TODO(figma): mobile size assumed = tablet. */
+@utility type-card-title {
+  font-size: 1.1925rem;
+  line-height: 1.45625rem;
+  text-box-trim: trim-both;
+  text-box-edge: cap alphabetic;
+
+  @media (width >=theme(--breakpoint-xl)) {
+    font-size: 1.40625rem;
+    line-height: 1.91875rem;
+    text-box-trim: none;
+  }
+}
+
 /* Logo marquee: moves one set width to the left, then loops. Duration is set per breakpoint on the element. */
 @utility animate-marquee {
   animation: marquee var(--marquee-duration, 30s) linear infinite;
@@ -212,23 +645,19 @@
 }
 
 @utility bg-card-gradient {
-  background: linear-gradient(
-    135deg,
-    var(--color-card-gradient-start) 0%,
-    var(--color-card-gradient-end) 100%
-  );
+  background: linear-gradient(180deg,
+      var(--color-card-gradient-start) 0%,
+      var(--color-card-gradient-end) 100%);
 }
 
 /* TODO(figma): angle and stop positions of the Gradient style are not confirmed */
 @utility bg-page-gradient {
-  background-image: linear-gradient(
-    180deg,
-    var(--color-gradient-stop-1),
-    var(--color-gradient-stop-2),
-    var(--color-gradient-stop-3),
-    var(--color-gradient-stop-4),
-    var(--color-gradient-stop-5)
-  );
+  background-image: linear-gradient(180deg,
+      var(--color-gradient-stop-1),
+      var(--color-gradient-stop-2),
+      var(--color-gradient-stop-3),
+      var(--color-gradient-stop-4),
+      var(--color-gradient-stop-5));
 }
 
 /* TODO(figma): old placeholder, used by Section bg="hero". Replace with bg-page-gradient later. */
@@ -236,7 +665,13 @@
   background: linear-gradient(180deg, #18113a 0%, #2b1f51 50%, #161233 100%);
 }
 
-body {
-  background-color: var(--color-gradient-stop-5);
-  color: var(--color-light);
+@layer base {
+  body {
+    background-color: var(--color-gradient-stop-5);
+    color: var(--color-light);
+  }
+
+  span {
+    font-family: inherit;
+  }
 }

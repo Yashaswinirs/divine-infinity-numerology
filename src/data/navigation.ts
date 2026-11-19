@@ -11,6 +11,6 @@ export const mainNav: readonly NavItem[] = [
   { label: "Consultation", href: "/consultation" },
   { label: "Horoscopes", href: "/horoscope" },
   { label: "Free Calculators", href: "/free-calculator" },
-  { label: "Blogs", href: "/blog" },
+  { label: "Blogs", href: "/blogs" },
   { label: "Contact Us", href: "/contact" },
 ];

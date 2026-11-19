@@ -1,4 +1,4 @@
-import { Libre_Baskerville, Mirza } from "next/font/google";
+import { Mirza, Libre_Baskerville } from "next/font/google";
 import localFont from "next/font/local";
 
 // Lato 2.0 (same as Figma), local files so the Medium (500) weight exists.
@@ -12,11 +12,12 @@ export const fontLato = localFont({
   display: "swap",
 });
 
-// TODO(figma): stand-in for Lovelace Text (licensed). Libre Baskerville is the closest free font
-// by width (measured within about 1%). Replace with next/font/local once the client supplies the files.
-export const fontHeading = Libre_Baskerville({
-  subsets: ["latin"],
-  weight: ["400"],
+// Lovelace Text (licensed font files from Figma, supplied by user)
+export const fontHeading = localFont({
+  src: [
+    { path: "../../public/fonts/LovelaceText-Regular.otf", weight: "400", style: "normal" },
+    { path: "../../public/fonts/LovelaceText-BoldItalic.otf", weight: "700", style: "italic" },
+  ],
   variable: "--font-heading-loaded",
   display: "swap",
 });
@@ -26,5 +27,13 @@ export const fontEyebrow = Mirza({
   subsets: ["latin"],
   weight: ["700"],
   variable: "--font-eyebrow-loaded",
+  display: "swap",
+});
+
+// Milestone numbers: Libre Baskerville
+export const fontLibreBaskerville = Libre_Baskerville({
+  subsets: ["latin"],
+  weight: ["400", "700"],
+  variable: "--font-libre-baskerville-loaded",
   display: "swap",
 });

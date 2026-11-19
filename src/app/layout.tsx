@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { fontEyebrow, fontHeading, fontLato } from "@/styles/fonts";
+import { fontEyebrow, fontHeading, fontLato, fontLibreBaskerville } from "@/styles/fonts";
 import "@/styles/globals.css";
 
 export const metadata: Metadata = {
@@ -15,9 +15,13 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${fontLato.variable} ${fontHeading.variable} ${fontEyebrow.variable} antialiased`}
+      suppressHydrationWarning
+      className={`${fontLato.variable} ${fontHeading.variable} ${fontEyebrow.variable} ${fontLibreBaskerville.variable} antialiased`}
     >
-      <body className="bg-page-gradient text-light flex min-h-screen flex-col font-sans">
+      <body
+        suppressHydrationWarning
+        className="bg-page-gradient text-light flex min-h-screen flex-col font-sans"
+      >
         {children}
       </body>
     </html>

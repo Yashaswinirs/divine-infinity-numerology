@@ -26,6 +26,14 @@ const buttonVariants = cva(
           "bg-transparent text-inherit hover:bg-neutral-100 dark:hover:bg-white/10 active:bg-neutral-200",
         // TODO(figma): Verify dark variant hover/active states (#2b1f47, #161026) against Figma
         dark: "bg-[#1e1633] text-white hover:bg-[#2b1f47] active:bg-[#161026] shadow-xs",
+        // Footer Course CTA button variant: cream background (#FFF1D6), plum text (#5A2A5D)
+        footer:
+          "bg-[#FFF1D6] text-[#5A2A5D] hover:bg-[#FFD8A2] active:bg-[#FFCF87] font-['Satoshi',sans-serif] font-bold shadow-xs",
+        cream:
+          "bg-[#FFF1D6] text-[#5A2A5D] hover:bg-[#FFD8A2] active:bg-[#FFCF87] font-['Satoshi',sans-serif] font-bold shadow-xs",
+        // Zodiac card button: gold fill (#FFD8A2), plum text (#655373), 10px rounded
+        zodiac:
+          "bg-[#FFD8A2] text-[#655373] hover:brightness-105 active:scale-[0.98] font-lato font-bold text-[16px] leading-none tracking-normal shadow-xs focus-visible:ring-[#FFD8A2]",
       },
       size: {
         // TODO(figma): Verify button size sm (h-9, 13px, px-4) against Figma specs
@@ -34,10 +42,16 @@ const buttonVariants = cva(
         md: "h-11 px-6 text-[15px] gap-2",
         // TODO(figma): Verify button size lg (h-13, 16px, px-8) against Figma specs
         lg: "h-13 px-8 text-[16px] gap-2.5",
+        // Footer Course CTA button size: 145 x 35, padding 16px, text 14px, gap 10px, radius 50px
+        footer:
+          "h-[35px] w-[145px] max-w-full px-4 text-[14px] leading-none gap-2.5 rounded-[50px]",
+        // Zodiac card button size: 172 x 38, padding 10px, gap 10px, border-radius 10px
+        zodiac:
+          "h-[38px] w-[172px] max-w-full px-[10px] py-[10px] gap-[10px] rounded-[10px] text-[16px] leading-none",
         // Hero CTAs: 48 tall on desktop (measured), 40 on tablet/mobile (estimated).
         // TODO(figma): tablet/mobile button height is estimated.
         hero: "h-10 gap-2.5 px-2.5 type-btn-large font-bold whitespace-nowrap xl:h-12",
-        nav: "h-10 min-w-22 gap-2.5 px-6 type-body-small font-bold md:min-w-28.25 xl:h-12 xl:min-w-34.25",
+        nav: "h-10 min-w-22 gap-2.5 px-6 type-body-small font-bold md:min-w-28.25 lg:h-[clamp(34.13px,3.333vw,48px)] lg:min-w-[clamp(97.41px,9.514vw,137px)] lg:px-[clamp(17.06px,1.667vw,24px)] lg:text-[clamp(12px,1.111vw,16px)]",
       },
       fullWidth: {
         true: "w-full",
