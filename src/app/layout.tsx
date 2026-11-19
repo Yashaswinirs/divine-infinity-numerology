@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { fontEyebrow, fontHeading, fontLato, fontLibreBaskerville } from "@/styles/fonts";
+import { fontEyebrow, fontHeading, fontLato } from "@/styles/fonts";
 import "@/styles/globals.css";
 
 export const metadata: Metadata = {
@@ -16,7 +16,7 @@ export default function RootLayout({
     <html
       lang="en"
       suppressHydrationWarning
-      className={`${fontLato.variable} ${fontHeading.variable} ${fontEyebrow.variable} ${fontLibreBaskerville.variable} antialiased`}
+      className={`${fontLato.variable} ${fontHeading.variable} ${fontEyebrow.variable} antialiased`}
     >
       <body
         suppressHydrationWarning

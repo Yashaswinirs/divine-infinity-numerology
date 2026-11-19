@@ -52,8 +52,7 @@
   --font-lato: var(--font-lato-loaded), 'Lato', sans-serif;
   --font-eyebrow: var(--font-eyebrow-loaded), "Mirza", sans-serif;
   /* Lovelace Text (licensed font files) */
-  --font-heading: var(--font-heading-loaded), "Lovelace Text", "Libre Baskerville", Georgia, serif;
-  --font-libre-baskerville: var(--font-libre-baskerville-loaded), "Libre Baskerville", serif;
+  --font-heading: var(--font-heading-loaded), "Lovelace Text", Georgia, serif;
   /* Figma "Card color" gradient stops. TODO(figma): angle and stop positions not confirmed (180deg assumed). */
   --color-card-gradient-start: #1d1b4d;
   --color-card-gradient-end: #512b58;
@@ -464,8 +463,7 @@
   --font-lato: var(--font-lato-loaded), sans-serif;
   --font-eyebrow: var(--font-eyebrow-loaded), sans-serif;
   /* Heading font: Lovelace Text (Next.js loaded) */
-  --font-heading: var(--font-heading-loaded), "Lovelace Text", "Libre Baskerville", Georgia, serif;
-  --font-libre-baskerville: var(--font-libre-baskerville-loaded), "Libre Baskerville", serif;
+  --font-heading: var(--font-heading-loaded), "Lovelace Text", Georgia, serif;
 }
 
 /* Utility to hide scrollbars while preserving scrollability */
@@ -489,11 +487,7 @@
 }
 
 @utility font-heading {
-  font-family: var(--font-heading-loaded), "Lovelace Text", "Libre Baskerville", Georgia, serif;
-}
-
-@utility font-libre-baskerville {
-  font-family: var(--font-libre-baskerville-loaded), "Libre Baskerville", serif;
+  font-family: var(--font-heading-loaded), "Lovelace Text", Georgia, serif;
 }
 
 @utility font-eyebrow {
@@ -559,7 +553,7 @@
 
 /* Milestone number: Desktop H2 43.95/48, Tablet "H3 T" 28.58, Mobile "H3 M" 25.2. Fluid clamp across all screens. Font: Lovelace Text (matches Recognition title font-heading) */
 @utility type-stat-number {
-  font-family: var(--font-heading-loaded), "Lovelace Text", "Libre Baskerville", Georgia, serif;
+  font-family: var(--font-heading-loaded), "Lovelace Text", Georgia, serif;
   font-weight: 400;
   font-size: clamp(1.575rem, max(1.313rem + 0.985vw, 0.689rem + 2.287vw), 2.7469rem);
   line-height: 1;

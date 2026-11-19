@@ -1,4 +1,4 @@
-import { Mirza, Libre_Baskerville } from "next/font/google";
+import { Mirza } from "next/font/google";
 import localFont from "next/font/local";
 
 // Lato 2.0 (same as Figma), local files so the Medium (500) weight exists.
@@ -27,13 +27,5 @@ export const fontEyebrow = Mirza({
   subsets: ["latin"],
   weight: ["700"],
   variable: "--font-eyebrow-loaded",
-  display: "swap",
-});
-
-// Milestone numbers: Libre Baskerville
-export const fontLibreBaskerville = Libre_Baskerville({
-  subsets: ["latin"],
-  weight: ["400", "700"],
-  variable: "--font-libre-baskerville-loaded",
   display: "swap",
 });

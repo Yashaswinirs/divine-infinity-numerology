@@ -58,7 +58,7 @@ const headingVariants = cva("tracking-tight transition-colors", {
   defaultVariants: {
     size: "h2",
     color: "default",
-    font: "sans",
+    font: "heading",
     align: "left",
   },
 });
