@@ -37,53 +37,67 @@ src/
   app/design-system/page.tsx    dev-only preview, notFound() in production
   components/ui/                Badge, Button, Card, Heading, Icon, Input, Text, index.ts (primitives, cva variants)
   components/layout/            Container, Section, Logo, Navbar, NavLinks, MenuToggleButton, MobileMenu, index.ts
-  components/shared/            Ornament, StarIcon, index.ts (reusable composed pieces)
+  components/shared/            reusable composed pieces (full list in Part 4), index.ts
   components/sections/<page>/   page sections go here (home/ ...)
   data/                         navigation.ts, site.ts, page data files (home.ts ...)
-  hooks/                        useScrolled.ts, index.ts
+  hooks/                        see Part 4, index.ts
   lib/                          cn.ts, index.ts
   styles/                       globals.css (tokens), fonts.ts (next/font)
-public/icons/ornament.svg, public/images/layout/logo.png, public/images/shared/smenu-bg.png
+public/icons/ornament.svg, public/images/layout/logo.png, public/images/shared/menu-bg.png
 public/images/<page>/<section>/ (section images), public/videos/ (hero video)
 Each component folder exports through its index.ts (barrel). Import via @/components/...
 
 # WHAT IS ALREADY BUILT (verify in Part 3; Part 3 wins if they differ)
-- Global: dark page gradient via the bg-page-gradient token on <body> (body is `flex min-h-screen flex-col`; the gradient seam fix lives in src/app/layout.tsx and affects every page). Fonts: Lato (sans/lato), Mirza (eyebrow), Libre Baskerville as stand-in for Lovelace Text (heading).
+
+- Global: dark page gradient `bg-page-gradient` on <body> (body is `flex min-h-screen flex-col`). Home <main> uses `bg-page-flow` (172deg bands at --glow-1..6, desktop px positions, bands stop at 4350px). Fonts: Lato (sans/lato, local 400/500/700 only), Mirza (eyebrow), Libre Baskerville as stand-in for Lovelace Text (heading, also the stat counter numbers). Breakpoints defined in globals.css: `tab` = 600px and `2xl` = 1440px. `sm`, `md`, `lg`, `xl` are NOT defined there (Tailwind v4 defaults assumed: 640 / 768 / 1024 / 1280). Read Part 3 before using one.
 - ui/ (exported from ui/index.ts):
   - Badge: variant (primary|secondary|accent|dark|outline), size (sm|md), icon.
   - Button: variant (primary|secondary|accent|outline|outline-accent|ghost|dark), size (sm|md|lg|hero|nav), fullWidth, href, target, rel, loading, iconLeft, iconRight, button attributes; forwardRef. In link mode only href/target/rel/className are passed on.
   - Card (+ CardHeader, CardTitle, CardDescription, CardContent, CardFooter): variant (default|solid|gradient|outline|glass), padding (none|sm|md|lg), hover.
-  - Heading: as (h1-h6|p|span|div), size (h1-h5|hero|section), color (default|primary|secondary|accent|gold|light|muted|dark), font (sans|lato|heading), align (left|center|right). Exports type HeadingLevel.
+  - Heading: as (h1-h6|p|span|div), size (h1-h5|hero|feature|section|sectionTab|sectionT|cardTitle|courseTitle|consultTitle), color (default|primary|secondary|accent|gold|light|muted|dark), font (sans|lato|heading), align (left|center|right). Exports type HeadingLevel.
   - Icon: size (xs|sm|md|lg|xl), color, ariaLabel.
   - Input: label, helperText, error, iconLeft, iconRight, input attributes; forwardRef.
   - Text: as (p|span|div|label), variant (body-lg|body-base|body-sm|body-xs|caption), weight (normal|medium|semibold|bold), color (default|dark|muted|primary|secondary|accent|light), font (sans|lato), align (left|center|right|justify). Exports type TextElement.
 - layout/ (index.ts exports only Container, Section, Logo, Navbar):
-  - Container: as, size (default|narrow|wide|full), padding (normal|spacious|none|page). "page" = px-5 md:px-15 xl:px-20.
-  - Section: as (section|div|article|aside), spacing (none|sm|md|lg|xl), bg (default|dark|hero|card|light|muted), container (default true), containerSize, containerPadding (default "normal"), containerClassName.
-  - Logo: className, onClick.
-  - Navbar: no props. Client component; fixed header (z-50), Logo, NavLinks (xl and above), Login button (Button accent/nav), MenuToggleButton (below xl), MobileMenu.
-  - NavLinks: items, isActive, className.
-  - MenuToggleButton: icon ("menu"|"close"), button attributes incl. ref.
-  - MobileMenu: id, open, items, isActive, onClose. Fixed full-screen overlay (z-60), hidden at xl and above, slides in from the left, inert while closed, Escape closes, Tab focus is trapped, focus goes to the close button and is restored on close, body scroll locked while open, respects reduced motion. Background image: /images/shared/menu-bg.png (opacity baked into the image).
-- shared/ (all via shared/index.ts):
+  - Container: as (div|main|section|article|nav|header|footer), size (default|narrow|wide|full), padding (normal|spacious|none|page). "page" = px-5 md:px-15 xl:px-20.
+  - Section: as (section|div|article|aside), spacing (none|sm|md|lg|xl), bg (default|dark|hero|card|light|muted), container (default true), containerSize, containerPadding (default "normal"), containerClassName. Full-bleed or star-field sections use `container={false}` with their own `<Container padding="page" className="relative ...">`.
+  - Logo: className, onClick. Navbar: no props (client; fixed header z-50, scroll state after 8px, NavLinks from xl, Login button, MenuToggleButton below xl, MobileMenu).
+  - NavLinks: items, isActive, className. MenuToggleButton: icon ("menu"|"close"), button attributes incl. ref. MobileMenu: id, open, items, isActive, onClose (full-screen overlay z-60, focus trap, Escape closes, scroll lock, reduced motion). Background /images/shared/menu-bg.png.
+- shared/ (all via shared/index.ts, 17 components):
+  - ArchPortrait: src, alt, sizes? (default "362px"), className.
   - ArrowCircle: className. 30px circle with caret, used in accent buttons.
-  - LogoMarquee: logos (LogoMarqueeItem[]: src, alt, width, height, invert?), label, className. Endless right-to-left strip of two identical sets (copy is aria-hidden). Cells 200 x 85 desktop, 120 x 64 tablet/mobile; each logo uses its own Figma frame width, shown at 0.6x below xl; invert turns a logo white. Duration set per breakpoint on the track (9s below xl, 15.5s at xl; estimated, TODO(figma)). Reduced motion: no animation, scrolls by hand.
-  - Ornament: variant (divider|section), className. Divider = swirl 120 x 11.41 (mobile menu). Section = lines + swirl above section titles (262 wide, 362 at xl).
-  - SectionHeading: title, subtitle?, titleId?, as? (default h2), className?, subtitleClassName?. Centered Ornament (section) + Heading (size section, Lovelace, Accent) + optional Text subtitle (Body small, Light), gap 15.
-  - StarIcon: className. Four-point star, currentColor.
-- sections/home/ (index.ts exports only Hero and ProudlyFeatured):
-  - Hero: no props; content from heroContent in src/data/home.ts.
-  - HeroEyebrow: text, icon ({src, width, height}), className.
-  - HeroVideo: src, poster (client component; poster-only under reduced motion; 60% black overlay below md).
-  - ProudlyFeatured: no props; content from featuredContent in src/data/home.ts (title, subtitle, logosLabel, logos). Uses Section, SectionHeading and LogoMarquee.
-- hooks/: usePrefersReducedMotion() returns boolean; useScrolled(threshold = 10) returns boolean (currently unused).
-- data/: navigation.ts (mainNav, NavItem), site.ts (siteConfig: name, logo, login, decor with sky, ornament, sectionOrnament), home.ts (heroContent, featuredContent; types HeroCta, TitleBreak, HeroTitlePart).
-- globals.css utilities used by sections: type-hero-h1, type-hero-eyebrow, type-btn-large, type-body-small, type-h5-t, type-section-title, animate-marquee (+ @keyframes marquee), bg-page-gradient, bg-card-gradient.
-- Page wiring: app/(public)/layout.tsx renders Navbar; app/(public)/page.tsx renders Hero and ProudlyFeatured inside <main>.
-- Not built yet: Home sections 3 to 12, Footer, WhatsApp floating button (visible in every Figma frame), other pages.
+  - AwardCard: title, image {src, alt}, rating? (5), className.
+  - BlogCard: title, excerpt, image {src, alt}, href, readMoreLabel? ("Read More"), className. `<article>` with Image, Heading h3 cardTitle Accent, Text body-sm medium Secondary, full-width accent Button with ArrowCircle and sr-only title context. Card: bg-card-gradient, border-card-border, shadow-card, rounded-3xl. Exports BlogCardProps.
+  - CarouselControls: count, index (zero-based), onPrevious, onNext, onSelect, previousDisabled?, labels {previous, next, goTo}, className. Dots (active one wider) + two arrow buttons. Previous is dimmed with aria-disabled on the first slide. Exports CarouselControlsLabels, CarouselControlsProps.
+  - CountUp: value, prefix?, suffix?, durationMs? (2000), className. Client component; counts 0 to value each time it scrolls into view; server renders the final number; reduced motion shows the final number.
+  - CourseCard: title, description, image {src, alt}, href?, action? {label, href}, className. Without `action` = Courses card (title is a stretched link over the whole card, Heading courseTitle). With `action` = Consultation card (plain title, Heading consultTitle, full-width accent Button with ArrowCircle at the bottom). Exports CourseCardAction, CourseCardProps.
+  - FaqAccordion: items (readonly FaqItem[]), className. Client component. `<ul>` of accordion cards: h3 > button trigger with aria-expanded/aria-controls, region panel with grid-rows animation (0fr→1fr, 300ms), CSS plus/minus toggle glyph. Multiple open at once; all closed initially. Exports FaqItem {question, answer}, FaqAccordionProps.
+  - FeatureTile: label ("\n" = manual line break), as? (div|li), className. 303 x 118 bordered tile, Heading cardTitle.
+  - LogoMarquee: logos (LogoMarqueeItem: src, alt, width, height, invert?), label, className. Endless right-to-left strip.
+  - Ornament: variant (divider|section), tone? ("light"|"gold", default "light"), className. Section = lines + swirl (262 wide, 362 at xl). Gold tone uses sectionOrnamentGold SVG (FAQ).
+  - SectionHeading: title, subtitle?, titleId?, as? (h2), variant? ("center"|"feature"), titleSize? (any Heading size, default "section"), subtitleSize? ("small"|"large"|"largeXl", default "small"), ornamentTone? ("light"|"gold"), className?, subtitleClassName?, ornamentClassName?. "largeXl" = Body small below xl, Body Large from xl (used by Blogs). "large" is still unused. "gold" ornament tone used by FAQ.
+  - StarField: className?, src? (default /images/shared/stars-bg.svg). Absolute star overlay, 2 stacked 1962 x 995 copies, every second flipped.
+  - StarIcon: className. StarRating: rating? (5), className. StatCard: value, prefix?, suffix?, label, as? ("div"|"li"), className.
+  - TestimonialCard: title, quote, name, role, image {src, alt}, footer?, className. `footer` is pinned to the bottom of the card.
+- sections/home/ (index.ts exports 11; HeroEyebrow, HeroVideo, TestimonialsCarousel are not exported). All take no props and read content from src/data/home.ts:
+  - Hero (heroContent), ProudlyFeatured (featuredContent), AboutTeejaswinni (aboutContent), Milestones (milestonesContent; connector lines not rendered), AwardsCertifications (awardsContent).
+  - WhyLearn (whyLearnContent): SectionHeading + 6 FeatureTiles, 1 / 2 / 3 columns.
+  - Courses (coursesContent): SectionHeading, 3 CourseCards (scroll row below lg, 3 flexible cards from lg), "Explore Courses" button.
+  - ConsultationServices (consultationContent): SectionHeading + 5 CourseCards with `action` (stack on phone, scroll row from tab, wrapping 3 + 2 from lg). Own StarField.
+  - Testimonials (testimonialsContent): SectionHeading + TestimonialsCarousel. Own StarField.
+  - Blogs (blogsContent): SectionHeading (`subtitleSize="largeXl"`, ornament cream) + 3 BlogCards (scroll row below lg, three flexible cards from lg, gap 40 / 70 from xl) + "View All Blogs" Button. Shares wrapper C StarField with FAQ.
+  - Faq (faqContent): SectionHeading (`ornamentTone="gold"`) + FaqAccordion. Content max 816. Shares wrapper C StarField with Blogs. FaqAccordion is the client component.
+  - HeroEyebrow: text, icon ({src, width, height}), className. HeroVideo: src, poster (client).
+  - TestimonialsCarousel (client): items (title, quote, name, role, image), labels {region, previous, next, goTo}, className. One card visible, next loops, previous dimmed on the first slide, touch swipe, arrow keys, off-screen slides inert, no autoplay.
+- hooks/: usePrefersReducedMotion() returns boolean; useScrolled(threshold = 10) returns boolean (unused).
+- data/: navigation.ts (mainNav, NavItem), site.ts (siteConfig: name, logo, login, decor with sky, ornament, sectionOrnament, sectionOrnamentGold, laurelLeft, laurelRight, star), home.ts (heroContent, featuredContent, aboutContent, milestonesContent, awardsContent, whyLearnContent, coursesContent, consultationContent, testimonialsContent, blogsContent, faqContent; types HeroCta, TitleBreak, HeroTitlePart).
+- globals.css utilities used by sections: type-hero-h1, type-hero-eyebrow, type-btn-large, type-body-small, type-body-large, type-h5-t, type-h5, type-feature-title, type-section-title, type-section-title-tab, type-section-title-t, type-card-title, type-course-title, type-consult-title, type-testimonial-title, type-faq-question, type-stat-number, animate-marquee (+ @keyframes marquee), bg-page-gradient, bg-page-flow, bg-card-gradient.
+- Page wiring: app/(public)/layout.tsx renders Navbar; app/(public)/page.tsx renders inside `<main className="bg-page-flow">`: Hero, ProudlyFeatured, wrapper A (StarField + AboutTeejaswinni + Milestones), AwardsCertifications, wrapper B (StarField + WhyLearn + Courses), ConsultationServices, Testimonials, wrapper C (StarField + Blogs + Faq).
+- Not built yet: WhatsApp floating button (no code exists), other pages. Section 12 (CTA + Footer) is built by a teammate and is not in this repo yet.
+
 # CONVENTIONS ALREADY USED (keep them)
 - Spacing: Tailwind v4 numeric scale = Figma px / 4 (20px = 5, 50px = 12.5, 60px = 15, 648px = max-w-162, 748px = max-w-187). Use arbitrary values [..] only when no scale equivalent exists, and say why.
-- Breakpoints come from the theme (md and xl are used). Read the exact px values from globals.css in Part 3; never assume Tailwind defaults. Mobile-first. Do not add breakpoints without asking.
+- Breakpoints: `tab` (600) and `2xl` (1440) are defined in globals.css; `sm`, `md`, `lg`, `xl` are Tailwind defaults (unverified). Use the breakpoints the neighbouring sections use, read them from Part 3. Mobile-first. Do not add breakpoints without asking.
 - Colors/fonts/sizes only through tokens in @theme (--color-*, --font-* ...). No raw hex in components.
 - Unverified guesses are marked TODO(figma); backend stubs TODO(api) / TODO(payment).
 - Server Components by default; "use client" only where needed (menu, accordion, forms), as low in the tree as possible.
@@ -95,7 +109,7 @@ Each component folder exports through its index.ts (barrel). Import via @/compon
 2. Anything used (or likely to be used) more than once becomes a reusable component: typed props interface, defaults, className override via cn(), variants via cva, accessible markup, responsive on all three viewports.
 3. One component per file, PascalCase; utilities camelCase; folders kebab-case; barrels via index.ts.
 4. No any, no inline styles, no unused code/imports, no magic numbers, no console warnings.
-5. Likely reusable pieces (confirm with me first): SectionHeading (ornament + title + subtitle), Accordion/FAQ, CTA banner, CourseCard, ConsultationCard, BlogCard, TestimonialCard, logo strip, stat/milestone item, award card, category chips, tabs.
+5. Likely reusable pieces still to build (confirm with me first): Accordion/FAQ, CTA banner, BlogCard, category chips, tabs. Already built: SectionHeading, CourseCard (also the consultation card), TestimonialCard, logo strip, stat item, award card.
 
 # TOKENS ON DEMAND
 Tokens are added section by section. When a section needs a color, font, size, radius, shadow, gradient or spacing with no token:
@@ -147,25 +161,26 @@ For every section I send "Section N of 12: <name>" with screenshots, properties 
 6. If anything is ambiguous, ASK. Never guess design values, copy, routes or numerology rules.
 7. After each finished section, remind me to update docs/PROGRESS.md and regenerate HANDOFF.md.
 
-# TODAY'S TASK: HOME PAGE
+# TASK HISTORY: HOME PAGE (finished)
 Route: /   Frames: "Homepage" (desktop 1440 x 9630), "Homepage Tablet" (768 x 8245), "Homepage Mobile" (425 wide x 11739). Menu overlay frames are already implemented in the Navbar.
 Sections in order (draft; I confirm or correct):
   Navbar: DONE (fixes may come up while testing)
   1. Hero (looping background video): DONE (tablet/mobile values partly estimated; fade strip on tablet/mobile not verified against Figma)
   2. Proudly Featured (logo strip): DONE (about 95% match to Figma by screenshot comparison; marquee speed estimated)
-  3. About Teejaswini
-  4. Milestones
-  5. Awards & Certifications
-  6. Why Learn From Teejaswini
-  7. Courses (3 cards)
-  8. Consultation Services (3 cards)
-  9. Testimonials
-  10. Blogs (3 cards)
-  11. FAQ (accordion)
-  12. CTA ("Ready to Begin?") + Footer
+  3. About Teejaswinni: DONE (match to Figma: unknown)
+  4. Milestones: DONE (match to Figma: unknown; connector lines not rendered)
+  5. Awards & Certifications: DONE (match to Figma: unknown; mobile and desktop row 2 card sizes not measured)
+  6. Why Learn From Teejaswinni: DONE (match to Figma: unknown; tablet and phone values estimated)
+  7. Courses (3 cards): DONE (match to Figma: unknown; tablet and phone panels not received)
+  8. Consultation Services (5 cards): DONE (match to Figma: unknown; 1024 layout and tablet card gap not confirmed)
+  9. Testimonials (carousel): DONE (match to Figma: unknown; tablet and phone panels not received; slide timing assumed)
+  10. Blogs (3 cards + "View All Blogs" button): DONE (no Figma tablet or phone frame; follows the Courses scroll-row pattern)
+  11. FAQ (accordion, 5 items): DONE (desktop, tablet and phone frames measured; gold ornament; FaqAccordion client component)
+  12. CTA ("Ready to Begin?") + Footer: handled by a teammate (not in this repo yet; do not build it here)
 Global, not a numbered section: WhatsApp floating button (in every Figma frame): NOT built yet.
+
 Note: the sitemap lists a "Free life path calculator" on Home. Include it only if it is in the Figma Home frame (I will say).
-Known frame facts: one desktop section is 1340 wide (probably an inner container; ask me). Tablet hero is 768 x 585. Mobile content width 385.
+Known frame facts: Tablet hero is 768 x 585. Mobile content width 385.
 Home flow: Hero buttons -> /courses and /consultation. About preview -> /about. Course cards -> /courses/[slug]. Consultation cards -> /consultation. Blog cards -> /blog/[slug]. FAQ accordion. Nav "Student login" -> LMS login. Footer links -> every page + policies.
 The Home page file src/app/(public)/page.tsx only imports and stacks section components from components/sections/home/; content in src/data/home.ts.
 
@@ -175,6 +190,27 @@ The Home page file src/app/(public)/page.tsx only imports and stacks section com
 - Read the exact width x height and padding from the Figma Properties panel for every element. Never measure by eye.
 - When a section's Figma y position on tablet or mobile is below the end of the previous section, add the difference as top padding on the new section.
 - Prettier uses 2-space indentation. Format code that way.
+- After every section run pnpm typecheck, not only pnpm lint. The dev server ignores unknown props, so a missing prop on a shared component shows no error on screen.
+- Before a section uses a prop of a shared component (StarField, SectionHeading, ...), check that the prop exists in the current Part 3 code. If a section needs a new prop, add it to the shared file in the same step and send that file.
+- When a shared component is edited in a chat, paste its full current content into the next chat. Otherwise a later chat rewrites it from an old copy.
+- Decide one tablet breakpoint (600 tab or 768 md) before building a section, and ask if the previous sections differ.
+- Every src in src/data/*.ts must exist in public/. Check the file tree after each section.
+- The project is local only. Suggest local commits only and never tell the user to push.
+- Section comments can drift from the classes (found in Why Learn, Courses, Consultation). After building, re-read every comment against the classes and fix the comment in the same step; the classes are what runs.
+- Before building a section, read which breakpoints its neighbours really use (tab 600, md 768, lg 1024, xl 1280) from the code, not from the notes, and write the choice in the Section Brief. Do not mix tab and md inside one section (Testimonials does).
+- A new Heading size needs three things in one step: the cva entry in Heading.tsx, the `type-*` utility in globals.css, and a line in PROGRESS.md.
+- Before using font-semibold, font-extrabold or italic, check which Lato weights are loaded in fonts.ts (400 / 500 / 700 only); otherwise the browser fakes them.
+- Do not add a prop to a shared component and then style around it with classes (SectionHeading `subtitleSize` is unused while two sections repeat Body Large by hand). Use the prop or do not add it.
+- A carousel or scroll row needs its own checklist: keyboard, touch swipe, reduced motion, aria roles, inert off-screen slides, loop rule, and a note that there is no autoplay.
+- Decide for every star-field section whether it shares a wrapper (one StarField) or has its own, and write it in the brief.
+- A teammate is building section 12: before editing `(public)/layout.tsx` or any shared file, paste its current content into the chat so no chat rewrites it from an old copy.
+- Keep docs/PROGRESS.md under 300 lines and keep its status table aligned, otherwise `pnpm format:check` fails on the markdown.
+- When you regenerate HANDOFF.md, count lines and check the last 3 lines of each part, so you can prove nothing was cut.
+- When extending a shared component with a new prop (Ornament `tone`, SectionHeading `ornamentTone`, `subtitleSize="largeXl"`), add it, use it, update the barrel export and PROGRESS.md all in the same step.
+- A new CSS type utility (e.g. `type-faq-question`) needs a matching entry in PROGRESS.md under "Tokens". When a section uses the same H5 type sizes but at different breakpoints than an existing utility, create a new utility instead of reusing the old one.
+- When a section has no Figma tablet or phone frame, copy the layout pattern from the closest existing section (Blogs → Courses scroll row, padding from Testimonials). Write "no Figma frame; follows X pattern" in the code comment and in PROGRESS.md.
+- Raw hex in components (FaqAccordion toggle glyph `#1D1B4D`) is a gotcha. Replace with a token or add a TODO(figma) comment when the Figma value has no named style.
+- For accordion/collapsible UI: use `grid-template-rows: 0fr→1fr` for smooth height animation, `inert` on closed panels, `aria-expanded` / `aria-controls` / `aria-labelledby` / `role="region"`, and `prefers-reduced-motion` to disable the transition. Keep "use client" in the accordion component, not in the section wrapper.
 
 # START
 Do the "PROVE you read it" reply from the top of this file now, then wait for my Section message.

@@ -11,7 +11,7 @@ export interface NavLinksProps {
 export function NavLinks({ items, isActive, className }: NavLinksProps) {
   return (
     <nav aria-label="Primary" className={className}>
-      <ul className="flex items-center gap-6 2xl:gap-11.25">
+      <ul className="flex items-center gap-4 xl:gap-6 2xl:gap-11.25">
         {items.map((item) => {
           const active = isActive(item.href);
           return (

@@ -13,8 +13,25 @@ const headingVariants = cva("tracking-tight transition-colors", {
       // Hero H1: Lovelace Text 400, 54.93/70.4 desktop, 35/40 tablet, 30.43/35 mobile.
       // -0.01em tracking keeps the stand-in font at Lovelace's measured line widths.
       hero: "type-hero-h1 font-normal tracking-[-0.01em]",
+      // About title: same sizes as hero, but the tablet size starts at 600px.
+      feature: "type-feature-title font-normal tracking-[-0.01em]",
       // Section title (Figma H2 / H2 T / H2 M): Lovelace Text 400, letter spacing 0.
       section: "type-section-title font-normal tracking-normal",
+      // Section title with the tablet size starting at 600px (Milestones).
+      sectionTab: "type-section-title-tab font-normal tracking-normal",
+      // Section title using H2 T (35/40) on mobile as well (Awards).
+      sectionT: "type-section-title-t font-normal tracking-normal",
+      // Award card title (Figma H5 / H5 T).
+      cardTitle: "type-card-title font-normal tracking-normal",
+      // Course card title (Figma H4 / H4 T / H4 M): Lovelace Text 400, 28.13/35 desktop.
+      courseTitle: "type-course-title font-normal tracking-normal",
+      // Consultation card title (Figma H4 M / H4 T / H4): phone 20.91, tablet 23.35, desktop 28.13.
+      consultTitle: "type-consult-title font-normal tracking-normal",
+      // Page hero title (Contact; Figma H1 M / H1 T / H1): 36.7/46 phone, 42.87/55 tablet, 54.93/70.4 laptop and desktop.
+      pageTitle: "type-page-title font-normal tracking-normal",
+      // Contact section titles (Figma H3): 35.16/100% laptop and desktop, estimated 28.8 tablet and 25.2 phone.
+      contactTitle: "type-contact-title font-normal tracking-normal",
+      // Contact section title (Figma H3 35.16px): 30.43/35 phone, 35.16 tablet and desktop.
     },
     color: {
       default: "text-inherit",

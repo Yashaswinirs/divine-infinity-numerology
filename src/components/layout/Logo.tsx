@@ -3,12 +3,15 @@ import Link from "next/link";
 import { cn } from "@/lib";
 import { siteConfig } from "@/data/site";
 
-// Figma: logo layer is 120 x 120 at left 55 / top 2 on desktop (bar at left 80 / top 30).
-// TODO(figma): tablet (100) and mobile (80) box sizes are measured from screenshots; confirm with the layer panels.
+// Figma logo layer (a cropped, padded PNG): slot 52 x 48 on desktop (derived from the 1280 bar), 60 x 60 on tablet,
+// 50 x 50 on phone. logo.png is a tight crop (180 x 180, about 5% padding), so the image is sized to reproduce the
+// artwork seen in Figma: text width about 65 (desktop), 51 (tablet), 42 (phone).
+// max-w-none: Tailwind's base `img { max-width: 100% }` would cap the image to the slot and squash it.
+// TODO(figma): the artwork sizes and offsets are read from the canvas (+-2px), not from a panel.
 const styles = {
-  link: "relative block size-12.5 shrink-0 md:size-15 xl:h-12 xl:w-13",
+  link: "relative block size-12.5 shrink-0 tab:size-15 lg:h-12 lg:w-13",
   image:
-    "absolute -top-2 -left-4 size-20 object-contain md:-top-3 md:-left-5.25 md:size-25 xl:-top-7 xl:-left-6.25 xl:size-30",
+    "absolute top-0.5 left-0.5 size-11.5 max-w-none object-contain tab:top-px tab:left-px tab:size-14 lg:-top-2.25 lg:left-0 lg:size-18",
 } as const;
 
 export interface LogoProps {
@@ -27,8 +30,9 @@ export function Logo({ className, onClick }: LogoProps) {
       <Image
         src={siteConfig.logo.src}
         alt={siteConfig.logo.alt}
-        width={120}
-        height={120}
+        width={180}
+        height={180}
+        sizes="72px"
         priority
         className={styles.image}
         style={{ width: "auto", height: "auto" }}

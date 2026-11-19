@@ -1,60 +1,34 @@
-import * as React from "react";
-import Image from "next/image";
-import { cn } from "@/lib";
+import { siteConfig } from "@/data/site";
+import { WhatsAppIcon } from "./WhatsAppIcon";
 
-export interface WhatsAppButtonProps
-  extends React.AnchorHTMLAttributes<HTMLAnchorElement> {
+export interface WhatsAppButtonProps {
+  /** Overrides the link built from siteConfig.whatsapp. */
   href?: string;
-  phoneNumber?: string;
-  message?: string;
-  className?: string;
 }
 
-export function WhatsAppButton({
-  href,
-  phoneNumber,
-  message,
-  className,
-  ...props
-}: WhatsAppButtonProps) {
-  const whatsappUrl =
-    href ??
-    (phoneNumber
-      ? `https://wa.me/${phoneNumber.replace(/[^0-9]/g, "")}${
-          message ? `?text=${encodeURIComponent(message)}` : ""
-        }`
-      : "https://wa.me/");
+const { number, message, label, regionLabel } = siteConfig.whatsapp;
+const defaultHref = `https://wa.me/${number}${message ? `?text=${encodeURIComponent(message)}` : ""}`;
 
+// Floating action button, bottom right (Figma Contact Us & layout prototype).
+// Figma Frame 279: 60 x 60, radius 30, padding 10, fill #47C756. On the tablet frame it sits right 60 / bottom 74 (derived).
+// TODO(figma): the offsets (right 50, bottom 24 phone / 32 from 600px up) and the icon size (30) are not from a panel yet.
+const styles = {
+  root: "fixed right-12.5 bottom-6 tab:bottom-8 z-50",
+  link: "bg-whatsapp shadow-whatsapp focus-visible:outline-accent flex size-12 items-center justify-center rounded-full text-white transition-transform duration-200 hover:scale-110 focus-visible:outline-2 focus-visible:outline-offset-2 active:scale-95 lg:size-15",
+  icon: "size-6 lg:size-7.5",
+} as const;
+export function WhatsAppButton({ href = defaultHref }: WhatsAppButtonProps) {
   return (
-    <a
-      href={whatsappUrl}
-      target="_blank"
-      rel="noopener noreferrer"
-      aria-label="Chat with us on WhatsApp"
-      className={cn(
-        "absolute z-30 flex items-center justify-center rounded-[30px] transition-transform duration-200 hover:scale-105 active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent shadow-[0_4px_24px_rgba(71,199,86,0.5)]",
-        // Fluid responsive sizing:
-        // - Mobile (425px): 50x50, radius 30px, padding 10px
-        // - Tablet (768px): 50x50, radius 30px, padding 10px
-        // - Desktop (1440px): 60x60, radius 30px, padding 12px
-        "h-[50px] w-[50px] p-[10px] md:h-[50px] md:w-[50px] md:p-[10px] xl:h-[60px] xl:w-[60px] xl:p-[12px]",
-        // Fluid responsive positioning inside design container:
-        // - Mobile (425px): top: 9px, left: 355px (right: 20px)
-        // - Tablet (768px): top: 9px (481px artboard), left: 668px (right: 50px)
-        // - Desktop (1440px): top: 85px, right: 50px (2xl: left: 1330px)
-        "top-[9px] right-5 sm:top-[12px] md:top-[9px] md:right-[50px] xl:top-[85px] xl:right-[50px] 2xl:left-[1330px] 2xl:right-auto",
-        className
-      )}
-      {...props}
-    >
-      <Image
-        src="/icons/whatsapp.svg"
-        alt="WhatsApp"
-        width={60}
-        height={60}
-        className="h-full w-full object-contain pointer-events-none select-none rounded-[30px]"
-        priority
-      />
-    </a>
+    <aside aria-label={regionLabel} className={styles.root}>
+      <a
+        href={href}
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label={label}
+        className={styles.link}
+      >
+        <WhatsAppIcon className={styles.icon} />
+      </a>
+    </aside>
   );
 }

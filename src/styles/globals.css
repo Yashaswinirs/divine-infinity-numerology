@@ -75,6 +75,27 @@
   --line-height-h5: clamp(1.456rem, 1.597rem - 0.16vw, 1.563rem);
 
   --container-max-width: 1440px;
+
+  /* Page background bands: pixel distance from the top of the page where each Figma colour sits (desktop).
+     TODO(figma): measured from screenshots. Tablet and phone get their own values later. */
+
+  /* dark navy ends (start of Milestones) */
+  --glow-1: 1700px;
+
+  /* purple peak (bottom of Milestones) */
+  --glow-2: 2350px;
+
+  /* dip (Awards heading) */
+  --glow-3: 2950px;
+
+  /* purple peak (Awards cards) */
+  --glow-4: 3350px;
+
+  /* dark again (before Why Learn) */
+  --glow-5: 3950px;
+
+  /* fully dark */
+  --glow-6: 4350px;
 }
 
 :root,
@@ -353,6 +374,8 @@
 @theme {
   /* Verified from Figma Dev Mode */
   --breakpoint-2xl: 90rem;
+  /* 600px: tablet layout starts here (About and Milestones). Phone is below 600. */
+  --breakpoint-tab: 37.5rem;
   --color-primary: #655373;
   --color-secondary: #fff0db;
   --color-accent: #ffd8a2;
@@ -373,8 +396,18 @@
   /* Awards cards (Figma Dev Mode; names are ours, Figma shows no style name for border or shadow) */
   --color-card-border: #5f1bb7;
   --shadow-card: 0 4px 24px 0 rgb(85 81 255 / 0.25);
+  /* WhatsApp floating button (Figma Frame 279): fill #47C756, shadow 0 4 24 at 60%. */
+  --color-whatsapp: #47c756;
+  --shadow-whatsapp: 0 4px 24px 0 rgb(71 199 86 / 0.6);
+  /* Hover glow of the consultation tiles and plan cards. TODO(figma): estimated from the prototype screenshot (soft Accent glow), no panel received. */
+  --shadow-accent-glow: 0 0 16px 0 rgb(255 216 162 / 0.4);
+  /* Contact submit button. TODO(figma): text colour and hover fill are not from a panel; the Figma desktop frame
+     shows the label lighter, like Primary #655373 on the Home accent buttons. */
+  --color-button-ink: #1f1438;
+  --color-accent-hover: #ffe0b6;
   --blur-hero-fade: 20px;
   /* Figma layer blur 40 */
+
   /* Tablet/mobile: the Om changes real width, so the tagline moves with it (as in the Figma prototype). */
   --animate-om-pulse-shift: om-pulse-shift 3s ease-in-out infinite;
 
@@ -415,7 +448,7 @@
 
   /* TODO(figma): not verified yet (Territory, Dark, Text, Card color, Cards, Light Bg) */
   --color-territory: #8061a5;
-  --color-dark: #1e1633;
+  --color-dark: #413f85;
   --color-text-muted: #8c8c8c;
   --color-card-solid: #3c2657;
   --color-bg-light: #f8f6fb;
@@ -502,6 +535,13 @@
   letter-spacing: 0;
 }
 
+/* Figma "Body Large": Lato 18/22.6, letter spacing 0 (Consultation Services subtitle).
+   TODO(figma): tablet and phone panels not received; 18 assumed on all viewports. */
+@utility type-body-large {
+  font-size: 1.125rem;
+  line-height: 1.4125rem;
+}
+
 @utility type-h5-t {
   font-family: var(--font-heading);
   font-size: 1.1925rem;
@@ -529,6 +569,23 @@
 @utility type-hero-h1 {
   font-size: clamp(1.9019rem, max(1.548rem + 1.332vw, 0.764rem + 2.966vw), 3.4331rem);
   line-height: clamp(2.1875rem, max(1.8rem + 1.458vw, 0.329rem + 4.524vw), 4.4rem);
+}
+
+/* About title: same sizes as the Hero H1 (30.43/35, 35/40, 54.93/70.4) but the tablet size starts at 600px (tab).
+   Separate from type-hero-h1 so the Hero section is not affected. */
+@utility type-feature-title {
+  font-size: 1.9019rem;
+  line-height: 2.1875rem;
+
+  @media (width >=theme(--breakpoint-tab)) {
+    font-size: 2.1875rem;
+    line-height: 2.5rem;
+  }
+
+  @media (width >=theme(--breakpoint-xl)) {
+    font-size: 3.4331rem;
+    line-height: 4.4rem;
+  }
 }
 
 /* Hero eyebrow: Mirza 700 uppercase. Desktop 26 (measured), tablet 19 and mobile 15 (estimated). */
@@ -575,6 +632,24 @@
   }
 }
 
+/* Same as type-section-title but the tablet size starts at 600px (tab). Used by Milestones only. */
+@utility type-section-title-tab {
+  font-size: 1.9019rem;
+  line-height: 2.1875rem;
+  text-box-trim: trim-both;
+  text-box-edge: cap alphabetic;
+
+  @media (width >=theme(--breakpoint-tab)) {
+    font-size: 2.1875rem;
+    line-height: 2.5rem;
+  }
+
+  @media (width >=theme(--breakpoint-xl)) {
+    font-size: 2.7469rem;
+    line-height: 3rem;
+    text-box-trim: none;
+  }
+}
 /* Figma H2 T on mobile and tablet (Awards uses it on mobile too), H2 at xl. Cap-height trim below xl. */
 @utility type-section-title-t {
   font-size: 2.1875rem;
@@ -603,6 +678,253 @@
   }
 }
 
+/* Consultation plan card title and fee: Figma H5. Phone "H5 M" 17.3/25 and tablet "H5 T" 19.08/23.3 with cap-height
+   trim, desktop H5 22.5/30.7 (no trim). TODO(figma): the phone trim is assumed, as on the tablet. */
+@utility type-plan-title {
+  font-family: var(--font-heading);
+  font-weight: 400;
+  font-size: 1.08125rem;
+  line-height: 1.5625rem;
+  text-box-trim: trim-both;
+  text-box-edge: cap alphabetic;
+
+  @media (width >=theme(--breakpoint-tab)) {
+    font-size: 1.1925rem;
+    line-height: 1.45625rem;
+  }
+
+  @media (width >=theme(--breakpoint-xl)) {
+    font-size: 1.40625rem;
+    line-height: 1.91875rem;
+    text-box-trim: none;
+  }
+}
+
+/* Figma FAQ question (H5): Lovelace Text 400. Phone "H5 M" 17.3/25, tablet "H5 T" 19.08/23.3, desktop H5 22.5/30.7.
+   The tablet size starts at 768 (md). TODO(figma): tablet and phone question panels were not received (sizes from the H5 list). */
+@utility type-faq-question {
+  font-size: 1.08125rem;
+  line-height: 1.5625rem;
+
+  @media (width >=theme(--breakpoint-md)) {
+    font-size: 1.1925rem;
+    line-height: 1.45625rem;
+  }
+
+  @media (width >=theme(--breakpoint-xl)) {
+    font-size: 1.40625rem;
+    line-height: 1.91875rem;
+  }
+}
+
+/* Figma H4 course card title: Lovelace Text 400. Desktop 28.13/35 (measured; Figma trims the 42.4 line box to a
+   35 tall text box). Tablet "H4 T" 23.4 and phone "H4 M" 20.9 come from the style list; their line-heights keep the
+   desktop ratio (estimated). TODO(figma): tablet and phone card title panels not received. */
+/* Figma H4 T (phone and tablet): Lovelace Text 400, 23.35/33.6, cap-height trim. Desktop H4 28.13/35, no trim. */
+@utility type-course-title {
+  font-size: 1.4594rem;
+  line-height: 2.1rem;
+  text-box-trim: trim-both;
+  text-box-edge: cap alphabetic;
+
+  @media (width >=theme(--breakpoint-xl)) {
+    font-size: 1.7581rem;
+    line-height: 2.1875rem;
+    text-box-trim: none;
+  }
+}
+
+/* Figma consultation card title: Lovelace Text 400, cap-height trim. Phone "H4 M" 20.91/29.1, tablet "H4 T" 23.35/33.6,
+   desktop H4 28.13/35 (no trim). */
+@utility type-consult-title {
+  font-size: 1.3069rem;
+  line-height: 1.81875rem;
+  text-box-trim: trim-both;
+  text-box-edge: cap alphabetic;
+
+  @media (width >=theme(--breakpoint-tab)) {
+    font-size: 1.4594rem;
+    line-height: 2.1rem;
+  }
+
+  @media (width >=theme(--breakpoint-xl)) {
+    font-size: 1.5rem;
+    line-height: 1.875rem;
+    text-box-trim: none;
+  }
+
+  @media (width >=theme(--breakpoint-2xl)) {
+    font-size: 1.7581rem;
+    line-height: 2.1875rem;
+  }
+}
+
+/* Figma H5 Lato (testimonial card title): desktop 22 (measured), tablet "H5 T" 19.08 and phone "H5 M" 17.3 (type list),
+   line-height 100%. The weight (ExtraBold 800) comes from font-extrabold on the element.
+   TODO(figma): tablet and phone title panels were not received. */
+@utility type-testimonial-title {
+  font-size: 1.08125rem;
+  line-height: 1.2;
+
+  @media (width >=theme(--breakpoint-md)) {
+    font-size: 1.1925rem;
+  }
+
+  @media (width >=theme(--breakpoint-xl)) {
+    font-size: 1.375rem;
+  }
+}
+
+/* Figma page hero title (Contact): Lovelace Text 400. Phone "H1 M" 36.7/46 (the 46 is confirmed by the 147px text
+   frame: 46 + 12 + 89), tablet "H1 T" 42.87/55 (measured), laptop and desktop "H1" 54.93/70.4 (measured).
+   The tablet size starts at 600px (tab), the laptop size at 1024px (lg). TODO(figma): phone H1 panel not received. */
+@utility type-page-title {
+  font-size: 2.29375rem;
+  line-height: 2.875rem;
+
+  @media (width >=theme(--breakpoint-tab)) {
+    font-size: 2.679375rem;
+    line-height: 3.4375rem;
+  }
+
+  @media (width >=theme(--breakpoint-lg)) {
+    font-size: 3.433125rem;
+    line-height: 4.4rem;
+  }
+}
+
+/* Figma Consultation hero title: Lovelace Text 400, Accent. Phone "H1 M" 36.72/46 and tablet "H1 T" 42.87/48, both
+   with cap-height trim (measured). From lg (1024) the size follows the width (3.8146vw = 54.93 at 1440, line-height
+   ratio 1.2816 = 70.4 / 54.93), so the title fits the narrower text column at 1024 and 1280. The tablet size starts
+   at 600px (tab). text-box-trim needs Chrome 133+ / Safari 18.2+; elsewhere the title box is just taller. */
+@utility type-consult-hero-title {
+  font-size: 2.295rem;
+  line-height: 2.875rem;
+  text-box-trim: trim-both;
+  text-box-edge: cap alphabetic;
+
+  @media (width >=theme(--breakpoint-tab)) {
+    font-size: 2.679375rem;
+    line-height: 3rem;
+  }
+
+  @media (width >=theme(--breakpoint-lg)) {
+    font-size: clamp(2.4414rem, 3.8146vw, 3.433125rem);
+    line-height: 1.2816;
+    text-box-trim: none;
+  }
+}
+
+/* Figma Consultation "What to Expect" step number: Lovelace Text 400, Accent colour on the element. Phone "H1 M" 36.72/46 and
+   tablet "H1 T" 42.87/48, both with cap-height trim (measured). Desktop "H1" 54.93/70.4, no trim (measured). The tablet size
+   starts at 600px (tab), the desktop size at 1280px (xl). text-box-trim needs Chrome 133+ / Safari 18.2+. */
+@utility type-step-number {
+  font-family: var(--font-heading);
+  font-weight: 400;
+  font-size: 2.295rem;
+  line-height: 2.875rem;
+  text-box-trim: trim-both;
+  text-box-edge: cap alphabetic;
+
+  @media (width >=theme(--breakpoint-tab)) {
+    font-size: 2.679375rem;
+    line-height: 3rem;
+  }
+
+  @media (width >=theme(--breakpoint-xl)) {
+    font-size: 3.433125rem;
+    line-height: 4.4rem;
+    text-box-trim: none;
+  }
+}
+
+/* Figma Contact section title (Contact Information & Have a Question): Lovelace Text 400.
+   Phone 30.43/35, tablet and desktop H3 35.16px, line-height 100% (measured).
+   Tablet size starts at 600px (tab). */
+@utility type-contact-title {
+  font-size: 1.575rem;
+  line-height: 1.25;
+
+  @media (width >=theme(--breakpoint-tab)) {
+    font-size: 1.78625rem;
+    line-height: 1.25;
+  }
+
+  @media (width >=theme(--breakpoint-lg)) {
+    font-size: 2.1975rem;
+    line-height: 1;
+  }
+}
+
+/* Contact section titles (Figma H3, Lovelace Text 400, line height 100%). Desktop 35.16 (measured); from lg the size
+   scales with the width (2.44vw) so "Contact Information" fits at 1024. Tablet 28.8 and phone 25.2 are estimated from
+   the canvas (TODO(figma): panels not received). */
+@utility type-contact-title {
+  font-size: 1.575rem;
+  line-height: 1;
+
+  @media (width >=theme(--breakpoint-tab)) {
+    font-size: 1.8rem;
+  }
+
+  @media (width >=theme(--breakpoint-lg)) {
+    font-size: clamp(1.75rem, 2.44vw, 2.1975rem);
+  }
+}
+
+/* Figma "Looking for Personal Insights?" title (Contact section 3): Lovelace Text 400, Accent.
+   Phone "H2 M" 30.43/38, tablet "H2 T" 35 with line height 100%, desktop "H2" 43.95/48 (all measured).
+   The tablet size starts at 600px (tab). From lg (1024) the size follows the width (3.052vw = 43.95 at 1440),
+   so the title fits the narrower text column at 1024 and 1280. */
+@utility type-insights-title {
+  font-size: 1.9019rem;
+  line-height: 2.375rem;
+
+  @media (width >=theme(--breakpoint-tab)) {
+    font-size: 2.1875rem;
+    line-height: 1;
+  }
+
+  @media (width >=theme(--breakpoint-lg)) {
+    font-size: clamp(2rem, 3.052vw, 2.7469rem);
+    line-height: 1.0925;
+  }
+}
+
+/* Contact section 4 Office Hours card, label: Figma "H5 - Lato" 700. Phone "H5 M" 17.3/25, tablet "H5 T" 19.08/23.3
+   (starts at 600, tab and stays up to 1279), desktop 22.5/30.7 (measured, starts at 1280, xl). The weight comes from
+   font-bold on the element. */
+@utility type-info-label {
+  font-size: 1.08125rem;
+  line-height: 1.5625rem;
+
+  @media (width >=theme(--breakpoint-tab)) {
+    font-size: 1.1925rem;
+    line-height: 1.45625rem;
+  }
+
+  @media (width >=theme(--breakpoint-xl)) {
+    font-size: 1.40625rem;
+    line-height: 1.91875rem;
+  }
+}
+
+/* Contact section 4 Office Hours card, value: Figma "Body Large" 18/22.6 on desktop (measured, starts at 1280, xl).
+   TODO(figma): tablet 16 (up to 1279) and phone 14 are estimated (same as Contact 2); the panels were not received. */
+@utility type-info-value {
+  font-size: 0.875rem;
+  line-height: 1.375;
+
+  @media (width >=theme(--breakpoint-tab)) {
+    font-size: 1rem;
+    line-height: 1.3875rem;
+  }
+
+  @media (width >=theme(--breakpoint-xl)) {
+    font-size: 1.125rem;
+    line-height: 1.4125rem;
+  }
+}
 /* Logo marquee: moves one set width to the left, then loops. Duration is set per breakpoint on the element. */
 @utility animate-marquee {
   animation: marquee var(--marquee-duration, 30s) linear infinite;
@@ -645,19 +967,60 @@
 }
 
 @utility bg-card-gradient {
-  background: linear-gradient(180deg,
-      var(--color-card-gradient-start) 0%,
-      var(--color-card-gradient-end) 100%);
+  background: linear-gradient(
+    180deg,
+    var(--color-card-gradient-start) 0%,
+    var(--color-card-gradient-end) 100%
+  );
 }
 
 /* TODO(figma): angle and stop positions of the Gradient style are not confirmed */
 @utility bg-page-gradient {
-  background-image: linear-gradient(180deg,
-      var(--color-gradient-stop-1),
-      var(--color-gradient-stop-2),
-      var(--color-gradient-stop-3),
-      var(--color-gradient-stop-4),
-      var(--color-gradient-stop-5));
+  background-image: linear-gradient(
+    180deg,
+    var(--color-gradient-stop-1),
+    var(--color-gradient-stop-2),
+    var(--color-gradient-stop-3),
+    var(--color-gradient-stop-4),
+    var(--color-gradient-stop-5)
+  );
+}
+
+/* One continuous page background. Put it on <main> only; sections must not paint their own background,
+   or seams appear. Bands sit at fixed pixel positions (--glow-1..6 in :root), slanting up to the right
+   like Figma. TODO(figma): angle (172deg) and the glow positions are estimated from screenshots. */
+@utility bg-page-flow {
+  background-color: var(--color-gradient-stop-5);
+  background-image: linear-gradient(
+    172deg,
+    var(--color-gradient-stop-1) 0px,
+    var(--color-gradient-stop-1) var(--glow-1),
+    var(--color-gradient-stop-2) var(--glow-2),
+    var(--color-gradient-stop-3) var(--glow-3),
+    var(--color-gradient-stop-2) var(--glow-4),
+    var(--color-gradient-stop-4) var(--glow-5),
+    var(--color-gradient-stop-5) var(--glow-6)
+  );
+  background-repeat: no-repeat;
+}
+
+/* One continuous page background for the Contact page (/contact).
+   Flows as deep midnight navy blue sky (#090d22) continuous with the Hero,
+   carrying a subtle horizontal band (line) of purple nebula (#23153d) across Section 2,
+   then returning to deep midnight navy sky. Matches Figma Desktop Contact Us canvas. */
+@utility bg-contact-flow {
+  background-color: var(--color-gradient-stop-5);
+  background-image: linear-gradient(
+    180deg,
+    var(--color-gradient-stop-1) 0px,
+    var(--color-gradient-stop-1) 560px,
+    #1d1334 760px,
+    #251642 840px,
+    #1d1334 920px,
+    var(--color-gradient-stop-1) 1120px,
+    var(--color-gradient-stop-1) 100%
+  );
+  background-repeat: no-repeat;
 }
 
 /* TODO(figma): old placeholder, used by Section bg="hero". Replace with bg-page-gradient later. */
@@ -673,5 +1036,23 @@
 
   span {
     font-family: inherit;
+  }
+}
+
+/* Contact FAQ title (Figma H2 M / H2 T / H2): Lovelace Text 400. Phone 30.43/38 (measured), tablet 35/40, desktop 43.95/48.
+   No cap-height trim (the Figma panels show none). md and xl, like the Home FAQ.
+   TODO(figma): the tablet title panel was not received (35/40 is derived from the 80.16 heading block). */
+@utility type-faq-title {
+  font-size: 1.9019rem;
+  line-height: 2.375rem;
+
+  @media (width >=theme(--breakpoint-md)) {
+    font-size: 2.1875rem;
+    line-height: 2.5rem;
+  }
+
+  @media (width >=theme(--breakpoint-xl)) {
+    font-size: 2.7469rem;
+    line-height: 3rem;
   }
 }
