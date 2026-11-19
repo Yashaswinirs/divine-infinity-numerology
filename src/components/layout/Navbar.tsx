@@ -14,7 +14,11 @@ import { NavLinks } from "./NavLinks";
 
 const MENU_ID = "mobile-menu";
 
-export function Navbar() {
+export interface NavbarProps {
+  variant?: "default" | "blogs";
+}
+
+export function Navbar({ variant: _variant }: NavbarProps = {}) {
   const pathname = usePathname();
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);

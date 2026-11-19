@@ -1,9 +1,11 @@
+import { cn } from "@/lib";
 import { siteConfig } from "@/data/site";
 import { WhatsAppIcon } from "./WhatsAppIcon";
 
 export interface WhatsAppButtonProps {
   /** Overrides the link built from siteConfig.whatsapp. */
   href?: string;
+  className?: string;
 }
 
 const { number, message, label, regionLabel } = siteConfig.whatsapp;
@@ -17,9 +19,9 @@ const styles = {
   link: "bg-whatsapp shadow-whatsapp focus-visible:outline-accent flex size-12 items-center justify-center rounded-full text-white transition-transform duration-200 hover:scale-110 focus-visible:outline-2 focus-visible:outline-offset-2 active:scale-95 lg:size-15",
   icon: "size-6 lg:size-7.5",
 } as const;
-export function WhatsAppButton({ href = defaultHref }: WhatsAppButtonProps) {
+export function WhatsAppButton({ href = defaultHref, className }: WhatsAppButtonProps) {
   return (
-    <aside aria-label={regionLabel} className={styles.root}>
+    <aside aria-label={regionLabel} className={cn(styles.root, className)}>
       <a
         href={href}
         target="_blank"
