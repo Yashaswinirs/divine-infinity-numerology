@@ -33,7 +33,6 @@ const styles = {
   divider:
     "flex w-full max-w-94.5 items-center gap-2.5 tab:max-w-109.5 lg:h-127.25 lg:w-8 lg:max-w-none lg:flex-col lg:gap-3 lg:justify-self-center",
   line: "bg-accent h-px flex-1 lg:h-auto lg:w-px",
-  star: "size-8 shrink-0 bg-[url('/icons/contact-divider-star.svg')] bg-[length:32px_448px] bg-center bg-no-repeat",
   find: "flex w-full max-w-162 flex-col items-center gap-6 tab:gap-9 lg:max-w-none lg:gap-13.5",
   findHeading: "flex flex-col items-center gap-6.25",
 } as const;
@@ -82,7 +81,13 @@ export function ContactOffice() {
 
           <div aria-hidden="true" className={styles.divider}>
             <span className={styles.line} />
-            <span className={styles.star} />
+            <Image
+              src="/icons/contact-divider-star.svg"
+              alt=""
+              width={32}
+              height={32}
+              className="size-8 shrink-0 object-contain"
+            />
             <span className={styles.line} />
           </div>
 

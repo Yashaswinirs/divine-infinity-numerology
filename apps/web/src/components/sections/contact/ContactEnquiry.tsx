@@ -125,8 +125,13 @@ export function ContactEnquiry() {
           >
             <div className="text-accent flex items-center gap-3 lg:hidden">
               <span className="bg-accent h-px flex-1" />
-              <span className="size-5.5 shrink-0 bg-[url('/icons/contact-divider-star.svg')] bg-[length:22px_308px] bg-center bg-no-repeat" />
-
+              <Image
+                src="/icons/contact-divider-star.svg"
+                alt=""
+                width={22}
+                height={22}
+                className="size-5.5 shrink-0 object-contain"
+              />
               <span className="bg-accent h-px flex-1" />
             </div>
             <Image

@@ -1,21 +1,5 @@
 @import "tailwindcss";
 
-@font-face {
-  font-family: 'Lovelace Text';
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-  src: url('/fonts/LovelaceText-Regular.otf') format('opentype');
-}
-
-@font-face {
-  font-family: 'Lovelace Text';
-  font-style: italic;
-  font-weight: 700;
-  font-display: swap;
-  src: url('/fonts/LovelaceText-BoldItalic.otf') format('opentype');
-}
-
 :root {
   /* Figma "Card color" gradient stops. TODO(figma): angle and stop positions not confirmed (180deg assumed). */
   --color-card-gradient-start: #1d1b4d;
