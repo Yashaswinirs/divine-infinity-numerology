@@ -5,6 +5,13 @@ import "@/styles/globals.css";
 export const metadata: Metadata = {
   title: "Divine Infinity Numerology",
   description: "Public Website for Divine Infinity Numerology LMS",
+  icons: {
+    icon: [
+      { url: "/icon.png", type: "image/png" },
+      { url: "/icon.svg", type: "image/svg+xml" },
+    ],
+    apple: "/apple-icon.png",
+  },
 };
 
 export default function RootLayout({

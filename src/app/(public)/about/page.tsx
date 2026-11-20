@@ -10,7 +10,7 @@ import {
   AreasOfExpertise,
   RecognisedForExcellence,
 } from "@/components/sections/about-us";
-import { CtaBanner } from "@/components/shared";
+import { CtaBanner, WhatsAppButton } from "@/components/shared";
 import { aboutHeroContent } from "@/data/about";
 import { aboutCtaBanner } from "@/data/cta-banner";
 
@@ -40,6 +40,7 @@ export default function AboutPage() {
       <RecognisedForExcellence />
       {/* Pre-footer CTA Section */}
       <CtaBanner data={aboutCtaBanner} />
+      <WhatsAppButton />
     </main>
   );
 }

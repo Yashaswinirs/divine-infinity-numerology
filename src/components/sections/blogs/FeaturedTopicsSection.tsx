@@ -1,7 +1,6 @@
 import * as React from "react";
 import { cn } from "@/lib";
 import { SectionOrnament } from "@/components/shared/SectionOrnament";
-import { WhatsAppButton } from "@/components/shared/WhatsAppButton";
 import { featuredTopicsData, type FeaturedTopicsData } from "@/data/blogs";
 import { BlogGridWithFilter } from "./BlogGridWithFilter";
 
@@ -44,9 +43,6 @@ export function FeaturedTopicsSection({
         className
       )}
     >
-      {/* Floating WhatsApp Button (Foreground above transition) */}
-      <WhatsAppButton className="z-30" />
-
       {/* Main Inner Container (1280px) */}
       <div className="relative z-20 mx-auto flex w-full max-w-[1280px] flex-col gap-[40px] sm:gap-[48px] lg:gap-[57px]">
         {/* Header Block (956px) - Padded on right to preserve center alignment */}

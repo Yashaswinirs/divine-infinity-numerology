@@ -1,6 +1,7 @@
 "use client";
 
 import * as React from "react";
+import Image from "next/image";
 import { cn } from "@/lib";
 
 export interface MobileMenuButtonProps
@@ -10,21 +11,23 @@ export interface MobileMenuButtonProps
 }
 
 /**
- * MobileMenuButton - 3-line stepped hamburger button matching Figma specs:
- * - Frame: width 30px, height 16px, gap 8px
- * - Line 1: width 30px, height 0px, border: 2.5px solid rgba(255, 240, 219, 1) (#FFF0DB)
- * - Line 2: width 23px, height 0px, border: 2.5px solid rgba(255, 240, 219, 1) (#FFF0DB)
- * - Line 3: width 18px, height 0px, border: 2.5px solid rgba(255, 240, 219, 1) (#FFF0DB)
+ * MobileMenuButton - Hamburger menu button using /icons/three-lines-nav.svg:
+ * - Width: 30px
+ * - Height: 16px
+ * - Gap: 8px
+ * - Angle: 0 deg
+ * - Opacity: 1
  */
 export function MobileMenuButton({
   className,
   onToggle,
+  onClick: propOnClick,
   ...props
 }: MobileMenuButtonProps) {
   const [isOpen, setIsOpen] = React.useState(false);
 
   const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
-    props.onClick?.(e);
+    propOnClick?.(e);
     if (!e.defaultPrevented) {
       const next = !isOpen;
       setIsOpen(next);
@@ -35,11 +38,15 @@ export function MobileMenuButton({
     }
   };
 
+  const isExpanded =
+    props["aria-expanded"] !== undefined ? Boolean(props["aria-expanded"]) : isOpen;
+
   return (
     <button
       type="button"
       aria-label="Open menu"
-      aria-expanded={isOpen}
+      {...props}
+      aria-expanded={isExpanded}
       onClick={handleClick}
       className={cn(
         "flex h-[50px] w-[50px] items-center justify-end rounded-full",
@@ -47,16 +54,16 @@ export function MobileMenuButton({
         "transition-opacity cursor-pointer select-none",
         className
       )}
-      {...props}
     >
-      <div
-        className="flex w-[30px] flex-col items-end gap-[8px]"
+      <Image
+        src="/icons/three-lines-nav.svg"
+        alt=""
+        width={30}
+        height={16}
+        priority
+        className="h-[16px] w-[30px] shrink-0 object-contain select-none"
         aria-hidden="true"
-      >
-        <span className="block w-[30px] h-0 border-t-[2.5px] border-[#FFF0DB]" />
-        <span className="block w-[23px] h-0 border-t-[2.5px] border-[#FFF0DB]" />
-        <span className="block w-[18px] h-0 border-t-[2.5px] border-[#FFF0DB]" />
-      </div>
+      />
     </button>
   );
 }

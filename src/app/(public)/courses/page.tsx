@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import {
+  CoursesCtaBanner,
   CoursesFaq,
   CoursesFit,
   CoursesHero,
@@ -8,7 +9,7 @@ import {
   CoursesSmoothScroll,
   CoursesSupport,
 } from "@/components/sections/courses";
-import { CtaBanner, HeroSeam, StarField, WhatsAppButton } from "@/components/shared";
+import { HeroSeam, StarField, WhatsAppButton } from "@/components/shared";
 import { coursesMetadata } from "@/data/courses";
 
 export const metadata: Metadata = {
@@ -40,8 +41,8 @@ export default function CoursesPage() {
         <CoursesFit />
         <CoursesFaq />
       </div>
-      {/* SLOT: "Ready to Connect?" CTA (section 7). Built by the teammate, not here. The Footer goes in (public)/layout.tsx. */}
-      <CtaBanner />
+      {/* Pre-footer CTA Banner (Frozen) */}
+      <CoursesCtaBanner />
       <WhatsAppButton />
     </main>
   );

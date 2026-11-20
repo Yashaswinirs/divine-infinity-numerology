@@ -6,7 +6,7 @@ import {
   FeaturedTopicsSection,
   FeaturedReadsSection,
 } from "@/components/sections/blogs";
-import { CtaBanner } from "@/components/shared";
+import { CtaBanner, WhatsAppButton } from "@/components/shared";
 import { blogsCtaBanner } from "@/data/cta-banner";
 
 export const metadata: Metadata = {
@@ -48,6 +48,7 @@ export default function BlogsPage() {
 
       {/* Pre-footer Call to Action Section (clean background, no stars) */}
       <CtaBanner data={blogsCtaBanner} />
+      <WhatsAppButton />
     </main>
   );
 }

@@ -1,4 +1,4 @@
-import { CtaBanner, StarField, WhatsAppButton } from "@/components/shared";
+import { StarField, WhatsAppButton } from "@/components/shared";
 import {
   AboutTeejaswinni,
   AwardsCertifications,
@@ -7,6 +7,7 @@ import {
   Courses,
   Faq,
   Hero,
+  HomeCtaBanner,
   Milestones,
   ProudlyFeatured,
   Testimonials,
@@ -36,8 +37,9 @@ export default function HomePage() {
         <Blogs />
         <Faq />
       </div>
-      <CtaBanner />
+      <HomeCtaBanner />
       <WhatsAppButton />
     </main>
   );
 }
+

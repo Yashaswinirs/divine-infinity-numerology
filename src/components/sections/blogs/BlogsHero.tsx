@@ -1,9 +1,9 @@
 import * as React from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { ArrowCircle } from "@/components/shared/ArrowCircle";
 import { blogsHeroData, type BlogsHeroData } from "@/data/blogs";
 import { cn } from "@/lib";
-import { MobileMenuButton } from "./MobileMenuButton";
 
 /**
  * ============================================================================
@@ -129,37 +129,6 @@ export function BlogsHero({
         <div className={cn("absolute inset-0 pointer-events-none", bgOverlayOpacity)} />
       </div>
 
-      {/* Header Row: Tablet + Mobile only (visible below 1024px, Section C) */}
-      <div
-        className={cn(
-          "absolute z-20 flex items-center justify-between",
-          "top-[var(--hero-header-top)] left-[var(--hero-header-x)] right-[var(--hero-header-x)]",
-          "h-[50px]",
-          HEADER_DESKTOP_CUTOFF_CLASS
-        )}
-      >
-        {/* Logo-2: 50x50 round with 1px border (#FFD8A2) */}
-        <Link
-          href="/"
-          className={cn(
-            "relative flex h-[50px] w-[50px] shrink-0 items-center justify-center overflow-hidden rounded-full border border-[#FFD8A2]",
-            "hover:opacity-90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#FFD8A2]",
-            "transition-opacity"
-          )}
-          aria-label="Divine Infinity Numerology Home"
-        >
-          <Image
-            src={data.logo.src}
-            alt={data.logo.alt}
-            width={50}
-            height={50}
-            className="h-full w-full object-cover"
-          />
-        </Link>
-
-        {/* 3-line Accessible Hamburger Button */}
-        {SHOW_TABLET_HAMBURGER && <MobileMenuButton />}
-      </div>
 
       {/* Content Container (Normal flow, allows hero to grow if text wraps, Bug 3) */}
       <div
@@ -206,23 +175,7 @@ export function BlogsHero({
           )}
         >
           <span>{data.cta.label}</span>
-          <span
-            aria-hidden="true"
-            className="flex h-[28px] w-[28px] shrink-0 items-center justify-center rounded-full bg-[#655373] text-[#FFD8A2]"
-          >
-            <svg
-              className="h-3.5 w-3.5"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2.5"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              aria-hidden="true"
-            >
-              <polyline points="9 18 15 12 9 6" />
-            </svg>
-          </span>
+          <ArrowCircle tone="primary" size={28} />
         </Link>
       </div>
     </section>

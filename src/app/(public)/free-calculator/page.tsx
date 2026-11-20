@@ -4,8 +4,9 @@ import {
   FreeCalculatorHero,
   ChooseYourCalculator,
   FreeCalculatorDeeperMeaning,
+  FreeCalculatorFaq,
 } from "@/components/sections/free-calculator";
-import { CtaBanner } from "@/components/shared";
+import { CtaBanner, WhatsAppButton } from "@/components/shared";
 import { freeCalculatorCtaBanner } from "@/data/free-calculator";
 
 export const metadata: Metadata = {
@@ -93,6 +94,9 @@ export default function FreeCalculatorPage() {
 
               {/* Every Number Has a Deeper Meaning Section */}
               <FreeCalculatorDeeperMeaning showStars={false} />
+
+              {/* Frequently Asked Questions Section */}
+              <FreeCalculatorFaq />
             </div>
           </div>
 
@@ -100,6 +104,7 @@ export default function FreeCalculatorPage() {
           <CtaBanner data={freeCalculatorCtaBanner} />
         </div>
       </div>
+      <WhatsAppButton />
     </main>
   );
 }

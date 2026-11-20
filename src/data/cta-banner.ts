@@ -40,6 +40,47 @@ export const firstStepCta: Partial<CtaBannerData> = {
 
 export const aboutCtaBanner: Partial<CtaBannerData> = firstStepCta;
 
+export const homeCtaBanner: Partial<CtaBannerData> = {
+  heading: "Ready to Begin?",
+  description: [
+    "Take the next step towards learning, personal growth, and meaningful guidance.",
+  ],
+  primaryButton: { label: "Explore Courses", href: "/courses" },
+  secondaryButton: { label: "Book a Consultation", href: "/book-consultation" },
+};
+
+export const coursesCtaBanner: Partial<CtaBannerData> = {
+  heading: "Ready To Connect?",
+  description: [
+    "Have Questions Or Seeking Guidance?",
+    "Connect With Us For Personalised Readings",
+  ],
+  primaryButton: { label: "Contact Us", href: "/contact" },
+  secondaryButton: { label: "Book a Consultation", href: "/book-consultation" },
+};
+
+
+export const consultationCtaBanner: Partial<CtaBannerData> = {
+  heading: "Looking for\nClarity?",
+  description: [
+    "Your Answers May Be One Conversation Away Start Here",
+  ],
+  primaryButton: { label: "Contact Now", href: "/contact" },
+  secondaryButton: { label: "Book a Consultation", href: "/book-consultation" },
+};
+
+export const contactCtaBanner: Partial<CtaBannerData> = {
+  heading: "Ready to Take the Next Step?",
+  description: [
+    "Have Questions Or Seeking Guidance?",
+    "Connect With Us For Personalised Readings",
+  ],
+  primaryButton: { label: "Contact Us", href: "#contact-enquiry" },
+  secondaryButton: { label: "Book a Consultation", href: "/book-consultation" },
+};
+
+
+
 export const blogsCtaBanner: Partial<CtaBannerData> = {
   heading: "Looking for Personal Insights?",
   description: [

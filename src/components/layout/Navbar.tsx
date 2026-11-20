@@ -11,14 +11,26 @@ import { Logo } from "./Logo";
 import { MenuToggleButton } from "./MenuToggleButton";
 import { MobileMenu } from "./MobileMenu";
 import { NavLinks } from "./NavLinks";
+import { Navbar2 } from "./Navbar2";
 
 const MENU_ID = "mobile-menu";
 
 export interface NavbarProps {
-  variant?: "default" | "blogs";
+  variant?: "default" | "blogs" | "navbar2";
 }
 
-export function Navbar({ variant: _variant }: NavbarProps = {}) {
+const NAVBAR2_ROUTES = [
+  "/blogs",
+  "/about",
+  "/contact",
+  "/404",
+];
+
+function isNavbar2Route(pathname: string): boolean {
+  return NAVBAR2_ROUTES.some((route) => pathname === route || pathname.startsWith(`${route}/`));
+}
+
+export function Navbar({ variant }: NavbarProps = {}) {
   const pathname = usePathname();
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
@@ -30,21 +42,27 @@ export function Navbar({ variant: _variant }: NavbarProps = {}) {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  // Delegate to Navbar2 on target routes (/blogs, /about, /contact, /404) or when explicitly requested
+  const shouldUseNavbar2 =
+    variant === "blogs" ||
+    variant === "navbar2" ||
+    (variant === undefined && isNavbar2Route(pathname));
+
+  if (shouldUseNavbar2) {
+    return <Navbar2 />;
+  }
+
   const isActive = (href: string) =>
     href === "/" ? pathname === "/" : pathname === href || pathname.startsWith(`${href}/`);
 
   return (
     <>
       <header className="fixed inset-x-0 top-0 z-50">
-        {/* Scrolled veil. No border, no own stars: the page's stars show through. A soft vertical
-            gradient plus a mask fades the blur out below the bar, so content slides away smoothly
-            instead of hitting an edge. Reaches 24px below the bar. Hidden at the top (Figma look).
-            TODO(figma): not designed; opacities (80 / 60 / 0), blur (4px) and the 70% mask are
-            chosen by eye. */}
+        {/* Scrolled veil: ONLY on desktop layouts (hidden on tablet & mobile) */}
         <div
           aria-hidden="true"
           className={cn(
-            "pointer-events-none absolute inset-x-0 top-0 -bottom-6 -z-10 opacity-0",
+            "pointer-events-none absolute inset-x-0 top-0 -bottom-6 -z-10 hidden opacity-0 lg:block",
             "from-gradient-stop-1/80 via-gradient-stop-1/60 to-gradient-stop-1/0 bg-linear-to-b",
             "[mask-image:linear-gradient(to_bottom,black_70%,transparent)] backdrop-blur-xs",
             "transition-opacity duration-300 motion-reduce:transition-none",

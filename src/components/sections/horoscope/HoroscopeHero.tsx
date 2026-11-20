@@ -1,6 +1,7 @@
 import * as React from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { ArrowCircle } from "@/components/shared/ArrowCircle";
 import { Container, Section } from "@/components/layout";
 import {
   horoscopeHeroData,
@@ -496,23 +497,7 @@ export function HoroscopeHero({
               )}
             >
               <span>{data.todayBtn.label}</span>
-              <span
-                aria-hidden="true"
-                className="flex h-[28px] w-[28px] shrink-0 items-center justify-center rounded-full bg-[#655373] text-[#FFD8A2]"
-              >
-                <svg
-                  className="h-3.5 w-3.5"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2.5"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  aria-hidden="true"
-                >
-                  <polyline points="9 18 15 12 9 6" />
-                </svg>
-              </span>
+              <ArrowCircle tone="primary" size={28} />
             </Link>
           </div>
         </div>

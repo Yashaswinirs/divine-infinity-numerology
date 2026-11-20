@@ -1,6 +1,7 @@
 import * as React from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { ArrowCircle } from "@/components/shared/ArrowCircle";
 import { Container, Section } from "@/components/layout";
 import {
   freeCalculatorDeeperMeaningData,
@@ -172,28 +173,10 @@ export function FreeCalculatorDeeperMeaning({
               )}
             >
               <span>{data.button.label}</span>
-              <span
-                aria-hidden="true"
-                className={cn(
-                  "flex h-[28px] w-[28px] shrink-0 items-center justify-center rounded-full transition-colors",
-                  buttonVariant === "filled"
-                    ? "bg-[#655373] text-[#FFD8A2]"
-                    : "bg-[#FFD8A2] text-[#655373]"
-                )}
-              >
-                <svg
-                  className="h-3.5 w-3.5"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2.5"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  aria-hidden="true"
-                >
-                  <polyline points="9 18 15 12 9 6" />
-                </svg>
-              </span>
+              <ArrowCircle
+                tone={buttonVariant === "filled" ? "primary" : "accent"}
+                size={28}
+              />
             </Link>
           </div>
         </div>

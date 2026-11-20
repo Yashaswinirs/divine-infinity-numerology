@@ -1,7 +1,7 @@
 import * as React from "react";
 import Image from "next/image";
 import { Container, Section } from "@/components/layout";
-import { SectionOrnament, WhatsAppButton } from "@/components/shared";
+import { SectionOrnament } from "@/components/shared";
 import { StatsRow } from "@/components/about/StatsRow";
 import {
     SectionHeading,
@@ -100,7 +100,7 @@ export function AboutTejaswini({ intro, rest }: AboutTejaswiniProps) {
     const defaultRest = (
         <div className="flex w-full min-w-0 flex-col gap-[clamp(1rem,0.581rem_+_1.576vw,2rem)]">
             {/* Paragraph 2: BodyText (16px) with 18px highlight span */}
-            <BodyText className="break-words text-left">
+            <BodyText className="w-full max-w-full break-words text-left">
                 {highlightPhrase(
                     paragraph2,
                     "Divine Infinity Numerology, Teejaswinni K Lokesh"
@@ -153,14 +153,11 @@ export function AboutTejaswini({ intro, rest }: AboutTejaswiniProps) {
                         {introContent}
                     </div>
 
-                    {/* 3. Rest Block: 645px (tablet) -> 817px (desktop) */}
-                    <div className="relative flex min-w-0 w-full flex-col md:col-span-2 md:col-start-1 md:row-start-2 md:max-w-[clamp(40.313rem,28.028rem_+_25.6vw,51.063rem)] xl:col-span-1 xl:col-start-2 xl:row-start-2 xl:max-w-[817px]">
+                    {/* 3. Rest Block: full width on tablet/laptop -> 817px on desktop */}
+                    <div className="relative flex min-w-0 w-full flex-col md:col-span-2 md:col-start-1 md:row-start-2 md:max-w-full xl:col-span-1 xl:col-start-2 xl:row-start-2 xl:max-w-[817px]">
                         {restContent}
                     </div>
                 </div>
-
-                {/* WhatsApp button - Absolute to section container, fluid responsive (not fixed to screen) */}
-                <WhatsAppButton />
             </Container>
 
             {/* Stars overlay - Full-bleed edge-to-edge, positioned over the transition overlay (z-[16]) and behind content (z-20) */}

@@ -1,12 +1,13 @@
 import type { Metadata } from "next";
 import {
+  ContactCtaBanner,
   ContactEnquiry,
   ContactFaq,
   ContactHero,
   ContactInsights,
   ContactOffice,
 } from "@/components/sections/contact";
-import { CtaBanner, HeroSeam, StarField, WhatsAppButton } from "@/components/shared";
+import { HeroSeam, StarField, WhatsAppButton } from "@/components/shared";
 import { contactMetadata } from "@/data/contact";
 
 export const metadata: Metadata = {
@@ -30,8 +31,8 @@ export default function ContactPage() {
         <ContactOffice />
         <ContactFaq />
       </div>
-      {/* SLOT: "Ready to Take the Next Step?" CTA. Built by the teammate, not here. The Footer goes in (public)/layout.tsx. */}
-      <CtaBanner data={{ heading: "Ready to Take the Next Step?" }} />
+      {/* Contact CTA Banner */}
+      <ContactCtaBanner />
       <WhatsAppButton />
     </main>
   );

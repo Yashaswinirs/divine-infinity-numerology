@@ -4,8 +4,9 @@ import {
   ChooseYourZodiacSign,
   WhatYouWillFind,
   WhyFollowYourHoroscope,
+  HoroscopeFaq,
 } from "@/components/sections/horoscope";
-import { CtaBanner } from "@/components/shared";
+import { CtaBanner, WhatsAppButton } from "@/components/shared";
 import { horoscopeCtaBanner } from "@/data/horoscope";
 
 export const metadata: Metadata = {
@@ -118,10 +119,14 @@ export default function HoroscopePage() {
             imageShiftY={0}
           />
 
+          {/* Frequently Asked Questions Section */}
+          <HoroscopeFaq />
+
           {/* Pre-footer Call to Action Section (seamlessly concludes the gradient, blended with page) */}
           <CtaBanner data={horoscopeCtaBanner} />
         </div>
       </div>
+      <WhatsAppButton />
     </main>
   );
 }

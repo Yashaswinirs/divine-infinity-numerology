@@ -391,5 +391,39 @@ export const horoscopeCtaBanner: Partial<CtaBannerData> = {
   secondaryButton: null,
 };
 
+export interface HoroscopeFaqItem {
+  question: string;
+  answer: string;
+}
+
+export interface HoroscopeFaqContent {
+  title: string;
+  subtitle: string;
+  items: readonly HoroscopeFaqItem[];
+}
+
+export const horoscopeFaqContent: HoroscopeFaqContent = {
+  title: "Frequently Asked Questions",
+  subtitle: "Get clarity on our consultations, predictions and astrology services.",
+  items: [
+    {
+      question: "How often are horoscopes updated?",
+      answer:
+        "Our horoscopes are updated regularly across daily, weekly, monthly, and yearly cycles to reflect real-time planetary transits and cosmic alignments for every zodiac sign.",
+    },
+    {
+      question: "Do I need my birth details?",
+      answer:
+        "For exploring your sun sign or general zodiac forecasts, no birth details are needed. For in-depth personalized natal chart readings and customized life forecasts, your exact birth date, time, and birthplace are required.",
+    },
+    {
+      question: "Are horoscopes personalised?",
+      answer:
+        "Our online zodiac forecasts provide broad archetype guidance based on universal planetary movements. For a deeply tailored personal reading based on your individual astrological chart, you can book a one-on-one consultation with Teejaswinni.",
+    },
+  ],
+};
+
+
 
 

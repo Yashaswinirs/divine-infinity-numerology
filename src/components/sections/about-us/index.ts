@@ -1,4 +1,5 @@
 export * from "./AboutHero";
+export * from "./AboutHeroControls";
 export * from "./about-tejaswini";
 export * from "./AboutHeroTransition";
 export * from "./PathOfLearning";
@@ -14,4 +15,3 @@ export * from "./Recognition";
 export * from "./RecognitionCard";
 export * from "./AreasOfExpertise";
 export * from "./RecognisedForExcellence";
-

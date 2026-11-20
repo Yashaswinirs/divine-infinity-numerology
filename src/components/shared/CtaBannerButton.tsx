@@ -3,6 +3,7 @@
 import * as React from "react";
 import Link from "next/link";
 import { cn } from "@/lib";
+import { CaretRight } from "./ArrowCircle";
 
 export interface CtaBannerButtonProps {
   href: string;
@@ -50,30 +51,14 @@ export function CtaBannerButton({
 
   const circleClasses = cn(
     "flex h-[30px] w-[30px] shrink-0 items-center justify-center rounded-[15px] p-[7px]",
-    isPrimary ? "bg-[#655373]" : "bg-[#FFD8A2]"
-  );
-
-  const caretClasses = cn(
-    "h-4 w-4",
-    isPrimary ? "text-[#FFD8A2]" : "text-[#655373]"
+    isPrimary ? "bg-[#655373] text-white" : "bg-[#FFD8A2] text-[#655373]"
   );
 
   const content = (
     <>
       <span>{label}</span>
       <span aria-hidden="true" className={circleClasses}>
-        <svg
-          className={caretClasses}
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="2"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          aria-hidden="true"
-        >
-          <polyline points="9 18 15 12 9 6" />
-        </svg>
+        <CaretRight className="size-4" />
       </span>
     </>
   );
@@ -94,4 +79,3 @@ export function CtaBannerButton({
 }
 
 export default CtaBannerButton;
-

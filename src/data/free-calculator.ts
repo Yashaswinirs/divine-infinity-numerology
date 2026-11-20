@@ -168,3 +168,39 @@ export const calculatorModalData: CalculatorModalData = {
 
 
 
+
+export interface FreeCalculatorFaqItem {
+  question: string;
+  answer: string;
+}
+
+export interface FreeCalculatorFaqContent {
+  title: string;
+  items: readonly FreeCalculatorFaqItem[];
+}
+
+export const freeCalculatorFaqContent: FreeCalculatorFaqContent = {
+  title: "Frequently Asked Questions",
+  items: [
+    {
+      question: "Are these calculators free to use?",
+      answer:
+        "Yes, all our numerology calculators are 100% free to use. You can calculate your Life Path Number and uncover your core numerical insights at any time with zero charges.",
+    },
+    {
+      question: "How accurate are the results?",
+      answer:
+        "Our calculators use authentic Chaldean and Vedic numerological calculation methods. While calculators give accurate foundational numbers, a personalized consultation provides deeper, customized context for your life.",
+    },
+    {
+      question: "Do I need to create an account?",
+      answer:
+        "No account creation is required. You can instantly calculate your numbers directly on the page without registering or signing up.",
+    },
+    {
+      question: "Can I book a consultation after using a calculator?",
+      answer:
+        "Yes, absolutely! If your numbers spark curiosity or you'd like an in-depth reading tailored to your personal goals, you can book a 1-on-1 consultation directly from the website.",
+    },
+  ],
+};

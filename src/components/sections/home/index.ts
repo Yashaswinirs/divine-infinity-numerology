@@ -9,3 +9,4 @@ export { Milestones } from "./Milestones";
 export { ProudlyFeatured } from "./ProudlyFeatured";
 export { Testimonials } from "./Testimonials";
 export { WhyLearn } from "./WhyLearn";
+export { HomeCtaBanner } from "./HomeCtaBanner";

@@ -108,3 +108,26 @@ The following pages, sections, and supporting components have been completed, ve
      - Zero extra empty space between section and footer on tablet.
      - Attached to frozen `<Footer />`.
 
+9. **Home Page (`/`) & Home CTA**:
+   - Route: [`src/app/(public)/page.tsx`](file:///d:/Workspace/divine-infinity-numerology/src/app/(public)/page.tsx)
+   - Components: `HomeCtaBanner.tsx` and all Home sections
+   - Frozen specs: Desktop (469px width, -63px shiftY, 38px gap), Tablet (326px width, -36px shiftY, 48px gap), Mobile (330px width, 0px shiftY, 25px gap).
+
+10. **Courses Page (`/courses`) & Courses CTA**:
+    - Route: [`src/app/(public)/courses/page.tsx`](file:///d:/Workspace/divine-infinity-numerology/src/app/(public)/courses/page.tsx)
+    - Components: `CoursesCtaBanner.tsx` and all Courses sections
+    - Frozen specs: Desktop (617px width, 0px shiftY, 40px gap), Tablet (500px width, 0px shiftY, 40px gap), Mobile (330px width, 0px shiftY, 25px gap).
+
+11. **Consultation Page (`/consultation`) & Consultation CTA**:
+    - Route: [`src/app/(public)/consultation/page.tsx`](file:///d:/Workspace/divine-infinity-numerology/src/app/(public)/consultation/page.tsx)
+    - Components: `ConsultationCtaBanner.tsx` and all Consultation sections
+    - Frozen specs: Desktop (617px width, -36px shiftY, 40px gap), Tablet (308px width, -15px shiftY, 40px gap), Mobile (330px width, 0px shiftY, 25px gap).
+
+12. **Contact Us Page (`/contact`) & Contact CTA**:
+    - Route: [`src/app/(public)/contact/page.tsx`](file:///d:/Workspace/divine-infinity-numerology/src/app/(public)/contact/page.tsx)
+    - Components: `ContactHero`, `HeroSeam`, `ContactEnquiry`, `ContactInsights`, `ContactOffice`, `ContactFaq`, `ContactCtaBanner`
+    - Frozen specs: Desktop (617px width, 0px shiftY, 40px gap), Tablet (500px width, 0px shiftY, 40px gap), Mobile (330px width, +5px shiftY, 25px gap).
+
+> [!IMPORTANT]
+> **ENTIRE PUBLIC WEBSITE IS STRICTLY FROZEN**: All routes in `src/app/(public)/`, layout, navbar, footer, shared components, fonts, design tokens, and assets for the marketing website are 100% complete and frozen. No modifications, refactoring, or re-styling are permitted without explicit user instruction.
+
