@@ -1,8 +1,12 @@
 {
   "files": [],
   "references": [
-    {
-      "path": "./apps/web"
-    }
+    { "path": "./apps/web" },
+    { "path": "./apps/student" },
+    { "path": "./apps/admin" },
+    { "path": "./server" },
+    { "path": "./packages/types" },
+    { "path": "./packages/validation" },
+    { "path": "./packages/ui" }
   ]
 }
