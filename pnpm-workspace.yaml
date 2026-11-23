@@ -4,6 +4,9 @@ packages:
   - "server"
 
 allowBuilds:
+  "@prisma/client": true
+  "@prisma/engines": true
+  prisma: true
   esbuild: true
   netlify-cli: true
   sharp: false
