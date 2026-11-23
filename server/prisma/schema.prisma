@@ -1,0 +1,152 @@
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+enum Role {
+  admin
+  student
+  instructor
+}
+
+model User {
+  id           String       @id @default(uuid())
+  email        String       @unique
+  passwordHash String?
+  fullName     String
+  phoneNumber  String?
+  role         Role         @default(student)
+  avatarUrl    String?
+  isBlocked    Boolean      @default(false)
+  createdAt    DateTime     @default(now())
+  updatedAt    DateTime     @updatedAt
+
+  enrollments   Enrollment[]
+  orders        Order[]
+  certificates  Certificate[]
+  progress      LessonProgress[]
+  consultations Consultation[]
+}
+
+model Course {
+  id           String       @id @default(uuid())
+  title        String
+  slug         String       @unique
+  description  String
+  price        Float
+  renewalPrice Float?
+  accessMonths Int          @default(12)
+  thumbnailUrl String?
+  level        String       @default("all-levels")
+  status       String       @default("published")
+  createdAt    DateTime     @default(now())
+  updatedAt    DateTime     @updatedAt
+
+  modules     CourseModule[]
+  enrollments Enrollment[]
+  orders      Order[]
+}
+
+model CourseModule {
+  id         String   @id @default(uuid())
+  courseId   String
+  title      String
+  orderIndex Int
+  createdAt  DateTime @default(now())
+
+  course  Course   @relation(fields: [courseId], references: [id], onDelete: Cascade)
+  lessons Lesson[]
+}
+
+model Lesson {
+  id           String   @id @default(uuid())
+  moduleId     String
+  title        String
+  durationMins Int      @default(10)
+  videoUrl     String
+  orderIndex   Int
+  createdAt    DateTime @default(now())
+
+  module   CourseModule     @relation(fields: [moduleId], references: [id], onDelete: Cascade)
+  progress LessonProgress[]
+}
+
+model Enrollment {
+  id          String   @id @default(uuid())
+  userId      String
+  courseId    String
+  enrolledAt  DateTime @default(now())
+  expiresAt   DateTime
+  progressPct Float    @default(0)
+
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  course Course @relation(fields: [courseId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, courseId])
+}
+
+model LessonProgress {
+  id          String   @id @default(uuid())
+  userId      String
+  lessonId    String
+  completed   Boolean  @default(false)
+  lastPosSecs Int      @default(0)
+  updatedAt   DateTime @updatedAt
+
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  lesson Lesson @relation(fields: [lessonId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, lessonId])
+}
+
+model Order {
+  id                String   @id @default(uuid())
+  userId            String
+  courseId          String?
+  amount            Float
+  status            String   @default("pending") // pending | paid | failed
+  razorpayOrderId   String?  @unique
+  razorpayPaymentId String?
+  createdAt         DateTime @default(now())
+
+  user   User    @relation(fields: [userId], references: [id])
+  course Course? @relation(fields: [courseId], references: [id])
+}
+
+model Certificate {
+  id            String   @id @default(uuid())
+  certificateId String   @unique // Public verify ID e.g. DIV-2026-001
+  userId        String
+  courseTitle   String
+  issuedDate    DateTime @default(now())
+
+  user User @relation(fields: [userId], references: [id])
+}
+
+model Consultation {
+  id             String   @id @default(uuid())
+  userId         String
+  date           String
+  timeSlot       String
+  status         String   @default("confirmed") // pending | confirmed | completed | cancelled
+  notes          String?
+  summaryWritten String?
+  createdAt      DateTime @default(now())
+
+  user User @relation(fields: [userId], references: [id])
+}
+
+model ContactEnquiry {
+  id        String   @id @default(uuid())
+  name      String
+  email     String
+  phone     String?
+  message   String
+  status    String   @default("new") // new | contacted | resolved
+  createdAt DateTime @default(now())
+}
